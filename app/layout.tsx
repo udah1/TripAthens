@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import NavBar from "@/components/NavBar";
+import FloatingAgentButton from "@/components/FloatingAgentButton";
 
 export const metadata: Metadata = {
   title: "טיול אתונה — אפריל 2026 · משפחת חורי/זויגי",
@@ -26,6 +27,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <footer className="text-center text-xs text-slate-500 py-8">
           נוצר בעזרת סוכן טיולים AI · אתונה אפריל 2026
         </footer>
+        <FloatingAgentButton />
       </body>
     </html>
   );
