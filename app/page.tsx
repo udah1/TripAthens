@@ -194,7 +194,7 @@ function FamilyTree() {
             <Person name="עדי" age={18} gender="f" />
             <Person name="נועם" age={16} gender="m" />
             <Person name="שירה" age={15} gender="f" />
-            <Person name="כפיר" age={12} gender="m" />
+            <Person name="כפיר" age={11} gender="m" />
           </div>
         </div>
       </div>
