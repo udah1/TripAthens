@@ -49,6 +49,16 @@ html, body {
   }
 }
 
+/* אנימציית פעימה חד-פעמית (2 פעמים) לכפתור הסוכן */
+@keyframes pulse-twice-kf {
+  0%   { transform: scale(1);   opacity: 0.6; }
+  70%  { transform: scale(1.7); opacity: 0;   }
+  100% { transform: scale(1.7); opacity: 0;   }
+}
+.pulse-twice {
+  animation: pulse-twice-kf 1s ease-out 2;
+}
+
 /* טבלאות responsive */
 .table-scroll {
   overflow-x: auto;
