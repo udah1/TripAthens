@@ -5,9 +5,9 @@ export const runtime = "edge";
 
 type ChatMsg = { role: "user" | "assistant"; content: string };
 
-// מודל ברירת מחדל: gemini-2.5-flash-lite — נדיב ביותר ב-Free Tier (1,000 בקשות/יום)
-// ניתן לעקוף דרך Environment Variable GEMINI_MODEL (למשל: gemini-2.5-flash / gemini-2.0-flash)
-const MODEL = process.env.GEMINI_MODEL || "gemini-2.5-flash-lite";
+// מודל קבוע: gemini-2.5-flash-lite — הכי נדיב ב-Free Tier (1,000 בקשות/יום)
+// אם תרצה להחליף בעתיד — שנה כאן ישירות.
+const MODEL = "gemini-2.5-flash-lite";
 
 function systemPrompt(): string {
   return `אתה סוכן נסיעות ידידותי שמכיר לעומק את טיול הקבוצה לאתונה באפריל 2026.
@@ -34,18 +34,13 @@ function systemPrompt(): string {
 סה"כ: 8 מבוגרים (גיל 18+) + 4 ילדים (11-16). פנה לכל אחד בשמו הפרטי בעברית כשרלוונטי.
 אם משתמש אומר "אני X" — זכור את זה לשיחה והתאם את התשובות אליו (למשל אם הוא הורה של ילדים קטנים, או אם הוא צעיר/מבוגר).
 
-**יש לך כלי חיפוש בגוגל (Google Search)**. השתמש בו באופן יזום כשהמידע הנדרש לא מופיע בנתוני הטיול למטה — למשל:
-- מלונות חלופיים באזור
-- שעות פתיחה / מחירי כרטיסים עדכניים לאתרים
-- מזג אוויר צפוי
-- המלצות על מקומות/פעילויות נוספים
-- מידע על תחבורה, שביתות, עדכונים
-אל תשתמש בחיפוש כשהתשובה כבר נמצאת בנתוני הטיול (לוז, מסעדות, עלויות, נוסעים).
+**אין לך גישה לאינטרנט.** ענה אך ורק מתוך נתוני הטיול שמופיעים למטה ומהידע הכללי שלך.
+אם שואלים אותך על מידע משתנה/עדכני שאין בנתונים (מזג אוויר נוכחי, שעות פתיחה עדכניות, שביתות) —
+אמור בגלוי שאין לך גישה למידע חי והצע למשתמש לבדוק באתר הרלוונטי.
 
 כללים:
-- ענה תמיד בעברית (גם אם המקורות באנגלית/יוונית — תרגם וסכם).
-- אם חיפשת בגוגל — ציין בקצרה "(מידע מהאינטרנט)" או דומה, כדי שהמשתמש יידע.
-- אם גם אחרי חיפוש לא מצאת תשובה — אמור בגלוי ואל תמציא.
+- ענה תמיד בעברית.
+- אם אין לך תשובה — אמור בגלוי ואל תמציא.
 - כשמדברים על כסף — ציין € ו-₪ (שער ~3.58).
 - כשמדברים על פעילויות — ציין שעות, מיקום ומחיר אם ידוע.
 - שים לב לסבתא (75, ניידות מוגבלת) כשיש שאלת נגישות.
@@ -79,7 +74,6 @@ export async function POST(req: NextRequest) {
     const body = {
       system_instruction: { parts: [{ text: systemPrompt() }] },
       contents,
-      tools: [{ google_search: {} }],
       generationConfig: {
         temperature: 0.7,
         maxOutputTokens: 1024,
@@ -96,11 +90,30 @@ export async function POST(req: NextRequest) {
 
     if (!res.ok) {
       const errText = await res.text();
+      console.error(`[chat] Gemini ${res.status}:`, errText);
+
       if (res.status === 429) {
+        // ננסה לחלץ פרטי quota מתוך ההודעה כדי להראות למשתמש הסבר מדויק
+        let quotaHint = "";
+        try {
+          const errObj = JSON.parse(errText);
+          const details = errObj?.error?.details || [];
+          const quotaFailure = details.find(
+            (d: any) => d["@type"]?.includes("QuotaFailure")
+          );
+          const retryInfo = details.find((d: any) => d["@type"]?.includes("RetryInfo"));
+          if (quotaFailure?.violations?.[0]?.quotaId) {
+            quotaHint = ` (מכסה: ${quotaFailure.violations[0].quotaId})`;
+          }
+          if (retryInfo?.retryDelay) {
+            quotaHint += ` · נסה שוב בעוד ${retryInfo.retryDelay}`;
+          }
+        } catch {}
+
         return NextResponse.json(
           {
             error:
-              "⏳ חרגת ממכסת השימוש החינמית של Gemini. נסה שוב בעוד דקה, או שדרג את המפתח ב-Google Cloud. אפשר גם להחליף מודל דרך משתנה הסביבה GEMINI_MODEL (לדוגמה gemini-2.5-flash-lite).",
+              `⏳ חרגת ממכסת Gemini${quotaHint}. זה יכול להיות rate limit דקתי (נסה שוב בעוד דקה) או מכסה יומית (1,000/יום). פרטים מלאים בקונסול השרת.`,
           },
           { status: 429 }
         );
