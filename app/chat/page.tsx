@@ -59,14 +59,14 @@ export default function ChatPage() {
   return (
     <div>
       <h1 className="page-title">💬 סוכן הטיול</h1>
-      <p className="page-sub">
+      <p className="page-sub mb-3">
         שאל בעברית כל שאלה על הטיול. הסוכן מכיר את כל הנתונים — לוז, מסעדות, עלויות, נוסעים ועוד.
       </p>
 
       <div className="card p-0 overflow-hidden">
         <div
           ref={scrollRef}
-          className="h-[60vh] overflow-y-auto p-4 md:p-6 space-y-3 bg-gradient-to-b from-sky-50/50 to-white"
+          className="h-[55vh] overflow-y-auto p-4 md:p-6 space-y-3 bg-gradient-to-b from-sky-50/50 to-white"
         >
           {messages.map((m, idx) => (
             <MessageBubble key={idx} msg={m} />
