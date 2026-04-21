@@ -27,8 +27,18 @@ export default function HomePage() {
         </p>
         <div className="grid md:grid-cols-3 gap-3 mt-5 text-sm">
           <InfoBox title="✈️ טיסות" value={TRIP_META.airlineFlight} />
-          <InfoBox title="🛬 הלוך" value={TRIP_META.outbound} />
-          <InfoBox title="🛫 חזור" value={TRIP_META.inbound} />
+          <FlightBox
+            title="🛬 הלוך"
+            value={TRIP_META.outbound}
+            flightNumber="GQ721"
+            icao="SEH721"
+          />
+          <FlightBox
+            title="🛫 חזור"
+            value={TRIP_META.inbound}
+            flightNumber="GQ720"
+            icao="SEH720"
+          />
         </div>
       </section>
 
@@ -123,6 +133,47 @@ function InfoBox({ title, value }: { title: string; value: string }) {
     <div className="bg-white/70 rounded-xl p-3 border border-white">
       <div className="text-xs text-slate-500 font-bold">{title}</div>
       <div className="text-sm font-semibold text-brand">{value}</div>
+    </div>
+  );
+}
+
+function FlightBox({
+  title,
+  value,
+  flightNumber,
+  icao,
+}: {
+  title: string;
+  value: string;
+  flightNumber: string;
+  icao: string;
+}) {
+  const faUrl = `https://flightaware.com/live/flight/${icao}`;
+  const frUrl = `https://www.flightradar24.com/data/flights/${flightNumber.toLowerCase()}`;
+  return (
+    <div className="bg-white/70 rounded-xl p-3 border border-white">
+      <div className="text-xs text-slate-500 font-bold">{title}</div>
+      <div className="text-sm font-semibold text-brand">{value}</div>
+      <div className="flex flex-wrap gap-1.5 mt-2">
+        <a
+          href={faUrl}
+          target="_blank"
+          rel="noreferrer"
+          className="chip bg-sky-100 hover:bg-sky-200 text-sky-800 inline-flex items-center gap-1"
+          title={`סטטוס ${flightNumber} ב-FlightAware`}
+        >
+          FlightAware
+        </a>
+        <a
+          href={frUrl}
+          target="_blank"
+          rel="noreferrer"
+          className="chip bg-emerald-100 hover:bg-emerald-200 text-emerald-800 inline-flex items-center gap-1"
+          title={`מפה חיה של ${flightNumber} ב-FlightRadar24`}
+        >
+          FlightRadar24
+        </a>
+      </div>
     </div>
   );
 }
