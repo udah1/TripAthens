@@ -3,7 +3,7 @@ import "./globals.css";
 import NavBar from "@/components/NavBar";
 
 export const metadata: Metadata = {
-  title: "טיול אתונה — אפריל 2026",
+  title: "טיול אתונה — אפריל 2026 · משפחת חורי/זויגי",
   description: "אתר הטיול הקבוצתי לאתונה — לוז, משימות, עלויות, נוסעים, מסעדות ואטרקציות",
 };
 

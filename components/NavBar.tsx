@@ -22,8 +22,8 @@ export default function NavBar() {
   return (
     <header className="sticky top-0 z-40 bg-brand text-white shadow-lg">
       <div className="max-w-6xl mx-auto px-4 md:px-6 flex items-center justify-between h-14">
-        <Link href="/" className="font-bold text-lg">
-          🇬🇷 אתונה 2026
+        <Link href="/" className="font-bold text-sm md:text-lg whitespace-nowrap">
+          🇬🇷 אתונה 2026 — משפחת חורי/זויגי
         </Link>
 
         <nav className="hidden md:flex items-center gap-1">

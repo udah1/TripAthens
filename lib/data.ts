@@ -69,7 +69,7 @@ export interface Attraction {
 }
 
 export const TRIP_META = {
-  title: "טיול אתונה — אפריל 2026",
+  title: "טיול אתונה — אפריל 2026 · משפחת חורי/זויגי",
   groupSize: 12,
   hotel: "Athens Cypria Hotel",
   hotelAddress: "Diomeias 5, Athens 105 63",
