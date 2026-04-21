@@ -66,6 +66,7 @@ export interface Attraction {
   practicalNotes: string;
   price: string;
   accessibility: string;
+  url?: string;
 }
 
 export const TRIP_META = {
@@ -199,22 +200,22 @@ export const RESTAURANTS: Restaurant[] = [
 ];
 
 export const ACROPOLIS = [
-  { name: "האקרופוליס", english: "Acropolis Hill",   description: "גובה סלע 156 מטר שעליו עתיקים בני 2,500 שנה — בראשם הפרתנון, מקדש אתנה. הסמל של יוון ואחד מהמורשות החשובים בעולם.", notes: "קן כרטיסים אונליין מראש! (נסיעה + מעלית פנורמית). תאמו 24ש מראש: +30 4172 321 210" },
-  { name: "מוזיאון האקרופוליס", english: "Acropolis Museum", description: "מוזיאון הבנוי מתחת לאקרופוליס, מציג את האפסלות והממצאים המקוריים מהגבעה. רצפת זכוכית עם חפירות ארכיאולוגיות מתחתיה.", notes: "נגיש לחלוטין — מעלית ורמפות. מדהים!" },
+  { name: "האקרופוליס", english: "Acropolis Hill",   description: "גובה סלע 156 מטר שעליו עתיקים בני 2,500 שנה — בראשם הפרתנון, מקדש אתנה. הסמל של יוון ואחד מהמורשות החשובים בעולם.", notes: "קן כרטיסים אונליין מראש! (נסיעה + מעלית פנורמית). תאמו 24ש מראש: +30 4172 321 210", url: "https://www.google.com/maps/search/?api=1&query=Acropolis+Athens" },
+  { name: "מוזיאון האקרופוליס", english: "Acropolis Museum", description: "מוזיאון הבנוי מתחת לאקרופוליס, מציג את האפסלות והממצאים המקוריים מהגבעה. רצפת זכוכית עם חפירות ארכיאולוגיות מתחתיה.", notes: "נגיש לחלוטין — מעלית ורמפות. מדהים!", url: "https://www.theacropolismuseum.gr/en" },
 ];
 
 export const ATTRACTIONS: Attraction[] = [
-  { category: "מוזיאון",   name: "מוזיאון האשליות",         description: "אשליות אופטיות ותמונות אינטראקטיביות. ~60 דקות. כיפי לכל הגילאים.",  practicalNotes: "פתוח מ-10:00. הנחות קבוצה ל-12.",   price: "~13€/אדם",              accessibility: "כן" },
-  { category: "תיאטרון",   name: "Who Killed Callimachos",  description: "מיסתורן אינטראקטיבי. שחקן + קהל בלשים. אתונה עתיקה.",               practicalNotes: "מדי יום 18:00. הנחה ל-10+.",         price: "22€ מבוגר / 15€ ילד",  accessibility: "כן" },
-  { category: "סיור",      name: "Ezraider",                description: "כלי חשמלי ל-4 גלגלים. מדריך עברית. היסטוריה יהודית.",                practicalNotes: "לאשר ב-09:00 + נגישות לסבתא.",       price: "70€ מבוגר / 35€ ילד",  accessibility: "לאשר" },
-  { category: "טיול יום", name: "נפפליאו + תעלת קורינטוס",  description: "עיירת בוטיק ציורית + תעלה הנדסית. ואן פרטי.",                       practicalNotes: "10:00-18:30. אוכל מהבית!",           price: "650€ לקבוצה (~54€)",   accessibility: "כן — ואן" },
-  { category: "מבצר",      name: "מבצר פלמידי",             description: "אחד המבצרים היפים ביוון. נוף פנורמי.",                                practicalNotes: "הרבה מדרגות — סבתא נשארת בנמל.",    price: "~8€/אדם",              accessibility: "חלקי" },
-  { category: "גבעה",      name: "גבעת ליקבטוס",            description: "הגבעה הכי גבוהה. נוף 360 מעלות. שקיעה מרהיבה ~20:15.",              practicalNotes: "רכבל עד 02:30. להגיע ב-18:30.",      price: "13€ הלוך-חזור",        accessibility: "כן — רכבל" },
-  { category: "פארק",      name: "הגן הלאומי",              description: "פארק ירוק ענק ליד סינטגמה. שבילים, בריכות, צל.",                   practicalNotes: "פתוח עד שקיעה.",                      price: "חינם",                 accessibility: "כן — שטוח" },
-  { category: "שכונה",     name: "פלאקה",                   description: "שכונת העיר העתיקה. רחובות מרוצפים, מזכרות, קפה.",                  practicalNotes: "שטוח ונגיש. יפה גם בלילה.",           price: "כניסה חופשית",         accessibility: "כן" },
-  { category: "שכונה",     name: "פסירי",                   description: "שכונת הגרפיטי של אתונה. מורלים, אמנות רחוב.",                       practicalNotes: "אפליקציה: Street Art Cities.",        price: "חינם",                 accessibility: "כן — שטוח" },
-  { category: "שוק",       name: "מונסטיראקי",              description: "כיכר + שוק פשפשים ססגוני. תכשיטים, ביגוד, עתיקות.",                practicalNotes: "שטוח. הרבה ספסלים לסבתא.",          price: "כניסה חופשית",         accessibility: "כן" },
-  { category: "תחבורה",    name: "הופ-און הופ-אוף",         description: "אוטובוס קומתי פתוח. עולים/יורדים בכל תחנה. כרטיס 48 שעות.",       practicalNotes: "bigbustours.com — לרכוש מראש.",      price: "~28€ מבוגר / ~14€ ילד",accessibility: "כן — ישיבה" },
+  { category: "מוזיאון",   name: "מוזיאון האשליות",         description: "אשליות אופטיות ותמונות אינטראקטיביות. ~60 דקות. כיפי לכל הגילאים.",  practicalNotes: "פתוח מ-10:00. הנחות קבוצה ל-12.",   price: "~13€/אדם",              accessibility: "כן",         url: "https://athens.museumofillusions.gr" },
+  { category: "תיאטרון",   name: "Who Killed Callimachos",  description: "מיסתורן אינטראקטיבי. שחקן + קהל בלשים. אתונה עתיקה.",               practicalNotes: "מדי יום 18:00. הנחה ל-10+.",         price: "22€ מבוגר / 15€ ילד",  accessibility: "כן",         url: "https://athenslivingmuseum.com/who-killed-callimachos/" },
+  { category: "סיור",      name: "Ezraider",                description: "כלי חשמלי ל-4 גלגלים. מדריך עברית. היסטוריה יהודית.",                practicalNotes: "לאשר ב-09:00 + נגישות לסבתא.",       price: "70€ מבוגר / 35€ ילד",  accessibility: "לאשר",       url: "https://wa.me/message/NLNHNSS46SLHE1" },
+  { category: "טיול יום", name: "נפפליאו + תעלת קורינטוס",  description: "עיירת בוטיק ציורית + תעלה הנדסית. ואן פרטי.",                       practicalNotes: "10:00-18:30. אוכל מהבית!",           price: "650€ לקבוצה (~54€)",   accessibility: "כן — ואן",   url: "https://wa.me/message/NLNHNSS46SLHE1" },
+  { category: "מבצר",      name: "מבצר פלמידי",             description: "אחד המבצרים היפים ביוון. נוף פנורמי.",                                practicalNotes: "הרבה מדרגות — סבתא נשארת בנמל.",    price: "~8€/אדם",              accessibility: "חלקי",       url: "https://en.wikipedia.org/wiki/Palamidi" },
+  { category: "גבעה",      name: "גבעת ליקבטוס",            description: "הגבעה הכי גבוהה. נוף 360 מעלות. שקיעה מרהיבה ~20:15.",              practicalNotes: "רכבל עד 02:30. להגיע ב-18:30.",      price: "13€ הלוך-חזור",        accessibility: "כן — רכבל", url: "https://en.wikipedia.org/wiki/Lycabettus" },
+  { category: "פארק",      name: "הגן הלאומי",              description: "פארק ירוק ענק ליד סינטגמה. שבילים, בריכות, צל.",                   practicalNotes: "פתוח עד שקיעה.",                      price: "חינם",                 accessibility: "כן — שטוח",  url: "https://www.google.com/maps/search/?api=1&query=National+Garden+Athens" },
+  { category: "שכונה",     name: "פלאקה",                   description: "שכונת העיר העתיקה. רחובות מרוצפים, מזכרות, קפה.",                  practicalNotes: "שטוח ונגיש. יפה גם בלילה.",           price: "כניסה חופשית",         accessibility: "כן",         url: "https://www.google.com/maps/search/?api=1&query=Plaka+Athens" },
+  { category: "שכונה",     name: "פסירי",                   description: "שכונת הגרפיטי של אתונה. מורלים, אמנות רחוב.",                       practicalNotes: "אפליקציה: Street Art Cities.",        price: "חינם",                 accessibility: "כן — שטוח",  url: "https://streetartcities.com/cities/athens" },
+  { category: "שוק",       name: "מונסטיראקי",              description: "כיכר + שוק פשפשים ססגוני. תכשיטים, ביגוד, עתיקות.",                practicalNotes: "שטוח. הרבה ספסלים לסבתא.",          price: "כניסה חופשית",         accessibility: "כן",         url: "https://www.google.com/maps/search/?api=1&query=Monastiraki+Square+Athens" },
+  { category: "תחבורה",    name: "הופ-און הופ-אוף",         description: "אוטובוס קומתי פתוח. עולים/יורדים בכל תחנה. כרטיס 48 שעות.",       practicalNotes: "bigbustours.com — לרכוש מראש.",      price: "~28€ מבוגר / ~14€ ילד",accessibility: "כן — ישיבה", url: "https://www.bigbustours.com/en/athens/athens-bus-tours" },
   { category: "טיול ים",   name: "סירה לבורג'י",            description: "מגדל ים באמצע מפרץ נפפליאו. ~15 דקות הפלגה.",                       practicalNotes: "אופציונלי. מהנמל.",                    price: "~5€/אדם",              accessibility: "כן" },
 ];
 

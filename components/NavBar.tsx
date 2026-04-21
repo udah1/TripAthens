@@ -57,7 +57,7 @@ export default function NavBar() {
           </button>
 
           <Link href="/" className="font-bold text-sm md:text-lg whitespace-nowrap">
-            אתונה 2026 — משפחת חורי/זויגי 🇬🇷
+            🇬🇷 אתונה 2026 — משפחת חורי/זויגי
           </Link>
 
           <nav className="hidden md:flex items-center gap-1">
@@ -98,7 +98,7 @@ export default function NavBar() {
         aria-modal="true"
       >
         <div className="flex items-center justify-between px-4 h-14 border-b border-white/10">
-          <span className="font-bold text-sm">🇬🇷 אתונה 2026</span>
+          <span className="font-bold text-sm">אתונה 2026 🇬🇷</span>
           <button
             className="p-2 rounded-lg hover:bg-white/10"
             aria-label="סגור תפריט"
