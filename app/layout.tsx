@@ -1,11 +1,30 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import NavBar from "@/components/NavBar";
 import FloatingAgentButton from "@/components/FloatingAgentButton";
+import PWARegister from "@/components/PWARegister";
 
 export const metadata: Metadata = {
   title: "טיול אתונה — אפריל 2026 · משפחת חורי/זויגי",
   description: "אתר הטיול הקבוצתי לאתונה — לוז, משימות, עלויות, נוסעים, מסעדות ואטרקציות",
+  manifest: "/manifest.webmanifest",
+  applicationName: "אתונה 2026",
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: "black-translucent",
+    title: "אתונה 2026",
+  },
+  icons: {
+    icon: [{ url: "/icon.svg", type: "image/svg+xml" }],
+    apple: [{ url: "/icon.svg" }],
+  },
+};
+
+export const viewport: Viewport = {
+  themeColor: "#1A252F",
+  width: "device-width",
+  initialScale: 1,
+  viewportFit: "cover",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
@@ -28,6 +47,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           נוצר בעזרת סוכן טיולים AI · אתונה אפריל 2026
         </footer>
         <FloatingAgentButton />
+        <PWARegister />
       </body>
     </html>
   );

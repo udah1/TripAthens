@@ -15,7 +15,7 @@ const config: Config = {
         day1: "#94DCF8",
         day2: "#F7C7AC",
         day3: "#E49EDD",
-        day4: "#E49EDD",
+        day4: "#7CD367",
         evening: "#ADADAD",
         meat: "#F1948A",
         dairy: "#AED6F1",

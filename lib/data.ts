@@ -224,7 +224,7 @@ export const DAY_COLORS: Record<DayKey, string> = {
   "יום א": "#94DCF8",
   "יום ב": "#F7C7AC",
   "יום ג": "#E49EDD",
-  "יום ד": "#E49EDD",
+  "יום ד": "#7CD367",
 };
 
 export const DAY_LABELS: Record<DayKey, string> = {

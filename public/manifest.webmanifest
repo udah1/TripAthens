@@ -1,0 +1,21 @@
+{
+  "name": "אתונה 2026 — משפחת חורי/זויגי",
+  "short_name": "אתונה 2026",
+  "description": "אתר הטיול לאתונה — לוז, משימות, עלויות, מסעדות, אטרקציות וסוכן AI",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#f6fbff",
+  "theme_color": "#1A252F",
+  "lang": "he",
+  "dir": "rtl",
+  "icons": [
+    {
+      "src": "/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
