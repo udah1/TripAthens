@@ -1,0 +1,141 @@
+import Link from "next/link";
+import { TRIP_META, PASSENGERS, ITINERARY, DAY_LABELS, DAY_COLORS, type DayKey } from "@/lib/data";
+
+const dayKeys: DayKey[] = ["יום א", "יום ב", "יום ג", "יום ד"];
+
+const NAV_CARDS = [
+  { href: "/schedule", emoji: "📅", title: "לוז הטיול", desc: "תוכנית יום-יום מפורטת" },
+  { href: "/tasks", emoji: "✅", title: "משימות", desc: "מה צריך להזמין לפני הטיסה" },
+  { href: "/costs", emoji: "💰", title: "עלויות", desc: "פירוט טיסה, מלון, פעילויות" },
+  { href: "/passengers", emoji: "👥", title: "נוסעים", desc: "12 משתתפים ופירוט אישי" },
+  { href: "/restaurants", emoji: "🍽️", title: "מסעדות כשרות", desc: "בשרי + חלבי באתונה" },
+  { href: "/attractions", emoji: "🗺️", title: "אטרקציות", desc: "מה לראות ולעשות" },
+  { href: "/chat", emoji: "💬", title: "סוכן AI", desc: "שאל שאלות על הטיול" },
+];
+
+export default function HomePage() {
+  return (
+    <div>
+      {/* Hero */}
+      <section className="card mb-8 bg-gradient-to-bl from-day1 via-white to-day2">
+        <div className="flex items-center gap-3 mb-3">
+          <span className="text-4xl">🇬🇷</span>
+          <h1 className="text-3xl md:text-5xl font-extrabold text-brand">{TRIP_META.title}</h1>
+        </div>
+        <p className="text-lg md:text-xl text-slate-700 font-semibold">
+          {TRIP_META.groupSize} משתתפים · כשרים · {TRIP_META.hotel}
+        </p>
+        <div className="grid md:grid-cols-3 gap-3 mt-5 text-sm">
+          <InfoBox title="✈️ טיסות" value={TRIP_META.airlineFlight} />
+          <InfoBox title="🛬 הלוך" value={TRIP_META.outbound} />
+          <InfoBox title="🛫 חזור" value={TRIP_META.inbound} />
+        </div>
+      </section>
+
+      {/* קבוצה */}
+      <section className="mb-8">
+        <h2 className="section-title">👥 הקבוצה</h2>
+        <div className="grid md:grid-cols-4 gap-3">
+          <GroupCard title="4 מבוגרים" detail="40-50" note="" />
+          <GroupCard title="4 צעירים" detail="18-21" note="חלקם משלמים לעצמם" />
+          <GroupCard title="3 נוער" detail="11-16" note="" />
+          <GroupCard title="1 סבתא" detail="75" note="ניידות מוגבלת" />
+        </div>
+      </section>
+
+      {/* תקציר ימים */}
+      <section className="mb-8">
+        <h2 className="section-title">📅 סקירה מהירה</h2>
+        <div className="grid md:grid-cols-2 gap-3">
+          {dayKeys.map((day) => {
+            const items = ITINERARY.filter((i) => i.day === day);
+            return (
+              <div key={day} className="card" style={{ borderTop: `6px solid ${DAY_COLORS[day]}` }}>
+                <div className="font-bold text-brand mb-1">{DAY_LABELS[day]}</div>
+                <div className="text-xs text-slate-500 mb-2">{items[0]?.date}</div>
+                <ul className="text-sm space-y-1">
+                  {items.slice(0, 4).map((it, idx) => (
+                    <li key={idx} className="flex gap-2">
+                      <span className="text-slate-500 shrink-0">{it.time}</span>
+                      <span className="truncate">{it.activity}</span>
+                    </li>
+                  ))}
+                  {items.length > 4 && (
+                    <li className="text-xs text-slate-400">+ עוד {items.length - 4} פעילויות...</li>
+                  )}
+                </ul>
+              </div>
+            );
+          })}
+        </div>
+      </section>
+
+      {/* הערות חשובות */}
+      <section className="mb-8">
+        <h2 className="section-title">⚠️ הערות חשובות</h2>
+        <div className="card bg-amber-50 border-amber-300">
+          <ul className="space-y-2 text-sm leading-relaxed">
+            <li>⚠️ <strong>תשלום מלון אוטומטי ב-19 אפריל</strong> — ודאו שהכרטיס תקין!</li>
+            <li>⚠️ <strong>צ'ק-אין מ-15:00</strong> — הטיסה נוחתת ב-08:45. להפקיד מזוודות בקבלה.</li>
+            <li>⚠️ <strong>צ'ק-אאוט עד 12:00</strong> — לתאם אחסון מזוודות עד הטיסה (20:30).</li>
+            <li>⚠️ <strong>בשדה התעופה לא יאוחר מ-18:00 ביום 29/4</strong></li>
+            <li>💡 <strong>צ'ק-אין אונליין</strong> פותח 48 שעות לפני — יום שישי 24/4 מ-06:30</li>
+            <li>💡 <strong>נפפליאו:</strong> קחו אוכל כשר מהמלון — אין כשרות בדרך!</li>
+          </ul>
+        </div>
+      </section>
+
+      {/* ניווט */}
+      <section className="mb-8">
+        <h2 className="section-title">🧭 ניווט מהיר</h2>
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+          {NAV_CARDS.map((c) => (
+            <Link key={c.href} href={c.href} className="card hover:scale-[1.02] transition text-center">
+              <div className="text-4xl mb-2">{c.emoji}</div>
+              <div className="font-bold text-brand">{c.title}</div>
+              <div className="text-xs text-slate-500 mt-1">{c.desc}</div>
+            </Link>
+          ))}
+        </div>
+      </section>
+
+      <section className="mb-8">
+        <h2 className="section-title">💰 תקציב משוער לאדם</h2>
+        <div className="grid md:grid-cols-2 gap-3">
+          <div className="card bg-gradient-to-br from-emerald-50 to-white">
+            <div className="text-sm text-slate-500">מבוגר (בסיס)</div>
+            <div className="text-3xl font-extrabold text-brand">~599 €</div>
+            <div className="text-sm text-slate-600">~2,144 ₪</div>
+            <div className="text-xs text-slate-400 mt-2">טיסה + מלון + פעילויות + אוכל</div>
+          </div>
+          <div className="card bg-gradient-to-br from-sky-50 to-white">
+            <div className="text-sm text-slate-500">ילד / נוער</div>
+            <div className="text-3xl font-extrabold text-brand">~517 €</div>
+            <div className="text-sm text-slate-600">~1,851 ₪</div>
+            <div className="text-xs text-slate-400 mt-2">הנחות כניסה + פחות אוכל</div>
+          </div>
+        </div>
+        <p className="text-xs text-slate-500 mt-2">* {TRIP_META.exchangeRate} · לא כולל קניות אישיות. לפירוט מלא ראו <Link className="text-brand-accent underline" href="/costs">דף העלויות</Link>. {PASSENGERS.length} נוסעים.</p>
+      </section>
+    </div>
+  );
+}
+
+function InfoBox({ title, value }: { title: string; value: string }) {
+  return (
+    <div className="bg-white/70 rounded-xl p-3 border border-white">
+      <div className="text-xs text-slate-500 font-bold">{title}</div>
+      <div className="text-sm font-semibold text-brand">{value}</div>
+    </div>
+  );
+}
+
+function GroupCard({ title, detail, note }: { title: string; detail: string; note: string }) {
+  return (
+    <div className="card text-center">
+      <div className="font-bold text-brand">{title}</div>
+      <div className="text-sm text-slate-600">גילאים: {detail}</div>
+      {note && <div className="text-xs text-slate-400 mt-1">{note}</div>}
+    </div>
+  );
+}
