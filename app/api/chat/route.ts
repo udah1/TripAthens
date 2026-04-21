@@ -14,9 +14,18 @@ function systemPrompt(): string {
 אתה עונה **בעברית בלבד**, בסגנון חם, ברור ומעשי.
 אתה מכיר כל פרט על הטיול: לוז, מסעדות כשרות, מלון, טיסות, נוסעים, עלויות, משימות ואטרקציות.
 
+**יש לך כלי חיפוש בגוגל (Google Search)**. השתמש בו באופן יזום כשהמידע הנדרש לא מופיע בנתוני הטיול למטה — למשל:
+- מלונות חלופיים באזור
+- שעות פתיחה / מחירי כרטיסים עדכניים לאתרים
+- מזג אוויר צפוי
+- המלצות על מקומות/פעילויות נוספים
+- מידע על תחבורה, שביתות, עדכונים
+אל תשתמש בחיפוש כשהתשובה כבר נמצאת בנתוני הטיול (לוז, מסעדות, עלויות, נוסעים).
+
 כללים:
-- ענה תמיד בעברית.
-- אם נשאלת משהו שלא קיים בנתונים — אמור בגלוי שאתה לא יודע ואל תמציא.
+- ענה תמיד בעברית (גם אם המקורות באנגלית/יוונית — תרגם וסכם).
+- אם חיפשת בגוגל — ציין בקצרה "(מידע מהאינטרנט)" או דומה, כדי שהמשתמש יידע.
+- אם גם אחרי חיפוש לא מצאת תשובה — אמור בגלוי ואל תמציא.
 - כשמדברים על כסף — ציין € ו-₪ (שער ~3.58).
 - כשמדברים על פעילויות — ציין שעות, מיקום ומחיר אם ידוע.
 - שים לב לסבתא (75, ניידות מוגבלת) כשיש שאלת נגישות.
@@ -50,6 +59,7 @@ export async function POST(req: NextRequest) {
     const body = {
       system_instruction: { parts: [{ text: systemPrompt() }] },
       contents,
+      tools: [{ google_search: {} }],
       generationConfig: {
         temperature: 0.7,
         maxOutputTokens: 1024,
@@ -82,11 +92,24 @@ export async function POST(req: NextRequest) {
     }
 
     const data = await res.json();
+    const candidate = data?.candidates?.[0];
     const reply =
-      data?.candidates?.[0]?.content?.parts?.map((p: any) => p.text).join("") ||
+      candidate?.content?.parts?.map((p: any) => p.text).filter(Boolean).join("") ||
       "לא קיבלתי תשובה מהמודל — נסה שוב.";
 
-    return NextResponse.json({ reply });
+    const grounding = candidate?.groundingMetadata;
+    const chunks: any[] = grounding?.groundingChunks || [];
+    const sources = chunks
+      .map((c) => c?.web)
+      .filter((w) => w?.uri)
+      .map((w: any) => ({ title: w.title || w.uri, uri: w.uri }));
+
+    // הסרת כפילויות לפי URI
+    const uniqueSources = Array.from(
+      new Map(sources.map((s) => [s.uri, s])).values()
+    );
+
+    return NextResponse.json({ reply, sources: uniqueSources });
   } catch (e: any) {
     return NextResponse.json(
       { error: e?.message || "שגיאה לא צפויה" },

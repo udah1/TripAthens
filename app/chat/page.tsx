@@ -2,7 +2,8 @@
 
 import { useEffect, useRef, useState } from "react";
 
-type Msg = { role: "user" | "assistant"; content: string };
+type Source = { title: string; uri: string };
+type Msg = { role: "user" | "assistant"; content: string; sources?: Source[] };
 
 const SUGGESTIONS = [
   "מה עושים ביום הראשון?",
@@ -48,7 +49,10 @@ export default function ChatPage() {
       });
       const data = await res.json();
       if (!res.ok) throw new Error(data?.error || `HTTP ${res.status}`);
-      setMessages((prev) => [...prev, { role: "assistant", content: data.reply }]);
+      setMessages((prev) => [
+        ...prev,
+        { role: "assistant", content: data.reply, sources: data.sources },
+      ]);
     } catch (e: any) {
       setError(e.message || "שגיאה בתקשורת עם הסוכן");
     } finally {
@@ -136,6 +140,25 @@ function MessageBubble({ msg }: { msg: Msg }) {
       >
         {!isUser && <div className="text-xs font-bold text-brand-accent mb-1">🤖 סוכן הטיול</div>}
         {msg.content}
+        {!isUser && msg.sources && msg.sources.length > 0 && (
+          <div className="mt-3 pt-2 border-t border-slate-200">
+            <div className="text-xs font-bold text-slate-500 mb-1.5">🔗 מקורות מהאינטרנט:</div>
+            <div className="flex flex-wrap gap-1.5">
+              {msg.sources.map((s, i) => (
+                <a
+                  key={i}
+                  href={s.uri}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="chip bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs max-w-[200px] truncate"
+                  title={s.title}
+                >
+                  {i + 1}. {s.title}
+                </a>
+              ))}
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );
