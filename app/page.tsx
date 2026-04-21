@@ -32,14 +32,11 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* קבוצה */}
+      {/* עץ משפחתי */}
       <section className="mb-8">
-        <h2 className="section-title">👥 הקבוצה</h2>
-        <div className="grid md:grid-cols-4 gap-3">
-          <GroupCard title="4 מבוגרים" detail="40-50" note="" />
-          <GroupCard title="4 צעירים" detail="18-21" note="חלקם משלמים לעצמם" />
-          <GroupCard title="3 נוער" detail="11-16" note="" />
-          <GroupCard title="1 סבתא" detail="75" note="ניידות מוגבלת" />
+        <h2 className="section-title">👨‍👩‍👧‍👦 המשפחה</h2>
+        <div className="card bg-gradient-to-b from-sky-50/60 to-white">
+          <FamilyTree />
         </div>
       </section>
 
@@ -130,12 +127,97 @@ function InfoBox({ title, value }: { title: string; value: string }) {
   );
 }
 
-function GroupCard({ title, detail, note }: { title: string; detail: string; note: string }) {
+function Person({
+  name,
+  age,
+  gender,
+  note,
+  emphasis,
+}: {
+  name: string;
+  age: number;
+  gender: "m" | "f";
+  note?: string;
+  emphasis?: boolean;
+}) {
+  const icon = gender === "f" ? "👩" : "👨";
+  const isKid = age < 18;
+  const kidIcon = gender === "f" ? "👧" : "👦";
+  const displayIcon = isKid ? kidIcon : icon;
   return (
-    <div className="card text-center">
-      <div className="font-bold text-brand">{title}</div>
-      <div className="text-sm text-slate-600">גילאים: {detail}</div>
-      {note && <div className="text-xs text-slate-400 mt-1">{note}</div>}
+    <div
+      className={`inline-flex flex-col items-center rounded-xl px-2.5 py-1.5 border text-center min-w-[70px] ${
+        emphasis
+          ? "bg-amber-50 border-amber-300"
+          : "bg-white border-slate-200 shadow-sm"
+      }`}
+    >
+      <div className="text-xl leading-none">{displayIcon}</div>
+      <div className="font-bold text-brand text-sm leading-tight mt-0.5">{name}</div>
+      <div className="text-[11px] text-slate-500">גיל {age}</div>
+      {note && <div className="text-[10px] text-amber-700 font-semibold mt-0.5">{note}</div>}
+    </div>
+  );
+}
+
+function FamilyTree() {
+  return (
+    <div className="flex flex-col items-center gap-4">
+      {/* דור 1: הסבתא */}
+      <Person name="חנה" age={75} gender="f" emphasis />
+
+      {/* קו אנכי מהסבתא למטה */}
+      <div className="w-0.5 h-4 bg-slate-300"></div>
+
+      {/* תווית: כל ילדיה של חנה שבטיול */}
+      <div className="text-xs text-slate-500 font-semibold">משפחת חורי גדולה</div>
+
+      {/* דור 2: ילדי חנה ומשפחותיהם */}
+      <div className="flex flex-wrap items-start justify-center gap-6 md:gap-10 relative">
+        {/* אחים לא נשואים: נאוה + יהודה באותה שורה */}
+        <div className="flex items-start gap-2">
+          <Person name="נאוה" age={51} gender="f" />
+          <Person name="יהודה" age={42} gender="m" />
+        </div>
+        
+        {/* משפחה: אדיר + הילה + 4 ילדים */}
+        <div className="flex flex-col items-center gap-2">
+          <div className="text-xs text-slate-500 font-semibold">משפחת חורי קטנה</div>
+          <div className="flex items-center gap-2">
+            <Person name="אדיר" age={48} gender="m" />
+            <span className="text-rose-400 text-xl">♥</span>
+            <Person name="הילה" age={44} gender="f" />
+          </div>
+          <div className="w-0.5 h-3 bg-slate-300"></div>
+          <div className="text-[11px] text-slate-500 font-semibold">הילדים שלהם</div>
+          <div className="flex flex-wrap justify-center gap-2">
+            <Person name="עדי" age={18} gender="f" />
+            <Person name="נועם" age={16} gender="m" />
+            <Person name="שירה" age={15} gender="f" />
+            <Person name="כפיר" age={12} gender="m" />
+          </div>
+        </div>
+      </div>
+
+      {/* מפריד עדין */}
+      <div className="w-full max-w-xs h-px bg-slate-200 my-2"></div>
+
+      {/* משפחת זוגי — נכדות חנה מבת אחרת שאינה בטיול */}
+      <div className="flex flex-col items-center gap-2">
+        <div className="text-xs text-slate-500 font-semibold text-center">
+          משפחת זוגי
+        </div>
+        <div className="flex flex-wrap justify-center gap-2">
+          <Person name="אור" age={21} gender="f" />
+          <Person name="אגם" age={20} gender="f" />
+          <Person name="יובל" age={19} gender="f" />
+        </div>
+      </div>
+
+      {/* סיכום */}
+      <div className="text-xs text-slate-500 pt-2 border-t border-slate-200 w-full text-center">
+        סה"כ <span className="font-bold text-brand">12 נפשות</span> · 8 נשים ו-4 גברים · 8 מבוגרים ו-4 ילדים
+      </div>
     </div>
   );
 }

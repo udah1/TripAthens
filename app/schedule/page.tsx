@@ -89,6 +89,20 @@ export default function SchedulePage() {
     return m;
   }, []);
 
+  // refs לכותרות הימים (לגלילה מה-chips)
+  const dayHeaderRefs = useRef<Record<DayKey, HTMLDivElement | null>>({
+    "יום א": null,
+    "יום ב": null,
+    "יום ג": null,
+    "יום ד": null,
+  });
+
+  function scrollToDay(day: DayKey) {
+    const el = dayHeaderRefs.current[day];
+    if (!el) return;
+    el.scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+
   return (
     <div>
       <h1 className="page-title">📅 לוז הטיול</h1>
@@ -109,11 +123,19 @@ export default function SchedulePage() {
         </div>
       )}
 
-      {now && !tripActive && !tripOver && (
-        <div className="card mb-6 bg-gradient-to-l from-sky-50 to-white border-sky-300 text-sm text-slate-600">
-          🗓️ הטיול עוד לא התחיל — הצגה של כל הלוז מראשיתו.
-        </div>
-      )}
+      {/* Chips לקפיצה מהירה בין הימים */}
+      <div className="flex flex-wrap gap-2 mb-6">
+        {dayKeys.map((day) => (
+          <button
+            key={day}
+            onClick={() => scrollToDay(day)}
+            className="chip font-bold text-brand shadow-sm hover:brightness-95 hover:scale-105 transition"
+            style={{ background: DAY_COLORS[day] }}
+          >
+            {DAY_LABELS[day]}
+          </button>
+        ))}
+      </div>
 
       {now && tripOver && (
         <div className="card mb-6 bg-gradient-to-l from-slate-100 to-white border-slate-300 text-sm text-slate-600">
@@ -126,7 +148,10 @@ export default function SchedulePage() {
         return (
           <section key={day} className="mb-8">
             <div
-              className="rounded-t-2xl px-5 py-3 font-bold text-brand shadow-card"
+              ref={(el) => {
+                dayHeaderRefs.current[day] = el;
+              }}
+              className="rounded-t-2xl px-5 py-3 font-bold text-brand shadow-card scroll-mt-4"
               style={{ background: DAY_COLORS[day] }}
             >
               {DAY_LABELS[day]} · {items[0]?.date}

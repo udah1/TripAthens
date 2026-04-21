@@ -36,13 +36,9 @@ export default function CostsPage() {
               <table>
                 <thead>
                   <tr>
-                    <th className="th">פריט</th>
-                    <th className="th">מבוגר (€)</th>
-                    <th className="th">ילד (€)</th>
-                    <th className="th">מבוגר (₪)</th>
-                    <th className="th">ילד (₪)</th>
-                    <th className="th">מבוגרים</th>
-                    <th className="th">ילדים</th>
+                    <th className="th th-item">פריט</th>
+                    <th className="th">מבוגר</th>
+                    <th className="th">ילד</th>
                     <th className="th">סה"כ (€)</th>
                     <th className="th">הערות</th>
                   </tr>
@@ -50,13 +46,13 @@ export default function CostsPage() {
                 <tbody>
                   {rows.map((r, idx) => (
                     <tr key={idx} className={`${SECTION_COLORS[section]} ${isTotals ? "font-bold" : ""}`}>
-                      <td className="td">{r.item}</td>
-                      <td className="td">{r.adultEur}</td>
-                      <td className="td">{r.childEur}</td>
-                      <td className="td">{r.adultIls}</td>
-                      <td className="td">{r.childIls}</td>
-                      <td className="td">{r.adults}</td>
-                      <td className="td">{r.children}</td>
+                      <td className="td td-item">{r.item}</td>
+                      <td className="td whitespace-nowrap">
+                        <PriceCell eur={r.adultEur} ils={r.adultIls} />
+                      </td>
+                      <td className="td whitespace-nowrap">
+                        <PriceCell eur={r.childEur} ils={r.childIls} />
+                      </td>
                       <td className="td">{r.totalEur}</td>
                       <td className="td text-xs">{r.notes}</td>
                     </tr>
@@ -67,6 +63,18 @@ export default function CostsPage() {
           </section>
         );
       })}
+    </div>
+  );
+}
+
+function PriceCell({ eur, ils }: { eur: number | string | undefined; ils: number | string | undefined }) {
+  const hasEur = eur !== undefined && eur !== "" && eur !== null;
+  const hasIls = ils !== undefined && ils !== "" && ils !== null;
+  if (!hasEur && !hasIls) return <span className="text-slate-400">—</span>;
+  return (
+    <div className="flex flex-col gap-0.5 leading-tight">
+      {hasEur && <span>€ {eur}</span>}
+      {hasIls && <span className="text-xs text-slate-500">₪ {ils}</span>}
     </div>
   );
 }

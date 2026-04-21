@@ -138,7 +138,6 @@ export const TASKS: Task[] = [
   { task: "הזמנת מיניבוס ליאנה — חזרה לשדה (29/4)", done: false, contact: "https://wa.me/message/NLNHNSS46SLHE1", notes: "להיות בשדה ב-18:00" },
   { task: "הזמנת טיול יום לנפפליאו (28/4 10:00)", done: false, contact: "https://wa.me/message/NLNHNSS46SLHE1", notes: "650 euro לקבוצה. ואן פרטי ל-12. לאשר תעלת קורינטוס + מבצר פלמידי" },
   { task: "לברר הזמנה מוקדמת — Shuk / King David / Gostijo", done: false, contact: "Shuk: +306970252857 | King David: https://wa.me/306949527534", notes: "כנראה לא חובה — אבל כדאי לבדוק" },
-  { task: "הזמנת מקום ב-Parakalo — ארוחות בוקר (27+28+29)", done: false, contact: "Mikonos 18", notes: "3 בקרים. 12 איש" },
   { task: "הזמנת כרטיסי מוזיאון האשליות (29/4 13:00)", done: false, contact: "https://athens.museumofillusions.gr", notes: "לשאול על הנחות קבוצה ל-12" },
   { task: "הזמנת סיור Ezraider (27/4 09:00)", done: false, contact: "https://wa.me/message/NLNHNSS46SLHE1", notes: "70 euro מבוגר / 35 euro ילד. לאשר יציאה ב-09:00 + נגישות לסבתא" },
   { task: "הזמנת Who Killed Callimachos (26/4 18:00)", done: false, contact: "https://athenslivingmuseum.com/who-killed-callimachos/", notes: "22 euro מבוגר / 15 euro ילד. הנחה ל-10+ אנשים!" },
@@ -149,12 +148,12 @@ export const TASKS: Task[] = [
 export const COSTS: CostItem[] = [
   // טיסות
   { section: "flight", item: "טיסה — בסיס שווה לכולם", adultEur: 131.59, childEur: 131.59, adultIls: 471, childIls: 471, adults: 8, children: 4, totalEur: 1579.08, notes: "חלוקה שווה אחרי הורדת תוספות אישיות" },
-  { section: "flight", item: "תוספת — Hila (SKY enjoy)", adultEur: "+82", childEur: "", adultIls: "+294", childIls: "", adults: 1, children: "", totalEur: "", notes: "מטען 23kg + Extra legroom" },
-  { section: "flight", item: "תוספת — Nava (SKY enjoy)", adultEur: "+82", childEur: "", adultIls: "+294", childIls: "", adults: 1, children: "", totalEur: "", notes: "מטען 23kg + Extra legroom" },
-  { section: "flight", item: "תוספת — Or (SKY joy+)", adultEur: "+64", childEur: "", adultIls: "+229", childIls: "", adults: 1, children: "", totalEur: "", notes: "מטען 15kg + שינוי חינם" },
-  { section: "flight", item: "תוספת — Yehuda (SKY joy+)", adultEur: "+64", childEur: "", adultIls: "+229", childIls: "", adults: 1, children: "", totalEur: "", notes: "מטען 15kg + שינוי חינם" },
-  { section: "flight", item: "תוספת — Adir (מושב שמור)", adultEur: "+14", childEur: "", adultIls: "+50", childIls: "", adults: 1, children: "", totalEur: "", notes: "מושב חלון 15F" },
-  { section: "flight", item: "תוספת — Kfir (מושב שמור)", adultEur: "+14", childEur: "", adultIls: "+50", childIls: "", adults: 1, children: "", totalEur: "", notes: "מושב אמצע 15E" },
+  { section: "flight", item: "תוספת — הילה (SKY enjoy)", adultEur: "+82", childEur: "", adultIls: "+294", childIls: "", adults: 1, children: "", totalEur: "", notes: "מטען 23kg + Extra legroom" },
+  { section: "flight", item: "תוספת — נאוה (SKY enjoy)", adultEur: "+82", childEur: "", adultIls: "+294", childIls: "", adults: 1, children: "", totalEur: "", notes: "מטען 23kg + Extra legroom" },
+  { section: "flight", item: "תוספת — אור (SKY joy+)", adultEur: "+64", childEur: "", adultIls: "+229", childIls: "", adults: 1, children: "", totalEur: "", notes: "מטען 15kg + שינוי חינם" },
+  { section: "flight", item: "תוספת — יהודה (SKY joy+)", adultEur: "+64", childEur: "", adultIls: "+229", childIls: "", adults: 1, children: "", totalEur: "", notes: "מטען 15kg + שינוי חינם" },
+  { section: "flight", item: "תוספת — אדיר (מושב שמור)", adultEur: "+14", childEur: "", adultIls: "+50", childIls: "", adults: 1, children: "", totalEur: "", notes: "מושב חלון 15F" },
+  { section: "flight", item: "תוספת — כפיר (מושב שמור)", adultEur: "+14", childEur: "", adultIls: "+50", childIls: "", adults: 1, children: "", totalEur: "", notes: "מושב אמצע 15E" },
   { section: "flight", item: 'סה"כ טיסות כולל תוספות', adultEur: "", childEur: "", adultIls: "", childIls: "", adults: 12, children: "", totalEur: 1899.08, notes: "" },
   // מלון
   { section: "hotel", item: "מלון — 4 חדרים 3 לילות (Agoda)", adultEur: 172.04, childEur: 172.04, adultIls: 616, childIls: 616, adults: 8, children: 4, totalEur: 2064.44, notes: "תשלום אוטומטי 19 אפריל!" },
@@ -167,7 +166,6 @@ export const COSTS: CostItem[] = [
   { section: "activities", item: "כניסה מבצר פלמידי", adultEur: "~8", childEur: "~8", adultIls: "~29", childIls: "~29", adults: 8, children: 4, totalEur: "~96", notes: "ילדים עד 18 — חינם" },
   { section: "activities", item: "גבעת ליקבטוס (רכבל)", adultEur: 13, childEur: 13, adultIls: 47, childIls: 47, adults: 8, children: 4, totalEur: "~156", notes: "הלוך-חזור" },
   { section: "activities", item: "מוזיאון האשליות", adultEur: "~13", childEur: "~13", adultIls: "~47", childIls: "~47", adults: 8, children: 4, totalEur: "~156", notes: "הנחות קבוצה — לשאול" },
-  { section: "activities", item: "ארוחות בוקר x3 (Parakalo)", adultEur: "~15", childEur: "~10", adultIls: "~54", childIls: "~36", adults: 8, children: 4, totalEur: "~480", notes: "ממוצע לאדם ליום" },
   { section: "activities", item: "ארוחות צהריים x4", adultEur: "~22", childEur: "~15", adultIls: "~79", childIls: "~54", adults: 8, children: 4, totalEur: "~816", notes: "ממוצע" },
   { section: "activities", item: "קניות / קפה / שונות", adultEur: "~30", childEur: "~30", adultIls: "~107", childIls: "~107", adults: 12, children: "", totalEur: "~360", notes: "לפי שיקול דעת אישי" },
   // סיכומים
@@ -178,18 +176,18 @@ export const COSTS: CostItem[] = [
 ];
 
 export const PASSENGERS: Passenger[] = [
-  { name: "Adi Huri",    booking: "0L4ZFG", ticket: "SKY joy",   baggage: "יד 8kg",                       baseEur: 131.59, extraEur: "—",   flightTotalEur: 131.59, hotelEur: 172.04, grandTotalEur: 303.63 },
-  { name: "Shira Huri",  booking: "0L4ZFG", ticket: "SKY joy",   baggage: "יד 8kg",                       baseEur: 131.59, extraEur: "—",   flightTotalEur: 131.59, hotelEur: 172.04, grandTotalEur: 303.63 },
-  { name: "Yovel Zvigi", booking: "0L4ZFG", ticket: "SKY joy",   baggage: "יד 8kg",                       baseEur: 131.59, extraEur: "—",   flightTotalEur: 131.59, hotelEur: 172.04, grandTotalEur: 303.63 },
-  { name: "Agam Zvigi",  booking: "FW9ZS7", ticket: "SKY joy",   baggage: "יד 8kg",                       baseEur: 131.59, extraEur: "—",   flightTotalEur: 131.59, hotelEur: 172.04, grandTotalEur: 303.63 },
-  { name: "Hana Huri",   booking: "FW9ZS7", ticket: "SKY joy",   baggage: "יד 8kg",                       baseEur: 131.59, extraEur: "—",   flightTotalEur: 131.59, hotelEur: 172.04, grandTotalEur: 303.63 },
-  { name: "Hila Huri",   booking: "GEIMP8", ticket: "SKY enjoy", baggage: "יד + מטען 23kg, Extra legroom", baseEur: 131.59, extraEur: "+82", flightTotalEur: 213.59, hotelEur: 172.04, grandTotalEur: 385.63 },
-  { name: "Noam Huri",   booking: "UDJWVK", ticket: "SKY joy",   baggage: "יד 8kg",                       baseEur: 131.59, extraEur: "—",   flightTotalEur: 131.59, hotelEur: 172.04, grandTotalEur: 303.63 },
-  { name: "Or Zvigi",    booking: "V2FDEL", ticket: "SKY joy+",  baggage: "יד + מטען 15kg",               baseEur: 131.59, extraEur: "+64", flightTotalEur: 195.59, hotelEur: 172.04, grandTotalEur: 367.63 },
-  { name: "Yehuda Huri", booking: "V2FDEL", ticket: "SKY joy+",  baggage: "יד + מטען 15kg",               baseEur: 131.59, extraEur: "+64", flightTotalEur: 195.59, hotelEur: 172.04, grandTotalEur: 367.63 },
-  { name: "Adir Huri",   booking: "WR7O1Y", ticket: "SKY joy",   baggage: "יד 8kg, מושב 15F",             baseEur: 131.59, extraEur: "+14", flightTotalEur: 145.59, hotelEur: 172.04, grandTotalEur: 317.63 },
-  { name: "Kfir Huri",   booking: "WR7O1Y", ticket: "SKY joy",   baggage: "יד 8kg, מושב 15E",             baseEur: 131.59, extraEur: "+14", flightTotalEur: 145.59, hotelEur: 172.04, grandTotalEur: 317.63 },
-  { name: "Nava Huri",   booking: "0GI2VD", ticket: "SKY enjoy", baggage: "יד + מטען 23kg, Extra legroom", baseEur: 131.59, extraEur: "+82", flightTotalEur: 213.59, hotelEur: 172.04, grandTotalEur: 385.63 },
+  { name: "עדי חורי",    booking: "0L4ZFG", ticket: "SKY joy",   baggage: "יד 8kg",                       baseEur: 131.59, extraEur: "—",   flightTotalEur: 131.59, hotelEur: 172.04, grandTotalEur: 303.63 },
+  { name: "שירה חורי",   booking: "0L4ZFG", ticket: "SKY joy",   baggage: "יד 8kg",                       baseEur: 131.59, extraEur: "—",   flightTotalEur: 131.59, hotelEur: 172.04, grandTotalEur: 303.63 },
+  { name: "יובל זויגי",  booking: "0L4ZFG", ticket: "SKY joy",   baggage: "יד 8kg",                       baseEur: 131.59, extraEur: "—",   flightTotalEur: 131.59, hotelEur: 172.04, grandTotalEur: 303.63 },
+  { name: "אגם זויגי",   booking: "FW9ZS7", ticket: "SKY joy",   baggage: "יד 8kg",                       baseEur: 131.59, extraEur: "—",   flightTotalEur: 131.59, hotelEur: 172.04, grandTotalEur: 303.63 },
+  { name: "חנה חורי",    booking: "FW9ZS7", ticket: "SKY joy",   baggage: "יד 8kg",                       baseEur: 131.59, extraEur: "—",   flightTotalEur: 131.59, hotelEur: 172.04, grandTotalEur: 303.63 },
+  { name: "הילה חורי",   booking: "GEIMP8", ticket: "SKY enjoy", baggage: "יד + מטען 23kg, Extra legroom", baseEur: 131.59, extraEur: "+82", flightTotalEur: 213.59, hotelEur: 172.04, grandTotalEur: 385.63 },
+  { name: "נועם חורי",   booking: "UDJWVK", ticket: "SKY joy",   baggage: "יד 8kg",                       baseEur: 131.59, extraEur: "—",   flightTotalEur: 131.59, hotelEur: 172.04, grandTotalEur: 303.63 },
+  { name: "אור זויגי",   booking: "V2FDEL", ticket: "SKY joy+",  baggage: "יד + מטען 15kg",               baseEur: 131.59, extraEur: "+64", flightTotalEur: 195.59, hotelEur: 172.04, grandTotalEur: 367.63 },
+  { name: "יהודה חורי",  booking: "V2FDEL", ticket: "SKY joy+",  baggage: "יד + מטען 15kg",               baseEur: 131.59, extraEur: "+64", flightTotalEur: 195.59, hotelEur: 172.04, grandTotalEur: 367.63 },
+  { name: "אדיר חורי",   booking: "WR7O1Y", ticket: "SKY joy",   baggage: "יד 8kg, מושב 15F",             baseEur: 131.59, extraEur: "+14", flightTotalEur: 145.59, hotelEur: 172.04, grandTotalEur: 317.63 },
+  { name: "כפיר חורי",   booking: "WR7O1Y", ticket: "SKY joy",   baggage: "יד 8kg, מושב 15E",             baseEur: 131.59, extraEur: "+14", flightTotalEur: 145.59, hotelEur: 172.04, grandTotalEur: 317.63 },
+  { name: "נאוה חורי",   booking: "0GI2VD", ticket: "SKY enjoy", baggage: "יד + מטען 23kg, Extra legroom", baseEur: 131.59, extraEur: "+82", flightTotalEur: 213.59, hotelEur: 172.04, grandTotalEur: 385.63 },
 ];
 
 export const RESTAURANTS: Restaurant[] = [

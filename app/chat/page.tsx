@@ -26,6 +26,19 @@ export default function ChatPage() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const scrollRef = useRef<HTMLDivElement>(null);
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  function fillInput(prefix: string) {
+    setInput(prefix);
+    // ממקד את הקלט עם הסמן בסוף
+    requestAnimationFrame(() => {
+      const el = inputRef.current;
+      if (!el) return;
+      el.focus();
+      const len = prefix.length;
+      el.setSelectionRange(len, len);
+    });
+  }
 
   useEffect(() => {
     scrollRef.current?.scrollTo({ top: scrollRef.current.scrollHeight, behavior: "smooth" });
@@ -100,6 +113,14 @@ export default function ChatPage() {
                 {s}
               </button>
             ))}
+            <button
+              onClick={() => fillInput("תן לי פרטים עליי. אני ")}
+              disabled={loading}
+              className="chip bg-brand-accent/10 hover:bg-brand-accent/20 text-brand border border-brand-accent/30"
+              title="מלא את השם שלך ושלח"
+            >
+              ✍️ תן לי פרטים עליי. אני...
+            </button>
           </div>
         )}
 
@@ -111,6 +132,7 @@ export default function ChatPage() {
           }}
         >
           <input
+            ref={inputRef}
             value={input}
             onChange={(e) => setInput(e.target.value)}
             placeholder="שאל את הסוכן..."
