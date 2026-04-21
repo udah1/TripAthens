@@ -5,7 +5,9 @@ export const runtime = "edge";
 
 type ChatMsg = { role: "user" | "assistant"; content: string };
 
-const MODEL = "gemini-2.0-flash";
+// מודל ברירת מחדל: gemini-2.5-flash-lite — נדיב ביותר ב-Free Tier (1,000 בקשות/יום)
+// ניתן לעקוף דרך Environment Variable GEMINI_MODEL (למשל: gemini-2.5-flash / gemini-2.0-flash)
+const MODEL = process.env.GEMINI_MODEL || "gemini-2.5-flash-lite";
 
 function systemPrompt(): string {
   return `אתה סוכן נסיעות ידידותי שמכיר לעומק את טיול הקבוצה לאתונה באפריל 2026.
@@ -64,6 +66,15 @@ export async function POST(req: NextRequest) {
 
     if (!res.ok) {
       const errText = await res.text();
+      if (res.status === 429) {
+        return NextResponse.json(
+          {
+            error:
+              "⏳ חרגת ממכסת השימוש החינמית של Gemini. נסה שוב בעוד דקה, או שדרג את המפתח ב-Google Cloud. אפשר גם להחליף מודל דרך משתנה הסביבה GEMINI_MODEL (לדוגמה gemini-2.5-flash-lite).",
+          },
+          { status: 429 }
+        );
+      }
       return NextResponse.json(
         { error: `Gemini API שגיאה: ${res.status} — ${errText}` },
         { status: 502 }
