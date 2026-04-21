@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { TRIP_META, PASSENGERS, ITINERARY, DAY_LABELS, DAY_COLORS, type DayKey } from "@/lib/data";
+import DaySummaryCard from "@/components/DaySummaryCard";
 
 const dayKeys: DayKey[] = ["יום א", "יום ב", "יום ג", "יום ד"];
 
@@ -56,23 +57,7 @@ export default function HomePage() {
         <div className="grid md:grid-cols-2 gap-3">
           {dayKeys.map((day) => {
             const items = ITINERARY.filter((i) => i.day === day);
-            return (
-              <div key={day} className="card" style={{ borderTop: `6px solid ${DAY_COLORS[day]}` }}>
-                <div className="font-bold text-brand mb-1">{DAY_LABELS[day]}</div>
-                <div className="text-xs text-slate-500 mb-2">{items[0]?.date}</div>
-                <ul className="text-sm space-y-1">
-                  {items.slice(0, 4).map((it, idx) => (
-                    <li key={idx} className="flex gap-2">
-                      <span className="text-slate-500 shrink-0">{it.time}</span>
-                      <span className="truncate">{it.activity}</span>
-                    </li>
-                  ))}
-                  {items.length > 4 && (
-                    <li className="text-xs text-slate-400">+ עוד {items.length - 4} פעילויות...</li>
-                  )}
-                </ul>
-              </div>
-            );
+            return <DaySummaryCard key={day} day={day} items={items} />;
           })}
         </div>
       </section>
