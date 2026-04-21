@@ -35,22 +35,23 @@ function textToPath(font, text, x, y, size, color) {
   return path.toSVG(2);
 }
 
-function buildSvg(font) {
-  const athensText = textToPath(font, "אתונה", 256, 220, 110, "#94DCF8");
-  // הטקסט מתמקם ב-anchor start. נחשב רוחב ונמרכז:
-  const athensPath = font.getPath("הנותא", 0, 0, 110);
-  const bb1 = athensPath.getBoundingBox();
-  const w1 = bb1.x2 - bb1.x1;
-  const x1 = 256 - w1 / 2 - bb1.x1;
-  const p1 = font.getPath("הנותא", x1, 230, 110);
-  p1.fill = "#94DCF8";
+function centeredPath(font, reversedText, cx, y, size, color) {
+  const measure = font.getPath(reversedText, 0, 0, size);
+  const bb = measure.getBoundingBox();
+  const w = bb.x2 - bb.x1;
+  const x = cx - w / 2 - bb.x1;
+  const p = font.getPath(reversedText, x, y, size);
+  p.fill = color;
+  return p;
+}
 
-  const p2 = font.getPath("2026", 0, 0, 100);
-  const bb2 = p2.getBoundingBox();
-  const w2 = bb2.x2 - bb2.x1;
-  const x2 = 256 - w2 / 2 - bb2.x1;
-  const p2Centered = font.getPath("2026", x2, 330, 100);
-  p2Centered.fill = "#FFFFFF";
+function buildSvg(font) {
+  // שורה עליונה: חורי/זויגי (קטן)
+  const pTop = centeredPath(font, "יגיוז/ירוח", 256, 165, 52, "#94DCF8");
+  // אתונה (מעט קטן יותר מקודם)
+  const pAthens = centeredPath(font, "הנותא", 256, 250, 95, "#94DCF8");
+  // 2026
+  const p2026 = centeredPath(font, "2026", 256, 340, 85, "#FFFFFF");
 
   return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
   <defs>
@@ -60,12 +61,13 @@ function buildSvg(font) {
     </linearGradient>
   </defs>
   <rect width="512" height="512" rx="96" fill="url(#bg)"/>
-  <circle cx="256" cy="230" r="160" fill="#94DCF8" opacity="0.12"/>
-  ${p1.toSVG(2)}
-  ${p2Centered.toSVG(2)}
+  <circle cx="256" cy="240" r="170" fill="#94DCF8" opacity="0.12"/>
+  ${pTop.toSVG(2)}
+  ${pAthens.toSVG(2)}
+  ${p2026.toSVG(2)}
 
   <!-- דגל יוון: 9 פסים + קנטון עם צלב -->
-  <g transform="translate(166 390)">
+  <g transform="translate(166 400)">
     <rect x="0" y="0"  width="180" height="9" fill="#0D5EAF"/>
     <rect x="0" y="9"  width="180" height="9" fill="#FFFFFF"/>
     <rect x="0" y="18" width="180" height="9" fill="#0D5EAF"/>
