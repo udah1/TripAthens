@@ -45,6 +45,35 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* לפני הטיסה — כרטיס בולט */}
+      <section className="mb-8">
+        <Link
+          href="/before-flight"
+          className="card block bg-gradient-to-l from-emerald-50 via-white to-emerald-50 border-2 border-emerald-300 hover:border-emerald-500 hover:shadow-lg transition group"
+        >
+          <div className="flex items-center gap-4">
+            <div className="text-4xl">✈️</div>
+            <div className="flex-1">
+              <div className="flex items-center gap-2 mb-1">
+                <h2 className="text-xl font-extrabold text-brand">
+                  לפני הטיסה — מה חשוב להכין?
+                </h2>
+                <span className="chip bg-emerald-600 text-white text-xs font-bold">
+                  🛡️ ביטוח חינם!
+                </span>
+              </div>
+              <p className="text-sm text-slate-600">
+                ביטוח נסיעות (חינם ללקוחות ישרכארט), eSIM, מפות offline,
+                רשימת אריזה וטיפים להכנה.
+              </p>
+            </div>
+            <div className="text-brand-accent text-2xl group-hover:translate-x-[-4px] transition">
+              ←
+            </div>
+          </div>
+        </Link>
+      </section>
+
       {/* עץ משפחתי */}
       <section className="mb-8">
         <h2 className="section-title">👨‍👩‍👧‍👦 המשפחה</h2>

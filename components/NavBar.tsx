@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 
 const NAV = [
   { href: "/", label: "🏠 בית" },
+  { href: "/before-flight", label: "✈️ לפני הטיסה" },
   { href: "/schedule", label: "📅 לוז" },
   { href: "/tasks", label: "✅ משימות" },
   { href: "/packing", label: "🧳 מה לקחת" },

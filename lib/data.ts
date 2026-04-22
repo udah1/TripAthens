@@ -134,6 +134,7 @@ const RAW_ITINERARY: Omit<ItineraryItem, "isEvening">[] = [
 export const ITINERARY: ItineraryItem[] = RAW_ITINERARY.map(markEvening);
 
 export const TASKS: Task[] = [
+  { task: "הפעלת ביטוח נסיעות (ישרכארט — חינם ל-5 ימים)", done: false, contact: "https://marketing.isracard.co.il/pages/insurance-abroad/", notes: "ללקוחות ישרכארט: 5 ימי ביטוח חינם לכל הטיול (פחות מ-$1). לחצו 'להפעלת ביטוח 5 ימים'. חובה לפני הטיסה!" },
   { task: "הזמנת מיניבוס ליאנה — הגעה מהשדה (26/4)", done: false, contact: "https://wa.me/message/NLNHNSS46SLHE1", notes: "12 איש + מזוודות. נסיעה ~45 דק" },
   { task: "הזמנת מיניבוס ליאנה — חזרה לשדה (29/4)", done: false, contact: "https://wa.me/message/NLNHNSS46SLHE1", notes: "להיות בשדה ב-18:00" },
   { task: "הזמנת טיול יום לנפפליאו (28/4 10:00)", done: false, contact: "https://wa.me/message/NLNHNSS46SLHE1", notes: "650 euro לקבוצה. ואן פרטי ל-12. לאשר תעלת קורינטוס + מבצר פלמידי" },
@@ -377,6 +378,12 @@ export function buildTripSummary(): string {
   for (const a of ACROPOLIS) {
     lines.push(`- ${a.name} (${a.english}) | ${a.description} | ${a.notes}`);
   }
+
+  lines.push("\n## ביטוח נסיעות (חשוב!)");
+  lines.push("ללקוחות ישרכארט: 5 ימי ביטוח נסיעות חינם (או פחות מ-$1) — דרך AIG.");
+  lines.push("להפעלה: אתר ישרכארט — https://marketing.isracard.co.il/pages/insurance-abroad/ — ולחוץ על 'להפעלת ביטוח 5 ימים'.");
+  lines.push("הביטוח מכסה ביטול טיסה, מזוודות, כיסוי רפואי ועוד. חובה להפעיל לפני הטיסה!");
+  lines.push("ללקוחות Cal/MAX — כדאי לבדוק אם יש הטבה דומה שלהם.");
 
   lines.push("\n## רשימת אריזה מומלצת לחו\"ל");
   lines.push("(רשימה המוצעת באתר — כל נוסע יכול לסמן/למחוק/להוסיף פריטים בעצמו)");
