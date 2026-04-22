@@ -51,14 +51,14 @@ export default function HomePage() {
           href="/before-flight"
           className="card block bg-gradient-to-l from-emerald-50 via-white to-emerald-50 border-2 border-emerald-300 hover:border-emerald-500 hover:shadow-lg transition group"
         >
-          <div className="flex items-center gap-4">
-            <div className="text-4xl">✈️</div>
-            <div className="flex-1">
-              <div className="flex items-center gap-2 mb-1">
-                <h2 className="text-xl font-extrabold text-brand">
+          <div className="flex items-center gap-3 md:gap-4">
+            <div className="text-3xl md:text-4xl shrink-0">✈️</div>
+            <div className="flex-1 min-w-0">
+              <div className="flex flex-wrap items-center gap-x-2 gap-y-1 mb-1">
+                <h2 className="text-lg md:text-xl font-extrabold text-brand">
                   לפני הטיסה — מה חשוב להכין?
                 </h2>
-                <span className="chip bg-emerald-600 text-white text-xs font-bold">
+                <span className="chip bg-emerald-600 text-white text-[11px] md:text-xs font-bold whitespace-nowrap">
                   🛡️ ביטוח חינם!
                 </span>
               </div>
@@ -67,7 +67,7 @@ export default function HomePage() {
                 רשימת אריזה וטיפים להכנה.
               </p>
             </div>
-            <div className="text-brand-accent text-2xl group-hover:translate-x-[-4px] transition">
+            <div className="text-brand-accent text-2xl shrink-0 group-hover:translate-x-[-4px] transition">
               ←
             </div>
           </div>
@@ -119,6 +119,41 @@ export default function HomePage() {
               <div className="text-xs text-slate-500 mt-1">{c.desc}</div>
             </Link>
           ))}
+        </div>
+      </section>
+
+      {/* הורדות */}
+      <section className="mb-8">
+        <h2 className="section-title">📥 הורדות</h2>
+        <div className="grid md:grid-cols-2 gap-3">
+          <a
+            href="/downloads/athens_full_plan.pdf"
+            download
+            className="card hover:shadow-lg hover:border-rose-300 border border-transparent transition flex items-center gap-3"
+          >
+            <div className="text-4xl">📄</div>
+            <div className="flex-1">
+              <div className="font-bold text-brand">תוכנית מלאה (PDF)</div>
+              <div className="text-xs text-slate-500">לצפייה והדפסה · 2.3MB</div>
+            </div>
+            <div className="chip bg-rose-100 text-rose-800 text-xs font-bold">
+              הורד ↓
+            </div>
+          </a>
+          <a
+            href="/downloads/athens_trip_full.xlsx"
+            download
+            className="card hover:shadow-lg hover:border-emerald-300 border border-transparent transition flex items-center gap-3"
+          >
+            <div className="text-4xl">📊</div>
+            <div className="flex-1">
+              <div className="font-bold text-brand">לוז ועלויות (Excel)</div>
+              <div className="text-xs text-slate-500">לעריכה אישית · 20KB</div>
+            </div>
+            <div className="chip bg-emerald-100 text-emerald-800 text-xs font-bold">
+              הורד ↓
+            </div>
+          </a>
         </div>
       </section>
 
