@@ -12,6 +12,7 @@ const NAV_CARDS = [
   { href: "/passengers", emoji: "👥", title: "נוסעים", desc: "12 משתתפים ופירוט אישי" },
   { href: "/restaurants", emoji: "🍽️", title: "מסעדות כשרות", desc: "בשרי + חלבי באתונה" },
   { href: "/attractions", emoji: "🗺️", title: "אטרקציות", desc: "מה לראות ולעשות" },
+  { href: "/sim", emoji: "📱", title: "סים / eSIM", desc: "חיבור לאינטרנט ביוון" },
   { href: "/chat", emoji: "💬", title: "סוכן AI", desc: "שאל שאלות על הטיול" },
 ];
 

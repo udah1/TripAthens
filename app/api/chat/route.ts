@@ -5,11 +5,34 @@ export const runtime = "edge";
 
 type ChatMsg = { role: "user" | "assistant"; content: string };
 
+type PackingSummary = {
+  checked?: string[];
+  deleted?: string[];
+  custom?: string[];
+  customChecked?: string[];
+};
+
+function formatPackingSummary(p: PackingSummary | null | undefined): string {
+  if (!p) return "";
+  const parts: string[] = [];
+  if (p.checked?.length) {
+    parts.push(`**פריטים שהמשתמש כבר ארז (סימן ✓):**\n${p.checked.map((i) => `- ${i}`).join("\n")}`);
+  }
+  if (p.deleted?.length) {
+    parts.push(`**פריטים שהמשתמש סימן כלא רלוונטיים (מחק):**\n${p.deleted.map((i) => `- ${i}`).join("\n")}`);
+  }
+  if (p.custom?.length) {
+    parts.push(`**פריטים שהמשתמש הוסיף ידנית:**\n${p.custom.map((i) => `- ${i}${p.customChecked?.includes(i) ? " (ארוז)" : ""}`).join("\n")}`);
+  }
+  if (!parts.length) return "";
+  return `\n\n## מצב רשימת האריזה האישית של המשתמש\n(המשתמש עובר על הרשימה באתר — יש לו אפשרות לסמן פריטים כארוזים, למחוק פריטים לא רלוונטיים, ולהוסיף פריטים אישיים.)\n\n${parts.join("\n\n")}`;
+}
+
 // מודל קבוע: gemini-2.5-flash-lite — הכי נדיב ב-Free Tier (1,000 בקשות/יום)
 // אם תרצה להחליף בעתיד — שנה כאן ישירות.
 const MODEL = "gemini-2.5-flash-lite";
 
-function systemPrompt(): string {
+function systemPrompt(packing?: PackingSummary | null): string {
   return `אתה סוכן נסיעות ידידותי שמכיר לעומק את טיול הקבוצה לאתונה באפריל 2026.
 אתה עונה **בעברית בלבד**, בסגנון חם, ברור ומעשי.
 אתה מכיר כל פרט על הטיול: לוז, מסעדות כשרות, מלון, טיסות, נוסעים, עלויות, משימות ואטרקציות.
@@ -48,7 +71,7 @@ function systemPrompt(): string {
 
 להלן כל נתוני הטיול:
 
-${buildTripSummary()}`;
+${buildTripSummary()}${formatPackingSummary(packing)}`;
 }
 
 export async function POST(req: NextRequest) {
@@ -61,7 +84,10 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    const { messages } = (await req.json()) as { messages: ChatMsg[] };
+    const { messages, packing } = (await req.json()) as {
+      messages: ChatMsg[];
+      packing?: PackingSummary | null;
+    };
     if (!Array.isArray(messages) || messages.length === 0) {
       return NextResponse.json({ error: "messages חסר" }, { status: 400 });
     }
@@ -72,7 +98,7 @@ export async function POST(req: NextRequest) {
     }));
 
     const body = {
-      system_instruction: { parts: [{ text: systemPrompt() }] },
+      system_instruction: { parts: [{ text: systemPrompt(packing) }] },
       contents,
       generationConfig: {
         temperature: 0.7,

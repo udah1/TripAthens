@@ -1,9 +1,54 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { PACKING_CATEGORIES } from "@/lib/data";
 
 type Source = { title: string; uri: string };
 type Msg = { role: "user" | "assistant"; content: string; sources?: Source[] };
+
+type PackingSummary = {
+  checked: string[];
+  deleted: string[];
+  custom: string[];
+  customChecked: string[];
+};
+
+function readPackingSummary(): PackingSummary | null {
+  if (typeof window === "undefined") return null;
+  try {
+    const rawState = localStorage.getItem("packing-state-v1");
+    const rawCustom = localStorage.getItem("packing-custom-v1");
+    if (!rawState && !rawCustom) return null;
+
+    const state: Record<string, "open" | "checked" | "deleted"> = rawState
+      ? JSON.parse(rawState)
+      : {};
+    const custom: Record<string, string[]> = rawCustom ? JSON.parse(rawCustom) : {};
+
+    const checked: string[] = [];
+    const deleted: string[] = [];
+    const customAll: string[] = [];
+    const customChecked: string[] = [];
+
+    for (const cat of PACKING_CATEGORIES) {
+      const customItems = custom[cat.id] ?? [];
+      const allItems = [...cat.items, ...customItems];
+      for (const item of allItems) {
+        const s = state[`${cat.id}::${item}`];
+        const label = `${cat.title} — ${item}`;
+        if (customItems.includes(item)) {
+          customAll.push(label);
+          if (s === "checked") customChecked.push(label);
+        }
+        if (s === "checked") checked.push(label);
+        else if (s === "deleted") deleted.push(label);
+      }
+    }
+    return { checked, deleted, custom: customAll, customChecked };
+  } catch {
+    return null;
+  }
+}
 
 const SUGGESTIONS = [
   "מה עושים ביום הראשון?",
@@ -58,6 +103,7 @@ export default function ChatPage() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           messages: next.map((m) => ({ role: m.role, content: m.content })),
+          packing: readPackingSummary(),
         }),
       });
       const data = await res.json();

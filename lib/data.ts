@@ -232,6 +232,110 @@ export const DAY_LABELS: Record<DayKey, string> = {
   "יום ד": "יום ד׳ — רביעי 29/4 | גרפיטי + מוזיאון + טיסה",
 };
 
+export type PackingCategory = {
+  id: string;
+  title: string;
+  emoji: string;
+  items: string[];
+};
+
+export const PACKING_CATEGORIES: PackingCategory[] = [
+  {
+    id: "money",
+    title: "כסף ומסמכים",
+    emoji: "💳",
+    items: [
+      "דרכון",
+      "ביטוח בריאות",
+      "מזומנים במטבע מקומי",
+      "כרטיס אשראי",
+    ],
+  },
+  {
+    id: "clothes",
+    title: "בגדים",
+    emoji: "👕",
+    items: [
+      "בגדים תחתונים, לבנים, גופיות, חזיות",
+      "חולצות",
+      "טי שירטס",
+      "מכנסיים",
+      "מכנסיים קצרים",
+      "גרביים",
+      "נעליים",
+      "סנדלים",
+      "חגורה",
+      "כובע",
+      "בגד ים",
+      "פיג'מה",
+      "תכשיטים",
+      "בגדים ליציאה",
+      "שקיות ניילון",
+      "משקפי שמש",
+      "מפתחות",
+      "ערכת תפירה",
+    ],
+  },
+  {
+    id: "hygiene",
+    title: "היגיינה",
+    emoji: "🧼",
+    items: [
+      "סכין גילוח",
+      "קצף גילוח",
+      "מברשת שיניים (אם חשמלית גם מטען)",
+      "משחת שיניים",
+      "שמפו",
+      "ג'ל לשיער",
+      "דיאודורנט",
+      "קרם הגנה מהשמש",
+      "עדשות מגע, נוזל",
+      "משקפיים נוספים",
+      "איפור",
+      "טמפונים",
+      "כדורים ותרופות (גלולות, נגד כאבי ראש, נגד אלרגיה)",
+      "מספריים",
+      "קרם לחות",
+      "מסרק",
+      "פלסטרים",
+    ],
+  },
+  {
+    id: "food",
+    title: "אוכל",
+    emoji: "🥨",
+    items: [
+      "פיתות",
+      "ממרח שוקולד (לתאם עם אחרים)",
+      "חטיפים",
+      "כלי חד״פ (צלחות, כוסות, סכו״ם)",
+      "דגני בוקר",
+      "טונה / שימורים",
+      "מנה חמה",
+      "קפה / תה / סוכר",
+      "עוגיות / וופלים",
+      "בייגלה / פיצוחים",
+      "סוכריות / מסטיקים לטיסה",
+    ],
+  },
+  {
+    id: "electronics",
+    title: "אלקטרוניקה",
+    emoji: "🔌",
+    items: [
+      "טלפון נייד",
+      "מצלמה",
+      "מטען לנייד",
+      "מטען למצלמה",
+      "כבל למצלמה",
+      "מחשב נייד",
+      "מתאם לשקעי חשמל",
+      "נגן מוזיקה",
+      "אוזניות",
+    ],
+  },
+];
+
 export function buildTripSummary(): string {
   // תקציר טקסטואלי של כל נתוני הטיול — לשימוש ב-System Prompt של הסוכן
   const lines: string[] = [];
@@ -273,6 +377,25 @@ export function buildTripSummary(): string {
   for (const a of ACROPOLIS) {
     lines.push(`- ${a.name} (${a.english}) | ${a.description} | ${a.notes}`);
   }
+
+  lines.push("\n## רשימת אריזה מומלצת לחו\"ל");
+  lines.push("(רשימה המוצעת באתר — כל נוסע יכול לסמן/למחוק/להוסיף פריטים בעצמו)");
+  for (const cat of PACKING_CATEGORIES) {
+    lines.push(`### ${cat.title}`);
+    lines.push(cat.items.map((i) => `- ${i}`).join("\n"));
+  }
+
+  lines.push("\n## כרטיס SIM / eSIM לטיול");
+  lines.push("ההמלצה למי שיש eSIM במכשיר: אפליקציית **Firsty** — €4.40 ל-4 ימים, 5GB ליום.");
+  lines.push("קישור: https://play.google.com/store/apps/details?id=com.firsty.app | אתר: https://firsty.app/");
+  lines.push("חשוב: להפעיל את ה-eSIM ביום ראשון בבוקר בשדה התעופה בישראל (לפני הטיסה) — ככה מגיעים לאתונה עם חיבור מיידי.");
+  lines.push("בדיקה אם יש eSIM: Samsung S20 ומעלה, Pixel 3 ומעלה. חיוג *#06# — אם מופיע EID אז יש eSIM.");
+  lines.push("למי שאין eSIM — צריך סים פיזי. חברות מומלצות ביוון:");
+  lines.push("- Cosmote — ~€15 ל-10GB, הכיסוי הטוב ביותר ביוון, זמין בשדה התעופה ובעיר.");
+  lines.push("- Vodafone GR — ~€15 ל-8GB, רשת איכותית, זמין בשדה התעופה.");
+  lines.push("- Wind Hellas — ~€10 ל-8GB, המחיר הזול ביותר.");
+  lines.push("- חבילת נדידה ישראלית (Cellcom/HOT/Pelephone/Partner) — ~₪50-100 לשבוע, נוח אבל יקר יותר.");
+  lines.push("טיפים: ברוב המלונות באתונה יש Wi-Fi חינם. כדאי להוריד מפות offline של Google Maps לפני הטיסה. WhatsApp/Telegram עובדים מצוין על Wi-Fi.");
 
   return lines.join("\n");
 }

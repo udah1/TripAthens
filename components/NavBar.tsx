@@ -13,6 +13,7 @@ const NAV = [
   { href: "/passengers", label: "👥 נוסעים" },
   { href: "/restaurants", label: "🍽️ מסעדות" },
   { href: "/attractions", label: "🗺️ אטרקציות" },
+  { href: "/sim", label: "📱 סים" },
   { href: "/chat", label: "💬 סוכן" },
 ];
 
