@@ -8,3 +8,9 @@ out
 .DS_Store
 .env.development
 .icons-cache
+
+# IDE / editor
+.idea/
+.vscode/
+*.swp
+*.swo
