@@ -7,7 +7,7 @@ const dayKeys: DayKey[] = ["יום א", "יום ב", "יום ג", "יום ד"];
 const NAV_CARDS = [
   { href: "/schedule", emoji: "📅", title: "לוז הטיול", desc: "תוכנית יום-יום מפורטת" },
   { href: "/tasks", emoji: "✅", title: "משימות", desc: "מה צריך להזמין לפני הטיסה" },
-  { href: "/packing", emoji: "🧳", title: "מה לקחת", desc: "רשימת ארוז לחו\"ל" },
+  { href: "/packing", emoji: "🧳", title: "מה לקחת", desc: "רשימת אריזה לחו\"ל" },
   { href: "/costs", emoji: "💰", title: "עלויות", desc: "פירוט טיסה, מלון, פעילויות" },
   { href: "/passengers", emoji: "👥", title: "נוסעים", desc: "12 משתתפים ופירוט אישי" },
   { href: "/restaurants", emoji: "🍽️", title: "מסעדות כשרות", desc: "בשרי + חלבי באתונה" },
