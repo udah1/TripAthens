@@ -11,6 +11,7 @@ const NAV = [
   { href: "/tasks", label: "✅ משימות" },
   { href: "/packing", label: "🧳 מה לקחת" },
   { href: "/costs", label: "💰 עלויות" },
+  { href: "/expenses", label: "💳 תשלומים" },
   { href: "/passengers", label: "👥 נוסעים" },
   { href: "/restaurants", label: "🍽️ מסעדות" },
   { href: "/attractions", label: "🗺️ אטרקציות" },

@@ -147,6 +147,23 @@ export const PASSENGERS: Passenger[] = [
   { name: "נאוה חורי",   booking: "0GI2VD", ticket: "SKY enjoy", baggage: "יד + מטען 23kg, Extra legroom", baseEur: 131.59, extraEur: "+82", flightTotalEur: 213.59, hotelEur: 172.04, grandTotalEur: 385.63 },
 ];
 
+// ─── סדר המשלמים בדרופדאון של מעקב תשלומים ─────────────────────────────────
+// יהודה ראשון, נאוה שניה, אדיר שלישי, חנה רביעית, ואז כל השאר.
+export const PAYER_ORDER: string[] = [
+  "יהודה",
+  "נאוה",
+  "אדיר",
+  "חנה",
+  "הילה",
+  "עדי",
+  "שירה",
+  "נועם",
+  "כפיר",
+  "אור",
+  "אגם",
+  "יובל",
+];
+
 // ─── מסעדות כשרות ─────────────────────────────────────────────────────────
 export const RESTAURANTS: Restaurant[] = [
   { type: "בשרי", name: "Shuk (השוק)",      address: "Ermou 117", hours: "09:00-22:30",                       kashrut: 'בד"צ למהדרין', food: "פלאפל, שקשוקה, חומוס, שניצל, דגים",                        notes: "הכי מומלצת. קרובה למלון.",                  whenInSchedule: "יום א צהריים + יום ד צהריים", phone: "+306970252857", whatsapp: "https://api.whatsapp.com/send/?phone=306970252857", website: "https://shukathens.com/" },

@@ -9,6 +9,7 @@ const NAV_CARDS = [
   { href: "/tasks", emoji: "✅", title: "משימות", desc: "מה צריך להזמין לפני הטיסה" },
   { href: "/packing", emoji: "🧳", title: "מה לקחת", desc: "רשימת אריזה לחו\"ל" },
   { href: "/costs", emoji: "💰", title: "עלויות", desc: "פירוט טיסה, מלון, פעילויות" },
+  { href: "/expenses", emoji: "💳", title: "מעקב תשלומים", desc: "מי שילם על מה בטיול (משותף)" },
   { href: "/passengers", emoji: "👥", title: "נוסעים", desc: "12 משתתפים ופירוט אישי" },
   { href: "/restaurants", emoji: "🍽️", title: "מסעדות כשרות", desc: "בשרי + חלבי באתונה" },
   { href: "/attractions", emoji: "🗺️", title: "אטרקציות", desc: "מה לראות ולעשות" },
