@@ -133,13 +133,13 @@ const RAW_ITINERARY: Omit<ItineraryItem, "isEvening">[] = [
 
 export const ITINERARY: ItineraryItem[] = RAW_ITINERARY.map(markEvening);
 
-// חלוקה לסיור Ezraider (26/4 14:45) — 3 זוגות + 6 בודדים = 9 כלי רכב
+// חלוקה לסיור Ezraider (26/4 14:45) — 3 זוגות + 5 בודדים = 8 כלי רכב (אגם לא מצטרפת)
 export const EZRAIDER_PAIRS: { pair: [string, string] }[] = [
   { pair: ["אדיר", "כפיר"] },
   { pair: ["חנה", "אור"] },
-  { pair: ["אגם", "יובל"] },
+  { pair: ["נאוה", "יובל"] },
 ];
-export const EZRAIDER_SOLO: string[] = ["הילה", "עדי", "נועם", "שירה", "יהודה", "נאוה"];
+export const EZRAIDER_SOLO: string[] = ["הילה", "עדי", "נועם", "שירה", "יהודה"];
 
 export const TASKS: Task[] = [
   { task: "הפעלת ביטוח נסיעות (ישרכארט — חינם ל-5 ימים)", done: false, contact: "https://marketing.isracard.co.il/pages/insurance-abroad/", notes: "ללקוחות ישרכארט: 5 ימי ביטוח חינם לכל הטיול (פחות מ-$1). לחצו 'להפעלת ביטוח 5 ימים'. חובה לפני הטיסה!" },
@@ -388,7 +388,7 @@ export function buildTripSummary(): string {
   }
 
   lines.push("\n## חלוקה לסיור Ezraider (26/4 14:45)");
-  lines.push(`סה"כ 9 כלי רכב: 3 זוגות + 6 בודדים.`);
+  lines.push(`סה"כ 8 כלי רכב: 3 זוגות + 5 בודדים. (אגם לא מצטרפת לסיור)`);
   lines.push("זוגות (שניים על אותו כלי):");
   for (const p of EZRAIDER_PAIRS) {
     lines.push(`- ${p.pair[0]} + ${p.pair[1]}`);
