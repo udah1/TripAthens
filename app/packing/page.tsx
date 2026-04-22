@@ -16,14 +16,9 @@ const CATEGORIES: Category[] = [
     emoji: "💳",
     items: [
       "דרכון",
-      "וויזות",
-      "חיסונים",
       "ביטוח בריאות",
       "מזומנים במטבע מקומי",
       "כרטיס אשראי",
-      "רישיון נהיגה",
-      "כרטיסי טיסה",
-      "מסלול הנסיעה",
     ],
   },
   {
@@ -37,13 +32,10 @@ const CATEGORIES: Category[] = [
       "מכנסיים",
       "מכנסיים קצרים",
       "גרביים",
-      "סוודר",
-      "מעיל",
       "נעליים",
       "סנדלים",
       "חגורה",
-      "מעיל גשם",
-      "מטריה",
+      "כובע",
       "בגד ים",
       "פיג'מה",
       "תכשיטים",
@@ -75,8 +67,6 @@ const CATEGORIES: Category[] = [
       "מספריים",
       "קרם לחות",
       "מסרק",
-      "מנקי אוזניים",
-      "פינצטה",
       "פלסטרים",
     ],
   },
@@ -118,8 +108,10 @@ const CATEGORIES: Category[] = [
 
 type ItemState = "open" | "checked" | "deleted";
 type StateMap = Record<string, ItemState>;
+type CustomMap = Record<string, string[]>;
 
 const STORAGE_KEY = "packing-state-v1";
+const CUSTOM_KEY = "packing-custom-v1";
 
 function itemKey(catId: string, item: string) {
   return `${catId}::${item}`;
@@ -127,12 +119,15 @@ function itemKey(catId: string, item: string) {
 
 export default function PackingPage() {
   const [state, setState] = useState<StateMap>({});
+  const [custom, setCustom] = useState<CustomMap>({});
   const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {
     try {
       const raw = localStorage.getItem(STORAGE_KEY);
       if (raw) setState(JSON.parse(raw));
+      const rawCustom = localStorage.getItem(CUSTOM_KEY);
+      if (rawCustom) setCustom(JSON.parse(rawCustom));
     } catch {}
     setLoaded(true);
   }, []);
@@ -141,8 +136,41 @@ export default function PackingPage() {
     if (!loaded) return;
     try {
       localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+      localStorage.setItem(CUSTOM_KEY, JSON.stringify(custom));
     } catch {}
-  }, [state, loaded]);
+  }, [state, custom, loaded]);
+
+  function getAllItems(cat: Category): string[] {
+    return [...cat.items, ...(custom[cat.id] ?? [])];
+  }
+
+  function addCustomItem(catId: string, item: string) {
+    const trimmed = item.trim();
+    if (!trimmed) return;
+    setCustom((prev) => {
+      const existing = prev[catId] ?? [];
+      const cat = CATEGORIES.find((c) => c.id === catId);
+      const allExisting = [...(cat?.items ?? []), ...existing];
+      if (allExisting.includes(trimmed)) return prev;
+      return { ...prev, [catId]: [...existing, trimmed] };
+    });
+  }
+
+  function removeCustomItem(catId: string, item: string) {
+    setCustom((prev) => ({
+      ...prev,
+      [catId]: (prev[catId] ?? []).filter((i) => i !== item),
+    }));
+    setState((prev) => {
+      const next = { ...prev };
+      delete next[itemKey(catId, item)];
+      return next;
+    });
+  }
+
+  function isCustom(catId: string, item: string): boolean {
+    return (custom[catId] ?? []).includes(item);
+  }
 
   function getStatus(catId: string, item: string): ItemState {
     return state[itemKey(catId, item)] ?? "open";
@@ -168,7 +196,7 @@ export default function PackingPage() {
   function setAllInCategory(cat: Category, s: ItemState) {
     setState((prev) => {
       const next = { ...prev };
-      for (const item of cat.items) {
+      for (const item of getAllItems(cat)) {
         next[itemKey(cat.id, item)] = s;
       }
       return next;
@@ -176,7 +204,10 @@ export default function PackingPage() {
   }
 
   function resetAll() {
-    if (confirm("לאפס את כל הרשימה?")) setState({});
+    if (confirm("לאפס את כל הרשימה?")) {
+      setState({});
+      setCustom({});
+    }
   }
 
   const totals = useMemo(() => {
@@ -184,7 +215,8 @@ export default function PackingPage() {
     let deleted = 0;
     let total = 0;
     for (const cat of CATEGORIES) {
-      for (const item of cat.items) {
+      const all = [...cat.items, ...(custom[cat.id] ?? [])];
+      for (const item of all) {
         total++;
         const s = state[itemKey(cat.id, item)];
         if (s === "checked") checked++;
@@ -192,7 +224,7 @@ export default function PackingPage() {
       }
     }
     return { checked, deleted, total, open: total - checked - deleted };
-  }, [state]);
+  }, [state, custom]);
 
   return (
     <div>
@@ -231,11 +263,15 @@ export default function PackingPage() {
           <CategoryCard
             key={cat.id}
             cat={cat}
+            customItems={custom[cat.id] ?? []}
             getStatus={getStatus}
             onToggle={toggleCheck}
             onDelete={deleteItem}
             onRestore={restoreItem}
             onSetAll={setAllInCategory}
+            onAddCustom={addCustomItem}
+            onRemoveCustom={removeCustomItem}
+            isCustom={isCustom}
             loaded={loaded}
           />
         ))}
@@ -246,36 +282,53 @@ export default function PackingPage() {
 
 function CategoryCard({
   cat,
+  customItems,
   getStatus,
   onToggle,
   onDelete,
   onRestore,
   onSetAll,
+  onAddCustom,
+  onRemoveCustom,
+  isCustom,
   loaded,
 }: {
   cat: Category;
+  customItems: string[];
   getStatus: (catId: string, item: string) => ItemState;
   onToggle: (catId: string, item: string) => void;
   onDelete: (catId: string, item: string) => void;
   onRestore: (catId: string, item: string) => void;
   onSetAll: (cat: Category, s: ItemState) => void;
+  onAddCustom: (catId: string, item: string) => void;
+  onRemoveCustom: (catId: string, item: string) => void;
+  isCustom: (catId: string, item: string) => boolean;
   loaded: boolean;
 }) {
+  const [newItem, setNewItem] = useState("");
+  const allItems = useMemo(() => [...cat.items, ...customItems], [cat.items, customItems]);
+
   const sorted = useMemo(() => {
-    if (!loaded) return cat.items.map((i) => ({ item: i, status: "open" as ItemState }));
-    const withStatus = cat.items.map((item) => ({
+    if (!loaded) return allItems.map((i) => ({ item: i, status: "open" as ItemState }));
+    const withStatus = allItems.map((item) => ({
       item,
       status: getStatus(cat.id, item),
     }));
     const order: Record<ItemState, number> = { open: 0, checked: 1, deleted: 2 };
     return withStatus.sort((a, b) => order[a.status] - order[b.status]);
-  }, [cat, getStatus, loaded]);
+  }, [cat.id, allItems, getStatus, loaded]);
 
   const counts = useMemo(() => {
     const c = { open: 0, checked: 0, deleted: 0 };
     for (const r of sorted) c[r.status]++;
     return c;
   }, [sorted]);
+
+  function handleAdd(e: React.FormEvent) {
+    e.preventDefault();
+    onAddCustom(cat.id, newItem);
+    setNewItem("");
+  }
 
   return (
     <div className="card">
@@ -284,7 +337,7 @@ function CategoryCard({
           {cat.emoji} {cat.title}
         </div>
         <div className="text-xs text-slate-500">
-          {counts.checked}/{cat.items.length}
+          {counts.checked}/{allItems.length}
         </div>
       </div>
 
@@ -337,6 +390,16 @@ function CategoryCard({
                 >
                   שחזר
                 </button>
+                {isCustom(cat.id, item) && (
+                  <button
+                    onClick={() => onRemoveCustom(cat.id, item)}
+                    className="text-slate-300 hover:text-rose-500 text-sm shrink-0"
+                    title="הסר לצמיתות"
+                    aria-label="הסר"
+                  >
+                    ✕
+                  </button>
+                )}
               </>
             ) : (
               <>
@@ -354,11 +417,18 @@ function CategoryCard({
                   }`}
                 >
                   {item}
+                  {isCustom(cat.id, item) && (
+                    <span className="mr-1 text-[10px] text-brand-accent">✦</span>
+                  )}
                 </label>
                 <button
-                  onClick={() => onDelete(cat.id, item)}
+                  onClick={() =>
+                    isCustom(cat.id, item)
+                      ? onRemoveCustom(cat.id, item)
+                      : onDelete(cat.id, item)
+                  }
                   className="text-slate-300 hover:text-rose-500 text-sm shrink-0"
-                  title="מחק פריט"
+                  title={isCustom(cat.id, item) ? "הסר פריט" : "מחק פריט"}
                   aria-label="מחק"
                 >
                   ✕
@@ -368,6 +438,23 @@ function CategoryCard({
           </li>
         ))}
       </ul>
+
+      <form onSubmit={handleAdd} className="mt-3 flex gap-2">
+        <input
+          type="text"
+          value={newItem}
+          onChange={(e) => setNewItem(e.target.value)}
+          placeholder="הוסף פריט..."
+          className="flex-1 px-3 py-1.5 text-sm rounded-lg border border-slate-200 focus:border-brand-accent focus:outline-none"
+        />
+        <button
+          type="submit"
+          disabled={!newItem.trim()}
+          className="chip bg-brand text-white hover:bg-brand-accent disabled:opacity-40 disabled:cursor-not-allowed text-sm"
+        >
+          + הוסף
+        </button>
+      </form>
     </div>
   );
 }
