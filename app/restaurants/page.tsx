@@ -54,10 +54,63 @@ function RestaurantCard({ r }: { r: typeof RESTAURANTS[number] }) {
       <div className="text-sm text-slate-600 mb-3 whitespace-pre-line">🕐 {r.hours}</div>
       <div className="text-xs font-semibold text-brand mb-2">כשרות: {r.kashrut}</div>
       <div className="text-sm mb-2">{r.food}</div>
+
+      {(r.phone || r.whatsapp || r.website) && (
+        <div className="flex flex-wrap gap-2 mb-2" dir="ltr">
+          {r.website && (
+            <a
+              href={r.website}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="chip bg-sky-100 hover:bg-sky-200 text-sky-800 text-xs font-semibold transition"
+              title="לאתר המסעדה"
+            >
+              🌐 אתר
+            </a>
+          )}
+          {r.phone && (
+            <a
+              href={`tel:${r.phone}`}
+              className="chip bg-emerald-100 hover:bg-emerald-200 text-emerald-800 text-xs font-semibold transition"
+              title="חיוג רגיל (נדידה)"
+            >
+              📞 {r.phone}
+            </a>
+          )}
+          {r.phone && (
+            <a
+              href={`tel:${toBezeq013(r.phone)}`}
+              className="chip bg-purple-100 hover:bg-purple-200 text-purple-800 text-xs font-semibold transition"
+              title="חיוג דרך 013 בזק בינלאומי (זול מישראל)"
+            >
+              ☎️ 013
+            </a>
+          )}
+          {r.whatsapp && (
+            <a
+              href={r.whatsapp}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="chip bg-green-100 hover:bg-green-200 text-green-800 text-xs font-semibold transition"
+              title="WhatsApp"
+            >
+              💬 WhatsApp
+            </a>
+          )}
+        </div>
+      )}
+
       {r.notes && <div className="text-xs text-amber-700 bg-amber-50 rounded p-2 mb-2">💡 {r.notes}</div>}
       {r.whenInSchedule && (
         <div className="text-xs text-slate-500">📅 בלוז: {r.whenInSchedule}</div>
       )}
     </div>
   );
+}
+
+// ממיר מספר בפורמט בינלאומי (+30...) לחיוג דרך 013 בזק בינלאומי.
+// דוגמה: "+306970252857" -> "013306970252857"
+function toBezeq013(phone: string): string {
+  const digits = phone.replace(/[^0-9]/g, "");
+  return `013${digits}`;
 }

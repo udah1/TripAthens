@@ -149,10 +149,10 @@ export const PASSENGERS: Passenger[] = [
 
 // ─── מסעדות כשרות ─────────────────────────────────────────────────────────
 export const RESTAURANTS: Restaurant[] = [
-  { type: "בשרי", name: "Shuk (השוק)",      address: "Ermou 117", hours: "09:00-22:30",                       kashrut: 'בד"צ למהדרין', food: "פלאפל, שקשוקה, חומוס, שניצל, דגים",                        notes: "הכי מומלצת. קרובה למלון.",                  whenInSchedule: "יום א צהריים + יום ד צהריים" },
-  { type: "בשרי", name: "King David Burger", address: "Ermou 78",  hours: 'א-ה 11:00-23:00\nמוצ"ש עד 01:00',    kashrut: "בית יוסף",     food: "המבורגרים, מעורב ירושלמי, עראיס. גם משלוחים בוולט.",   notes: "",                                           whenInSchedule: "" },
-  { type: "בשרי", name: 'Gostijo / חב"ד',    address: "Esopou 10", hours: "א-ה 13:30-21:30",                   kashrut: 'בית חב"ד',     food: "אוכל בית חב\"ד. יש מכולת כשרה בפנים!",                notes: "מאובטח, צריך דרכון.",                        whenInSchedule: "יום ב צהריים" },
-  { type: "חלבי", name: "Parakalo",          address: "Mikonos 18",hours: "א-ה 8:00-20:00\nו עד 15:00",         kashrut: 'חב"ד',         food: "ארוחות בוקר, פיצות, מאפים, סלטים.",                     notes: "מומלץ לארוחות בוקר!",                         whenInSchedule: "יום ב/ג/ד בוקר" },
+  { type: "בשרי", name: "Shuk (השוק)",      address: "Ermou 117", hours: "09:00-22:30",                       kashrut: 'בד"צ למהדרין', food: "פלאפל, שקשוקה, חומוס, שניצל, דגים",                        notes: "הכי מומלצת. קרובה למלון.",                  whenInSchedule: "יום א צהריים + יום ד צהריים", phone: "+306970252857", website: "https://shukathens.com/" },
+  { type: "בשרי", name: "King David Burger", address: "Ermou 78",  hours: 'א-ה 11:00-23:00\nמוצ"ש עד 01:00',    kashrut: "בית יוסף",     food: "המבורגרים, מעורב ירושלמי, עראיס. גם משלוחים בוולט.",   notes: "",                                           whenInSchedule: "", phone: "+302103317898", whatsapp: "https://api.whatsapp.com/send?phone=306949527534", website: "https://www.kingdavidburger.com/" },
+  { type: "בשרי", name: 'Gostijo / חב"ד',    address: "Esopou 10", hours: "א-ה 13:30-21:30",                   kashrut: 'בית חב"ד',     food: "אוכל בית חב\"ד. יש מכולת כשרה בפנים!",                notes: "מאובטח, צריך דרכון.",                        whenInSchedule: "יום ב צהריים", phone: "+302103233825", website: "https://gostijo.gr/" },
+  { type: "חלבי", name: "Parakalo",          address: "Mikonos 18",hours: "א-ה 8:00-20:00\nו עד 15:00",         kashrut: 'חב"ד',         food: "ארוחות בוקר, פיצות, מאפים, סלטים.",                     notes: "מומלץ לארוחות בוקר!",                         whenInSchedule: "יום ב/ג/ד בוקר", phone: "+302103248601", website: "https://www.google.com/maps/search/?api=1&query=Parakalo+Dairy+Kosher+Athens" },
 ];
 
 // ─── האקרופוליס (אופציונלי — לא מתוכנן בלוז) ──────────────────────────────

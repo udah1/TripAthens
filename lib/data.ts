@@ -61,6 +61,9 @@ export interface Restaurant {
   food: string;
   notes: string;
   whenInSchedule: string;
+  phone?: string;
+  whatsapp?: string;
+  website?: string;
 }
 
 export interface Attraction {
@@ -159,7 +162,8 @@ export function buildTripSummary(): string {
 
   lines.push("\n## מסעדות כשרות");
   for (const r of RESTAURANTS) {
-    lines.push(`- [${r.type}] ${r.name} | ${r.address} | ${r.hours} | ${r.kashrut} | ${r.food} | ${r.notes} | בלוז: ${r.whenInSchedule}`);
+    const contact = [r.phone && `טל: ${r.phone}`, r.whatsapp && `WhatsApp: ${r.whatsapp}`].filter(Boolean).join(" | ");
+    lines.push(`- [${r.type}] ${r.name} | ${r.address} | ${r.hours} | ${r.kashrut} | ${r.food} | ${r.notes} | בלוז: ${r.whenInSchedule}${contact ? " | " + contact : ""}`);
   }
 
   lines.push("\n## אטרקציות");
