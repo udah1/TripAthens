@@ -281,4 +281,13 @@ export const PACKING_CATEGORIES: PackingCategory[] = [
       "אוזניות",
     ],
   },
+  {
+    id: "extra",
+    title: "נוסף",
+    emoji: "🎒",
+    items: [
+      "ספר",
+      "תיק גב קטן",
+    ],
+  },
 ];
