@@ -95,16 +95,16 @@ const RAW_ITINERARY: Omit<ItineraryItem, "isEvening">[] = [
   { day: "יום א", date: "26/04/2026", time: "10:30", activity: "הגעה למלון וצ'ק-אין", location: "Athens Cypria Hotel - Diomeias 5", description: "", notes: "אם החדרים לא מוכנים — השאירו מזוודות", accessible: "כן", price: "" },
   { day: "יום א", date: "26/04/2026", time: "11:00-13:00", activity: "הופ-און הופ-אוף", location: "מרכז אתונה", description: "אוטובוס תיירותי קומתיים פתוח. קונים כרטיס 48 שעות ועולים/יורדים בכל תחנה. מקבלים אוזניות שם.", notes: "מומלץ ביום ראשון — עייפים!", accessible: "כן — ישיבה", price: "~28€ מבוגר / ~14€ ילד" },
   { day: "יום א", date: "26/04/2026", time: "13:30", activity: "צהריים — Shuk (בשרי)", location: "Ermou 117", description: "", notes: "הזמינו מקום ל-12!", accessible: "כן", price: "~20-25€/אדם" },
-  { day: "יום א", date: "26/04/2026", time: "15:00-18:00", activity: "שכונת פלאקה", location: "Plaka neighborhood", description: "שכונת העיר העתיקה. רחובות מרוצפים מהמאה ה-19, חנויות מזכרות, אווירה יוונית.", notes: "שטוח ונגיש לסבתא", accessible: "כן", price: "כניסה חופשית" },
+  { day: "יום א", date: "26/04/2026", time: "14:45-17:45", activity: "סיור Ezraider", location: "נקודת מפגש לתיאום", description: "כלי רכב חשמלי ישראלי על 4 גלגלים. מדריך עברית, עוצרים באטרקציות.", notes: "לאשר יציאה ב-14:45 + נגישות לסבתא!", accessible: "לאשר", price: "70€ מבוגר / 35€ ילד" },
   { day: "יום א", date: "26/04/2026", time: "18:00-19:00", activity: "Who Killed Callimachos — מיסתורן", location: "Athens Living Museum", description: "מופע תיאטרון אינטראקטיבי. שחקן מגלם דמויות מאתונה העתיקה, הקהל הם הבלשים.", notes: "הנחה ל-10+ אנשים! הזמינו מראש.", accessible: "כן", price: "22€ מבוגר / 15€ ילד" },
   { day: "יום א", date: "26/04/2026", time: "19:00-20:00", activity: "מנוחה במלון", location: "Athens Cypria Hotel", description: "", notes: "חובה אחרי טיסת שחר", accessible: "כן", price: "" },
   { day: "יום א", date: "26/04/2026", time: "20:00+", activity: "ערב בכיכר סינטגמה", location: "Syntagma Square", description: "כיכר המרכזית של אתונה — מוארת ותוססת. בתי קפה, ברים, אנשים.", notes: "שתייה מבקבוקים סגורים בסדר", accessible: "כן", price: "" },
 
   // יום ב
-  { day: "יום ב", date: "27/04/2026", time: "09:00-11:30", activity: "סיור Ezraider", location: "נקודת מפגש לתיאום", description: "כלי רכב חשמלי ישראלי על 4 גלגלים. מדריך עברית, עוצרים באטרקציות.", notes: "לאשר יציאה ב-09:00 + נגישות לסבתא!", accessible: "לאשר", price: "70€ מבוגר / 35€ ילד" },
-  { day: "יום ב", date: "27/04/2026", time: "11:30-13:30", activity: "קניות", location: "Ermou + Monastiraki + Plaka", description: "רחוב ארמו — קניות ראשי. מונסטיראקי — מזכרות. פלאקה — חנויות ייחודיות.", notes: "קחו תיק לקניות", accessible: "כן — שטוח", price: "—" },
+  { day: "יום ב", date: "27/04/2026", time: "09:30-11:30", activity: "שכונת פלאקה", location: "Plaka neighborhood", description: "שכונת העיר העתיקה. רחובות מרוצפים מהמאה ה-19, חנויות מזכרות, אווירה יוונית.", notes: "שטוח ונגיש לסבתא", accessible: "כן", price: "כניסה חופשית" },
+  { day: "יום ב", date: "27/04/2026", time: "11:30-13:30", activity: "קניות", location: "Ermou + Monastiraki", description: "רחוב ארמו — קניות ראשי. מונסטיראקי — מזכרות.", notes: "קחו תיק לקניות", accessible: "כן — שטוח", price: "—" },
   { day: "יום ב", date: "27/04/2026", time: "13:30", activity: "צהריים — Gostijo (בשרי)", location: "Esopou 10", description: "ממש ליד מונסטיראקי. פותח ב-13:30. יש מכולת כשרה בפנים.", notes: "לאשר זמינות ל-12", accessible: "כן", price: "~20-25€/אדם" },
-  { day: "יום ב", date: "27/04/2026", time: "14:30-18:00", activity: "המשך קניות", location: "Ermou + Monastiraki + Plaka", description: "המשך קניות בארמו, מונסטיראקי, פלאקה.", notes: "", accessible: "כן — שטוח", price: "—" },
+  { day: "יום ב", date: "27/04/2026", time: "14:30-18:00", activity: "המשך קניות", location: "Ermou + Monastiraki", description: "המשך קניות בארמו ומונסטיראקי.", notes: "", accessible: "כן — שטוח", price: "—" },
   { day: "יום ב", date: "27/04/2026", time: "18:30-20:30", activity: "גבעת ליקבטוס + שקיעה", location: "Lycabettus Hill", description: "הגבעה הכי גבוהה באתונה (277מ'). נוף פנורמי. שקיעה ~20:15 — לא לפספס!", notes: "רכבל תת-קרקעי — 3 דקות. להגיע ב-18:30!", accessible: "כן — רכבל", price: "13€ הלוך-חזור" },
   { day: "יום ב", date: "27/04/2026", time: "21:00+", activity: "בר גג לשתייה", location: "Rooftop bar", description: "נוף לילי על העיר המוארת.", notes: "שתייה מבקבוקים סגורים בסדר", accessible: "לשיקול דעת", price: "" },
 
@@ -133,6 +133,14 @@ const RAW_ITINERARY: Omit<ItineraryItem, "isEvening">[] = [
 
 export const ITINERARY: ItineraryItem[] = RAW_ITINERARY.map(markEvening);
 
+// חלוקה לסיור Ezraider (26/4 14:45) — 3 זוגות + 6 בודדים = 9 כלי רכב
+export const EZRAIDER_PAIRS: { pair: [string, string] }[] = [
+  { pair: ["אדיר", "כפיר"] },
+  { pair: ["חנה", "אור"] },
+  { pair: ["אגם", "יובל"] },
+];
+export const EZRAIDER_SOLO: string[] = ["הילה", "עדי", "נועם", "שירה", "יהודה", "נאוה"];
+
 export const TASKS: Task[] = [
   { task: "הפעלת ביטוח נסיעות (ישרכארט — חינם ל-5 ימים)", done: false, contact: "https://marketing.isracard.co.il/pages/insurance-abroad/", notes: "ללקוחות ישרכארט: 5 ימי ביטוח חינם לכל הטיול (פחות מ-$1). לחצו 'להפעלת ביטוח 5 ימים'. חובה לפני הטיסה!" },
   { task: "הזמנת מיניבוס ליאנה — הגעה מהשדה (26/4)", done: false, contact: "https://wa.me/message/NLNHNSS46SLHE1", notes: "12 איש + מזוודות. נסיעה ~45 דק" },
@@ -140,7 +148,7 @@ export const TASKS: Task[] = [
   { task: "הזמנת טיול יום לנפפליאו (28/4 10:00)", done: false, contact: "https://wa.me/message/NLNHNSS46SLHE1", notes: "650 euro לקבוצה. ואן פרטי ל-12. לאשר תעלת קורינטוס + מבצר פלמידי" },
   { task: "לברר הזמנה מוקדמת — Shuk / King David / Gostijo", done: false, contact: "Shuk: +306970252857 | King David: https://wa.me/306949527534", notes: "כנראה לא חובה — אבל כדאי לבדוק" },
   { task: "הזמנת כרטיסי מוזיאון האשליות (29/4 13:00)", done: false, contact: "https://athens.museumofillusions.gr", notes: "לשאול על הנחות קבוצה ל-12" },
-  { task: "הזמנת סיור Ezraider (27/4 09:00)", done: false, contact: "https://wa.me/message/NLNHNSS46SLHE1", notes: "70 euro מבוגר / 35 euro ילד. לאשר יציאה ב-09:00 + נגישות לסבתא" },
+  { task: "הזמנת סיור Ezraider (26/4 14:45)", done: false, contact: "https://wa.me/message/NLNHNSS46SLHE1", notes: "70 euro מבוגר / 35 euro ילד. לאשר יציאה ב-14:45 + נגישות לסבתא" },
   { task: "הזמנת Who Killed Callimachos (26/4 18:00)", done: false, contact: "https://athenslivingmuseum.com/who-killed-callimachos/", notes: "22 euro מבוגר / 15 euro ילד. הנחה ל-10+ אנשים!" },
   { task: "הזמנת כרטיסי הופ-און הופ-אוף אונליין", done: false, contact: "https://www.bigbustours.com/en/athens/athens-bus-tours", notes: "כרטיס 48 שעות" },
   { task: "אישור עם המלון — מעלית + נגישות לחדר", done: false, contact: "Athens Cypria Hotel - Diomeias 5", notes: "" },
@@ -206,7 +214,7 @@ export const ACROPOLIS = [
 export const ATTRACTIONS: Attraction[] = [
   { category: "מוזיאון",   name: "מוזיאון האשליות",         description: "אשליות אופטיות ותמונות אינטראקטיביות. ~60 דקות. כיפי לכל הגילאים.",  practicalNotes: "פתוח מ-10:00. הנחות קבוצה ל-12.",   price: "~13€/אדם",              accessibility: "כן",         url: "https://athens.museumofillusions.gr" },
   { category: "תיאטרון",   name: "Who Killed Callimachos",  description: "מיסתורן אינטראקטיבי. שחקן + קהל בלשים. אתונה עתיקה.",               practicalNotes: "מדי יום 18:00. הנחה ל-10+.",         price: "22€ מבוגר / 15€ ילד",  accessibility: "כן",         url: "https://athenslivingmuseum.com/who-killed-callimachos/" },
-  { category: "סיור",      name: "Ezraider",                description: "כלי חשמלי ל-4 גלגלים. מדריך עברית. היסטוריה יהודית.",                practicalNotes: "לאשר ב-09:00 + נגישות לסבתא.",       price: "70€ מבוגר / 35€ ילד",  accessibility: "לאשר",       url: "https://wa.me/message/NLNHNSS46SLHE1" },
+  { category: "סיור",      name: "Ezraider",                description: "כלי חשמלי ל-4 גלגלים. מדריך עברית. היסטוריה יהודית.",                practicalNotes: "לאשר ב-14:45 + נגישות לסבתא.",       price: "70€ מבוגר / 35€ ילד",  accessibility: "לאשר",       url: "https://wa.me/message/NLNHNSS46SLHE1" },
   { category: "טיול יום", name: "נפפליאו + תעלת קורינטוס",  description: "עיירת בוטיק ציורית + תעלה הנדסית. ואן פרטי.",                       practicalNotes: "10:00-18:30. אוכל מהבית!",           price: "650€ לקבוצה (~54€)",   accessibility: "כן — ואן",   url: "https://wa.me/message/NLNHNSS46SLHE1" },
   { category: "מבצר",      name: "מבצר פלמידי",             description: "אחד המבצרים היפים ביוון. נוף פנורמי.",                                practicalNotes: "הרבה מדרגות — סבתא נשארת בנמל.",    price: "~8€/אדם",              accessibility: "חלקי",       url: "https://en.wikipedia.org/wiki/Palamidi" },
   { category: "גבעה",      name: "גבעת ליקבטוס",            description: "הגבעה הכי גבוהה. נוף 360 מעלות. שקיעה מרהיבה ~20:15.",              practicalNotes: "רכבל עד 02:30. להגיע ב-18:30.",      price: "13€ הלוך-חזור",        accessibility: "כן — רכבל", url: "https://en.wikipedia.org/wiki/Lycabettus" },
@@ -227,8 +235,8 @@ export const DAY_COLORS: Record<DayKey, string> = {
 };
 
 export const DAY_LABELS: Record<DayKey, string> = {
-  "יום א": "יום א׳ — ראשון 26/4 | נחיתה + הכרת העיר",
-  "יום ב": "יום ב׳ — שני 27/4 | Ezraider + קניות + ליקבטוס",
+  "יום א": "יום א׳ — ראשון 26/4 | נחיתה + הופ-און + Ezraider + מיסתורן",
+  "יום ב": "יום ב׳ — שני 27/4 | פלאקה + קניות + ליקבטוס",
   "יום ג": "יום ג׳ — שלישי 28/4 | טיול יום לנפפליאו",
   "יום ד": "יום ד׳ — רביעי 29/4 | גרפיטי + מוזיאון + טיסה",
 };
@@ -378,6 +386,14 @@ export function buildTripSummary(): string {
   for (const a of ACROPOLIS) {
     lines.push(`- ${a.name} (${a.english}) | ${a.description} | ${a.notes}`);
   }
+
+  lines.push("\n## חלוקה לסיור Ezraider (26/4 14:45)");
+  lines.push(`סה"כ 9 כלי רכב: 3 זוגות + 6 בודדים.`);
+  lines.push("זוגות (שניים על אותו כלי):");
+  for (const p of EZRAIDER_PAIRS) {
+    lines.push(`- ${p.pair[0]} + ${p.pair[1]}`);
+  }
+  lines.push(`בודדים (כל אחד על כלי משלו): ${EZRAIDER_SOLO.join(", ")}.`);
 
   lines.push("\n## ביטוח נסיעות (חשוב!)");
   lines.push("ללקוחות ישרכארט: 5 ימי ביטוח נסיעות חינם (או פחות מ-$1) — דרך AIG.");

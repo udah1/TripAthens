@@ -1,7 +1,15 @@
 "use client";
 
 import { useEffect, useMemo, useRef, useState } from "react";
-import { ITINERARY, DAY_LABELS, DAY_COLORS, type DayKey, type ItineraryItem } from "@/lib/data";
+import {
+  ITINERARY,
+  DAY_LABELS,
+  DAY_COLORS,
+  EZRAIDER_PAIRS,
+  EZRAIDER_SOLO,
+  type DayKey,
+  type ItineraryItem,
+} from "@/lib/data";
 
 const dayKeys: DayKey[] = ["יום א", "יום ב", "יום ג", "יום ד"];
 
@@ -180,7 +188,12 @@ export default function SchedulePage() {
                       {it.time}
                     </div>
                     <div>
-                      <div className="font-semibold">{it.activity}</div>
+                      <div className="font-semibold flex flex-wrap items-center gap-2">
+                        {it.activity}
+                        {it.activity.toLowerCase().includes("ezraider") && (
+                          <EzraiderPairsChip />
+                        )}
+                      </div>
                       <div className="text-xs text-slate-500">📍 {it.location}</div>
                       {it.description && <div className="text-sm text-slate-700 mt-1">{it.description}</div>}
                       <div className="flex flex-wrap gap-2 mt-2">
@@ -204,6 +217,65 @@ export default function SchedulePage() {
           </section>
         );
       })}
+    </div>
+  );
+}
+
+function EzraiderPairsChip() {
+  const [open, setOpen] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!open) return;
+    function onClick(e: MouseEvent) {
+      if (ref.current && !ref.current.contains(e.target as Node)) setOpen(false);
+    }
+    function onKey(e: KeyboardEvent) {
+      if (e.key === "Escape") setOpen(false);
+    }
+    document.addEventListener("mousedown", onClick);
+    document.addEventListener("keydown", onKey);
+    return () => {
+      document.removeEventListener("mousedown", onClick);
+      document.removeEventListener("keydown", onKey);
+    };
+  }, [open]);
+
+  return (
+    <div className="relative inline-block" ref={ref}>
+      <button
+        type="button"
+        onClick={() => setOpen((v) => !v)}
+        className="chip bg-sky-100 hover:bg-sky-200 text-sky-800 text-xs font-semibold"
+        title="הצג חלוקה לכלים"
+      >
+        👥 חלוקה לכלים
+      </button>
+      {open && (
+        <div className="absolute z-20 top-full right-0 mt-2 w-64 bg-white border border-slate-200 rounded-xl shadow-lg p-3 text-xs text-slate-700">
+          <div className="font-bold text-brand mb-2">
+            חלוקה ל-Ezraider ({EZRAIDER_PAIRS.length + EZRAIDER_SOLO.length} כלים)
+          </div>
+          <div className="mb-2">
+            <div className="font-semibold text-amber-700 mb-1">
+              זוגות (2 על כלי):
+            </div>
+            <ul className="space-y-0.5 pr-2">
+              {EZRAIDER_PAIRS.map((p, i) => (
+                <li key={i}>
+                  • {p.pair[0]} + {p.pair[1]}
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div>
+            <div className="font-semibold text-sky-700 mb-1">
+              בודדים ({EZRAIDER_SOLO.length} כלים):
+            </div>
+            <div className="text-slate-600">{EZRAIDER_SOLO.join(", ")}</div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
