@@ -192,7 +192,7 @@ export default function SchedulePage() {
               ref={(el) => {
                 dayHeaderRefs.current[day] = el;
               }}
-              className="rounded-t-2xl px-5 py-3 font-bold text-brand shadow-card scroll-mt-4"
+              className="rounded-t-2xl px-5 py-3 font-bold text-[15px] text-brand shadow-card scroll-mt-4"
               style={{ background: DAY_COLORS[day] }}
             >
               {DAY_LABELS[day]} · {items[0]?.date}

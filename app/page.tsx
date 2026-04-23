@@ -38,7 +38,7 @@ export default async function HomePage() {
           <h1 className="text-2xl md:text-5xl font-extrabold text-brand">{TRIP_META.title}</h1>
         </div>
         <p className="text-md md:text-xl text-slate-700 font-semibold">
-          {TRIP_META.groupSize} משתתפים · כשרים · {TRIP_META.hotel}
+          {TRIP_META.groupSize} משתתפים · כשר · {TRIP_META.hotel}
         </p>
         <div className="grid md:grid-cols-3 gap-3 mt-5 text-sm">
           <InfoBox title="✈️ טיסות" value={TRIP_META.airlineFlight} />
