@@ -72,7 +72,7 @@ export const RAW_ITINERARY: Omit<ItineraryItem, "isEvening">[] = [
   { day: "יום ד", date: "29/04/2026", time: "14:15", activity: "צהריים — Shuk (בשרי)", location: "Ermou 117", description: "5 דקות הליכה מהמוזיאון", notes: "", accessible: "כן", price: "~20-25€/אדם" },
   { day: "יום ד", date: "29/04/2026", time: "15:30-16:30", activity: "הגן הלאומי", location: "National Garden", description: "פארק ירוק ענק ליד סינטגמה. שבילים, בריכות, צל, שקט.", notes: "הליכה קצרה מהמלון", accessible: "כן — שטוח", price: "חינם" },
   { day: "יום ד", date: "29/04/2026", time: "16:30", activity: "חזרה למלון — איסוף מזוודות", location: "Athens Cypria Hotel", description: "", notes: "מזוודות בקבלה מאז 12:00", accessible: "כן", price: "" },
-  { day: "יום ד", date: "29/04/2026", time: "17:00", activity: "נסיעה לשדה התעופה", location: "Athens International Airport", description: "", notes: "מיניבוס (יאנה) או מטרו (10 euro/person). לא לאחר!", accessible: "כן — מיניבוס", price: "~10€/אדם" },
+  { day: "יום ד", date: "29/04/2026", time: "17:00", activity: "נסיעה לשדה התעופה", location: "Athens International Airport", description: "", notes: "מיניבוס (יאנה) — 150€ לכיוון. לא לאחר!", accessible: "כן — מיניבוס", price: "150€ לכיוון" },
   { day: "יום ד", date: "29/04/2026", time: "18:00", activity: "להיות בשדה התעופה!", location: "Athens International Airport", description: "", notes: "לא לאחר!", accessible: "כן", price: "" },
   { day: "יום ד", date: "29/04/2026", time: "20:30", activity: "טיסה לישראל", location: "Athens - Israel", description: "", notes: "", accessible: "כן", price: "" },
 ];
@@ -98,7 +98,6 @@ export const TASKS: Task[] = [
   { task: "הזמנת סיור Ezraider (26/4 14:45)", done: false, contact: "https://wa.me/message/NLNHNSS46SLHE1", notes: "70 euro מבוגר / 35 euro ילד. לאשר יציאה ב-14:45 + נגישות לסבתא" },
   { task: "הזמנת Who Killed Callimachos (26/4 18:00)", done: false, contact: "https://athenslivingmuseum.com/who-killed-callimachos/", notes: "22 euro מבוגר / 15 euro ילד. הנחה ל-10+ אנשים!" },
   { task: "הזמנת כרטיסי הופ-און הופ-אוף אונליין", done: false, contact: "https://www.bigbustours.com/en/athens/athens-bus-tours", notes: "כרטיס 48 שעות" },
-  { task: "אישור עם המלון — מעלית + נגישות לחדר", done: false, contact: "Athens Cypria Hotel - Diomeias 5", notes: "" },
 ];
 
 // ─── עלויות ────────────────────────────────────────────────────────────────
@@ -115,7 +114,7 @@ export const COSTS: CostItem[] = [
   // מלון
   { section: "hotel", item: "מלון — 4 חדרים 3 לילות (Agoda)", adultEur: 172.04, childEur: 172.04, adultIls: 616, childIls: 616, adults: 8, children: 4, totalEur: 2064.44, notes: "תשלום אוטומטי 19 אפריל!" },
   // פעילויות
-  { section: "activities", item: "הסעה שדה + מלון (x2)", adultEur: "~12", childEur: "~12", adultIls: "~43", childIls: "~43", adults: 8, children: 4, totalEur: "~288", notes: "מיניבוס פרטי — יאנה" },
+  { section: "activities", item: "הסעה שדה + מלון (x2)", adultEur: "~23", childEur: "~23", adultIls: "~83", childIls: "~83", adults: 8, children: 4, totalEur: 300, notes: "מיניבוס פרטי — יאנה · 150€ לכיוון" },
   { section: "activities", item: "הופ-און הופ-אוף", adultEur: "~28", childEur: "~14", adultIls: "~100", childIls: "~50", adults: 8, children: 4, totalEur: "~280", notes: "כרטיס 48 שעות" },
   { section: "activities", item: "סיור Ezraider", adultEur: 70, childEur: 35, adultIls: 251, childIls: 125, adults: 8, children: 4, totalEur: "~700", notes: "מחיר קבוע לאדם" },
   { section: "activities", item: "Who Killed Callimachos", adultEur: 22, childEur: 15, adultIls: 79, childIls: 54, adults: 8, children: 4, totalEur: "~236", notes: "הנחה קבוצתית ל-10+" },
@@ -126,10 +125,10 @@ export const COSTS: CostItem[] = [
   { section: "activities", item: "ארוחות צהריים x4", adultEur: "~22", childEur: "~15", adultIls: "~79", childIls: "~54", adults: 8, children: 4, totalEur: "~816", notes: "ממוצע" },
   { section: "activities", item: "קניות / קפה / שונות", adultEur: "~30", childEur: "~30", adultIls: "~107", childIls: "~107", adults: 12, children: "", totalEur: "~360", notes: "לפי שיקול דעת אישי" },
   // סיכומים
-  { section: "totals", item: 'סה"כ פעילויות+אוכל — מבוגר', adultEur: "~270-320", childEur: "", adultIls: "~967-1146", childIls: "", adults: "", children: "", totalEur: "", notes: "לא כולל קניות אישיות" },
-  { section: "totals", item: 'סה"כ פעילויות+אוכל — ילד/נוער', adultEur: "~193-233", childEur: "", adultIls: "~691-834", childIls: "", adults: "", children: "", totalEur: "", notes: "הנחות כניסה / פחות אוכל" },
-  { section: "totals", item: 'סה"כ כולל הכל — מבוגר (בסיס)', adultEur: "~599", childEur: "", adultIls: "~2,144", childIls: "", adults: "", children: "", totalEur: "", notes: "שער 3.58 ILS/euro (15/4/2026)" },
-  { section: "totals", item: 'סה"כ כולל הכל — ילד/נוער', adultEur: "~517", childEur: "", adultIls: "~1,851", childIls: "", adults: "", children: "", totalEur: "", notes: "שער 3.58 ILS/euro (15/4/2026)" },
+  { section: "totals", item: 'סה"כ פעילויות+אוכל — מבוגר', adultEur: "~281-331", childEur: "", adultIls: "~1,006-1,185", childIls: "", adults: "", children: "", totalEur: "", notes: "לא כולל קניות אישיות" },
+  { section: "totals", item: 'סה"כ פעילויות+אוכל — ילד/נוער', adultEur: "~204-244", childEur: "", adultIls: "~730-874", childIls: "", adults: "", children: "", totalEur: "", notes: "הנחות כניסה / פחות אוכל" },
+  { section: "totals", item: 'סה"כ כולל הכל — מבוגר (בסיס)', adultEur: "~610", childEur: "", adultIls: "~2,184", childIls: "", adults: "", children: "", totalEur: "", notes: "שער 3.58 ILS/euro (15/4/2026)" },
+  { section: "totals", item: 'סה"כ כולל הכל — ילד/נוער', adultEur: "~528", childEur: "", adultIls: "~1,891", childIls: "", adults: "", children: "", totalEur: "", notes: "שער 3.58 ILS/euro (15/4/2026)" },
 ];
 
 // ─── נוסעים ────────────────────────────────────────────────────────────────

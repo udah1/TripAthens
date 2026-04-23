@@ -10,6 +10,8 @@ import {
   type DayKey,
   type ItineraryItem,
 } from "@/lib/data";
+import type { TripWeatherDay, TripWeatherResult } from "@/lib/weather";
+import { ScheduleDayWeatherBadge } from "@/components/ScheduleDayWeatherBadge";
 
 const dayKeys: DayKey[] = ["יום א", "יום ב", "יום ג", "יום ד"];
 
@@ -59,7 +61,38 @@ export default function SchedulePage() {
   const [currentIdx, setCurrentIdx] = useState<number>(-1);
   const [tripActive, setTripActive] = useState<boolean>(false);
   const [tripOver, setTripOver] = useState<boolean>(false);
+  const [weatherByDay, setWeatherByDay] = useState<Record<DayKey, TripWeatherDay | undefined>>({
+    "יום א": undefined,
+    "יום ב": undefined,
+    "יום ג": undefined,
+    "יום ד": undefined,
+  });
   const itemRefs = useRef<(HTMLDivElement | null)[]>([]);
+
+  useEffect(() => {
+    let cancelled = false;
+    (async () => {
+      try {
+        const res = await fetch("/api/weather/trip", { cache: "no-store" });
+        if (!res.ok) return;
+        const data = (await res.json()) as TripWeatherResult;
+        if (cancelled || !data?.ok) return;
+        const map: Record<DayKey, TripWeatherDay | undefined> = {
+          "יום א": undefined,
+          "יום ב": undefined,
+          "יום ג": undefined,
+          "יום ד": undefined,
+        };
+        for (const d of data.days) map[d.dayKey] = d;
+        setWeatherByDay(map);
+      } catch {
+        // מתעלם — פשוט לא נציג מזג אוויר
+      }
+    })();
+    return () => {
+      cancelled = true;
+    };
+  }, []);
 
   useEffect(() => {
     const update = () => {
@@ -163,6 +196,8 @@ export default function SchedulePage() {
               style={{ background: DAY_COLORS[day] }}
             >
               {DAY_LABELS[day]} · {items[0]?.date}
+              {weatherByDay[day] && <span className="inline-block w-4" />}
+              <ScheduleDayWeatherBadge w={weatherByDay[day]} />
             </div>
             <div className="bg-white rounded-b-2xl border border-slate-200 overflow-hidden">
               {items.map((it, idx) => {

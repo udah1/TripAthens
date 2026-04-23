@@ -1,6 +1,8 @@
 import Link from "next/link";
 import { TRIP_META, PASSENGERS, ITINERARY, DAY_LABELS, DAY_COLORS, type DayKey } from "@/lib/data";
+import { fetchTripWeather } from "@/lib/weather";
 import DaySummaryCard from "@/components/DaySummaryCard";
+import TripWeatherHome from "@/components/TripWeatherHome";
 
 const dayKeys: DayKey[] = ["יום א", "יום ב", "יום ג", "יום ד"];
 
@@ -17,11 +19,20 @@ const NAV_CARDS = [
   { href: "/chat", emoji: "💬", title: "סוכן AI", desc: "שאל שאלות על הטיול" },
 ];
 
-export default function HomePage() {
+// דדליין להסתרת "לפני הטיסה": 26/04/2026 06:30 שעון ישראל (UTC+3 באפריל, DST)
+// הטיסה ממריאה ב־06:30 — אחרי זה אין טעם בכרטיס.
+const BEFORE_FLIGHT_HIDE_AFTER_MS = Date.UTC(2026, 3, 26, 3, 30); // 06:30 IDT = 03:30 UTC
+
+export const revalidate = 60;
+
+export default async function HomePage() {
+  const weather = await fetchTripWeather();
+  const showBeforeFlight = Date.now() < BEFORE_FLIGHT_HIDE_AFTER_MS;
+
   return (
     <div>
       {/* Hero */}
-      <section className="card mb-8 bg-gradient-to-bl from-day1 via-white to-day2">
+      <section className="card mb-4 bg-gradient-to-bl from-day1 via-white to-day2">
         <div className="flex items-center gap-3 mb-3">
           <span className="text-4xl">🇬🇷</span>
           <h1 className="text-3xl md:text-5xl font-extrabold text-brand">{TRIP_META.title}</h1>
@@ -46,37 +57,41 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* לפני הטיסה — כרטיס בולט */}
-      <section className="mb-8">
-        <Link
-          href="/before-flight"
-          className="card block bg-gradient-to-l from-emerald-50 via-white to-emerald-50 border-2 border-emerald-300 hover:border-emerald-500 hover:shadow-lg transition group"
-        >
-          <div className="flex items-center gap-3 md:gap-4">
-            <div className="text-3xl md:text-4xl shrink-0">✈️</div>
-            <div className="flex-1 min-w-0">
-              <div className="flex flex-wrap items-center gap-x-2 gap-y-1 mb-1">
-                <h2 className="text-lg md:text-xl font-extrabold text-brand">
-                  לפני הטיסה — מה חשוב להכין?
-                </h2>
-                <span className="chip bg-emerald-600 text-white text-[11px] md:text-xs font-bold whitespace-nowrap">
-                  🛡️ ביטוח חינם!
-                </span>
+      {/* לפני הטיסה — כרטיס בולט (מוסתר אוטומטית אחרי ההמראה 26/4 06:30) */}
+      {showBeforeFlight && (
+        <section className="mb-4">
+          <Link
+            href="/before-flight"
+            className="card block bg-gradient-to-l from-emerald-50 via-white to-emerald-50 border-2 border-emerald-300 hover:border-emerald-500 hover:shadow-lg transition group"
+          >
+            <div className="flex items-center gap-3 md:gap-4">
+              <div className="text-3xl md:text-4xl shrink-0">✈️</div>
+              <div className="flex-1 min-w-0">
+                <div className="flex flex-wrap items-center gap-x-2 gap-y-1 mb-1">
+                  <h2 className="text-lg md:text-xl font-extrabold text-brand">
+                    לפני הטיסה — מה חשוב להכין?
+                  </h2>
+                  <span className="chip bg-emerald-600 text-white text-[11px] md:text-xs font-bold whitespace-nowrap">
+                    🛡️ ביטוח חינם!
+                  </span>
+                </div>
+                <p className="text-sm text-slate-600">
+                  ביטוח נסיעות (חינם ללקוחות ישרכארט), eSIM, מפות offline,
+                  רשימת אריזה וטיפים להכנה.
+                </p>
               </div>
-              <p className="text-sm text-slate-600">
-                ביטוח נסיעות (חינם ללקוחות ישרכארט), eSIM, מפות offline,
-                רשימת אריזה וטיפים להכנה.
-              </p>
+              <div className="text-brand-accent text-2xl shrink-0 group-hover:translate-x-[-4px] transition">
+                ←
+              </div>
             </div>
-            <div className="text-brand-accent text-2xl shrink-0 group-hover:translate-x-[-4px] transition">
-              ←
-            </div>
-          </div>
-        </Link>
-      </section>
+          </Link>
+        </section>
+      )}
+
+      <TripWeatherHome data={weather} />
 
       {/* עץ משפחתי */}
-      <section className="mb-8">
+      <section className="mb-4">
         <h2 className="section-title">👨‍👩‍👧‍👦 המשפחה</h2>
         <div className="card bg-gradient-to-b from-sky-50/60 to-white">
           <FamilyTree />
@@ -84,22 +99,22 @@ export default function HomePage() {
       </section>
 
       {/* תקציר ימים */}
-      <section className="mb-8">
+      <section className="mb-4">
         <h2 className="section-title">📅 סקירה מהירה</h2>
         <div className="grid md:grid-cols-2 gap-3">
           {dayKeys.map((day) => {
             const items = ITINERARY.filter((i) => i.day === day);
-            return <DaySummaryCard key={day} day={day} items={items} />;
+            const w = weather.ok ? weather.days.find((d) => d.dayKey === day) : undefined;
+            return <DaySummaryCard key={day} day={day} items={items} weather={w} />;
           })}
         </div>
       </section>
 
       {/* הערות חשובות */}
-      <section className="mb-8">
+      <section className="mb-4">
         <h2 className="section-title">⚠️ הערות חשובות</h2>
         <div className="card bg-amber-50 border-amber-300">
           <ul className="space-y-2 text-sm leading-relaxed">
-            <li>⚠️ <strong>תשלום מלון אוטומטי ב-19 אפריל</strong> — ודאו שהכרטיס תקין!</li>
             <li>⚠️ <strong>צ'ק-אין מ-15:00</strong> — הטיסה נוחתת ב-08:45. להפקיד מזוודות בקבלה.</li>
             <li>⚠️ <strong>צ'ק-אאוט עד 12:00</strong> — לתאם אחסון מזוודות עד הטיסה (20:30).</li>
             <li>⚠️ <strong>בשדה התעופה לא יאוחר מ-18:00 ביום 29/4</strong></li>
@@ -110,7 +125,7 @@ export default function HomePage() {
       </section>
 
       {/* ניווט */}
-      <section className="mb-8">
+      <section className="mb-4">
         <h2 className="section-title">🧭 ניווט מהיר</h2>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
           {NAV_CARDS.map((c) => (
@@ -124,7 +139,7 @@ export default function HomePage() {
       </section>
 
       {/* הורדות */}
-      <section className="mb-8">
+      <section className="mb-4">
         <h2 className="section-title">📥 הורדות</h2>
         <div className="grid md:grid-cols-2 gap-3">
           <a
@@ -158,7 +173,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="mb-8">
+      <section className="mb-4">
         <h2 className="section-title">💰 תקציב משוער לאדם</h2>
         <div className="grid md:grid-cols-2 gap-3">
           <div className="card bg-gradient-to-br from-emerald-50 to-white">
@@ -265,7 +280,7 @@ function Person({
 
 function FamilyTree() {
   return (
-    <div className="flex flex-col items-center gap-4">
+    <div className="flex flex-col items-center gap-2">
       {/* דור 1: הסבתא */}
       <Person name="חנה" age={75} gender="f" emphasis />
 
@@ -277,10 +292,16 @@ function FamilyTree() {
 
       {/* דור 2: ילדי חנה ומשפחותיהם */}
       <div className="flex flex-wrap items-start justify-center gap-6 md:gap-10 relative">
+        
         {/* אחים לא נשואים: נאוה + יהודה באותה שורה */}
-        <div className="flex items-start gap-2">
-          <Person name="נאוה" age={51} gender="f" />
-          <Person name="יהודה" age={42} gender="m" />
+        <div className="flex flex-col items-center gap-2">
+          <div className="text-xs font-semibold invisible hidden md:block lg:hidden" aria-hidden>
+            &nbsp;
+          </div>
+          <div className="flex items-start gap-2">
+            <Person name="נאוה" age={51} gender="f" />
+            <Person name="יהודה" age={42} gender="m" />
+          </div>
         </div>
         
         {/* משפחה: אדיר + הילה + 4 ילדים */}
@@ -291,13 +312,27 @@ function FamilyTree() {
             <span className="text-rose-400 text-xl">♥</span>
             <Person name="הילה" age={44} gender="f" />
           </div>
+          {/* קו אנכי מההורים */}
           <div className="w-0.5 h-3 bg-slate-300"></div>
-          <div className="text-[11px] text-slate-500 font-semibold">הילדים שלהם</div>
-          <div className="flex flex-wrap justify-center gap-2">
-            <Person name="עדי" age={18} gender="f" />
-            <Person name="נועם" age={16} gender="m" />
-            <Person name="שירה" age={15} gender="f" />
-            <Person name="כפיר" age={11} gender="m" />
+          {/* ילדים — ענף אופקי בחלק העליון + ענפים אנכיים לכל ילד */}
+          <div className="flex justify-center gap-2 relative pt-3">
+            {/* ענף אופקי לא מגיע עד הקצוות (נעצר במרכז הראשון והאחרון) */}
+            <div
+              className="absolute top-0 h-0.5 bg-slate-300 pointer-events-none"
+              style={{ left: "calc(50% / 4)", right: "calc(50% / 4)" }}
+              aria-hidden
+            ></div>
+            {[
+              { name: "עדי", age: 18, gender: "f" as const },
+              { name: "נועם", age: 16, gender: "m" as const },
+              { name: "שירה", age: 15, gender: "f" as const },
+              { name: "כפיר", age: 11, gender: "m" as const },
+            ].map((c) => (
+              <div key={c.name} className="flex flex-col items-center">
+                <div className="w-0.5 h-3 -mt-3 bg-slate-300"></div>
+                <Person name={c.name} age={c.age} gender={c.gender} />
+              </div>
+            ))}
           </div>
         </div>
       </div>

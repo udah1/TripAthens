@@ -1,0 +1,8 @@
+Add Open-Meteo weather widget + UX tweaks + updated downloads
+
+- Home page: 4-day Athens weather widget (single row on mobile, smaller cards)
+- Schedule page: inline weather badge next to each day's title
+- Family tree: classic tree-style connector lines to the 4 children (removed "הילדים שלהם" label)
+- Home page spacing: tighter section margins (mb-4) and compact section titles
+- Transfers cost updated: 150€ per direction (~23€/person), updated totals
+- Refresh athens_full_plan.pdf and athens_trip_full.xlsx

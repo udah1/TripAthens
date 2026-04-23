@@ -30,7 +30,9 @@ html, body {
     @apply text-slate-600 mb-6 md:mb-8;
   }
   .section-title {
-    @apply text-xl md:text-2xl font-bold text-brand mb-4 mt-6;
+    @apply text-xl md:text-2xl font-bold text-brand;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
   }
   .chip {
     @apply inline-block px-2.5 py-1 rounded-full text-xs font-semibold;
