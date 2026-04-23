@@ -143,6 +143,63 @@ export default function SimPage() {
         </div>
       </section>
 
+      {/* הוראות הפעלת נדידה */}
+      <section className="card mb-6 border-r-4 border-amber-500">
+        <div className="flex items-center gap-2 mb-3">
+          <span className="chip bg-amber-100 text-amber-800 text-xs font-bold">
+            🌐 נדידה
+          </span>
+          <h2 className="text-xl font-bold text-brand">
+            איך להפעיל נדידה (Roaming) במכשיר
+          </h2>
+        </div>
+        <p className="text-sm text-slate-700 mb-4">
+          אחרי שיש לכם eSIM או חבילת נדידה — חשוב לוודא שהמכשיר מוגדר להשתמש
+          ברשת ביעד. ההוראות למטה הן כלליות, התפריט עשוי להשתנות בין גרסאות.
+        </p>
+
+        <div className="bg-slate-50 rounded-xl p-4">
+          <div className="font-bold text-brand mb-2">🤖 אנדרואיד</div>
+          <ol className="list-decimal list-inside text-sm text-slate-700 space-y-1">
+            <li>הגדרות → חיבורים / רשתות ניידות</li>
+            <li>בחרו <b>כרטיסי SIM</b> ולחצו על ה-eSIM / הסים הישראלי</li>
+            <li>הפעילו <b>&quot;נתונים בנדידה&quot;</b> (Data roaming)</li>
+            <li>
+              קבעו את ה-SIM של יוון כ<b>ברירת מחדל לנתונים</b>{" "}
+              (מי שיש לו eSIM של Firsty למשל)
+            </li>
+            <li>
+              בדקו שהרשת במצב אוטומטי (4G/5G) — אחרת ייתכן שלא יתחבר
+              לרשת זרה
+            </li>
+            <li>
+              אם רוצים להישאר זמינים לשיחות מישראל — השאירו את הקו
+              הישראלי פעיל (רק לשיחות/SMS, לא לנתונים)
+            </li>
+          </ol>
+        </div>
+
+        <div className="bg-rose-50 border border-rose-200 rounded-xl p-3 text-sm mt-4">
+          <div className="font-bold text-rose-900 mb-1">
+            ⚠️ חשוב! כדי לא לחטוף חשבון
+          </div>
+          <ul className="text-rose-900 list-disc list-inside space-y-1">
+            <li>
+              אם אתם משתמשים ב-eSIM של Firsty/חו&quot;ל — <b>כבו נתונים</b>{" "}
+              על הקו הישראלי.
+            </li>
+            <li>
+              אחרת הטלפון עלול לגלוש דרך הקו הישראלי בנדידה = חיוב יקר
+              מאוד מחברת הסלולר הישראלית.
+            </li>
+            <li>
+              שיחות ו-SMS לישראל עדיין יעבדו על הקו הישראלי (גם בלי
+              נתונים).
+            </li>
+          </ul>
+        </div>
+      </section>
+
       {/* טיפים */}
       <section className="card">
         <h2 className="text-lg font-bold text-brand mb-3">💡 טיפים</h2>
