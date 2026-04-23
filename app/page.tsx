@@ -35,9 +35,9 @@ export default async function HomePage() {
       <section className="card mb-4 bg-gradient-to-bl from-day1 via-white to-day2">
         <div className="flex items-center gap-3 mb-3">
           <span className="text-4xl">🇬🇷</span>
-          <h1 className="text-3xl md:text-5xl font-extrabold text-brand">{TRIP_META.title}</h1>
+          <h1 className="text-2xl md:text-5xl font-extrabold text-brand">{TRIP_META.title}</h1>
         </div>
-        <p className="text-lg md:text-xl text-slate-700 font-semibold">
+        <p className="text-md md:text-xl text-slate-700 font-semibold">
           {TRIP_META.groupSize} משתתפים · כשרים · {TRIP_META.hotel}
         </p>
         <div className="grid md:grid-cols-3 gap-3 mt-5 text-sm">
