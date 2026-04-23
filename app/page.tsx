@@ -10,7 +10,7 @@ const NAV_CARDS = [
   { href: "/packing", emoji: "🧳", title: "מה לקחת", desc: "רשימת אריזה לחו\"ל" },
   { href: "/costs", emoji: "💰", title: "עלויות", desc: "פירוט טיסה, מלון, פעילויות" },
   { href: "/expenses", emoji: "💳", title: "מעקב תשלומים", desc: "מי שילם על מה בטיול (משותף)" },
-  { href: "/passengers", emoji: "👥", title: "נוסעים", desc: "12 משתתפים ופירוט אישי" },
+  { href: "/passengers", emoji: "👥", title: "נוסעים", desc: "13 משתתפים ופירוט אישי" },
   { href: "/restaurants", emoji: "🍽️", title: "מסעדות כשרות", desc: "בשרי + חלבי באתונה" },
   { href: "/attractions", emoji: "🗺️", title: "אטרקציות", desc: "מה לראות ולעשות" },
   { href: "/sim", emoji: "📱", title: "סים / eSIM", desc: "חיבור לאינטרנט ביוון" },
@@ -149,7 +149,7 @@ export default function HomePage() {
             <div className="text-4xl">📊</div>
             <div className="flex-1">
               <div className="font-bold text-brand">לוז ועלויות (Excel)</div>
-              <div className="text-xs text-slate-500">לעריכה אישית · 20KB</div>
+              <div className="text-xs text-slate-500">לעריכה אישית · 23KB</div>
             </div>
             <div className="chip bg-emerald-100 text-emerald-800 text-xs font-bold">
               הורד ↓
@@ -314,12 +314,13 @@ function FamilyTree() {
           <Person name="אור" age={21} gender="f" />
           <Person name="אגם" age={20} gender="f" />
           <Person name="יובל" age={19} gender="f" />
+          <Person name="ירין" age={16} gender="f" />
         </div>
       </div>
 
       {/* סיכום */}
       <div className="text-xs text-slate-500 pt-2 border-t border-slate-200 w-full text-center">
-        סה"כ <span className="font-bold text-brand">12 נפשות</span> · 8 נשים ו-4 גברים · 8 מבוגרים ו-4 ילדים
+        סה"כ <span className="font-bold text-brand">13 נפשות</span> · 9 נשים ו-4 גברים · 8 מבוגרים ו-5 ילדים
       </div>
     </div>
   );
