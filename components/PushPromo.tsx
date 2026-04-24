@@ -61,17 +61,6 @@ export default function PushPromo() {
         className="fixed z-[70] bottom-6 left-1/2 -translate-x-1/2 w-[min(92vw,420px)] bg-white rounded-2xl shadow-2xl p-5 text-right"
         dir="rtl"
       >
-        {/* כפתור סגירה */}
-        <button
-          onClick={dismiss}
-          aria-label="סגור"
-          className="absolute top-3 left-3 text-slate-400 hover:text-slate-600 p-1 rounded-full hover:bg-slate-100 transition"
-        >
-          <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-            <path d="M6 6l12 12M18 6L6 18" strokeLinecap="round" />
-          </svg>
-        </button>
-
         <div className="text-3xl mb-2">🔔</div>
         <h2 className="text-lg font-bold text-brand mb-1">רוצה לקבל תזכורות לטיול?</h2>
         <p className="text-sm text-slate-600 mb-4">נשלח לך אוטומטית:</p>
