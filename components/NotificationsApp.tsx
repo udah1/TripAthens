@@ -228,7 +228,7 @@ export default function NotificationsApp() {
       if (!res.ok) throw new Error(j?.message || j?.error || "failed");
       setMessage("נשלחה התראת בדיקה — תוך שנייה-שתיים תראו אותה!");
     } catch (err) {
-      setError(String(err));
+      setError(`${String(err)} · נסו שוב, או בטלו וחזרו להפעיל מחדש את ההתראות.`);
     } finally {
       setTesting(false);
     }
