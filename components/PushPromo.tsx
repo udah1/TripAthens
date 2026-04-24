@@ -5,18 +5,28 @@ import { useRouter } from "next/navigation";
 
 const LS_KEY = "athens-push-prompted";
 
+function isPwa(): boolean {
+  return (
+    window.matchMedia("(display-mode: standalone)").matches ||
+    // iOS Safari
+    ("standalone" in window.navigator && (window.navigator as Navigator & { standalone?: boolean }).standalone === true)
+  );
+}
+
 export default function PushPromo() {
   const [show, setShow] = useState(false);
+  const [isPwaMode, setIsPwaMode] = useState(false);
   const router = useRouter();
 
   useEffect(() => {
-    // אל נציג אם כבר הוצג, אם Web Push לא נתמך, או אם כבר registered
     if (typeof window === "undefined") return;
     if (localStorage.getItem(LS_KEY)) return;
     if (!("serviceWorker" in navigator) || !("PushManager" in window)) return;
 
+    const pwa = isPwa();
+    setIsPwaMode(pwa);
+
     (async () => {
-      // אם כבר יש subscription — לא מציגים
       try {
         const reg = await navigator.serviceWorker.getRegistration("/sw.js");
         if (reg) {
@@ -24,17 +34,11 @@ export default function PushPromo() {
           if (sub) return;
         }
       } catch {
-        // ignore — נציג בכל מקרה
+        // ignore
       }
-      // קצת השהיה כדי שהדף ייטען קודם
       setTimeout(() => setShow(true), 1500);
     })();
   }, []);
-
-  function dismiss() {
-    localStorage.setItem(LS_KEY, "1");
-    setShow(false);
-  }
 
   function approve() {
     localStorage.setItem(LS_KEY, "1");
@@ -47,11 +51,7 @@ export default function PushPromo() {
   return (
     <>
       {/* Backdrop */}
-      <div
-        className="fixed inset-0 z-[60] bg-black/50"
-        onClick={dismiss}
-        aria-hidden="true"
-      />
+      <div className="fixed inset-0 z-[60] bg-black/50" aria-hidden="true" />
 
       {/* Modal */}
       <div
@@ -69,6 +69,12 @@ export default function PushPromo() {
           <li>🌞 בוקר טוב + סיכום יומי ב-07:30</li>
           <li>🚨 תזכורות קריטיות לטיסות וצ׳ק-אאוט</li>
         </ul>
+
+        {!isPwaMode && (
+          <p className="text-xs text-slate-500 bg-slate-50 rounded-lg p-2 mb-4">
+            💡 באנדרואיד: הוסיפו למסך הבית (3 נקודות ← &quot;הוסף למסך הבית&quot;) לאמינות מרבית.
+          </p>
+        )}
 
         <button
           onClick={approve}
