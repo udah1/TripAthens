@@ -174,7 +174,7 @@ function buildCriticalNotifs(): ScheduledNotif[] {
   return out;
 }
 
-// ─── תזכורות יומיות בבוקר 07:30 ────────────────────────────────────────
+// ─── תזכורות בוקר — שעה לפני הפעילות הראשונה של היום ──────────────────
 function buildMorningNotifs(): ScheduledNotif[] {
   const days: { key: DayKey; date: string }[] = [
     { key: "יום א", date: "26/04/2026" },
@@ -184,21 +184,30 @@ function buildMorningNotifs(): ScheduledNotif[] {
   ];
   const out: ScheduledNotif[] = [];
   for (const { key, date } of days) {
-    const sendAt = idtToMs(date, "07:30");
-    if (sendAt == null) continue;
-    // סיכום: 3-4 פעילויות מרכזיות של היום
+    // מוצאים את הפעילות הראשונה של היום (לא ערב, לא skip)
     const dayItems = ITINERARY.filter((it) => it.day === key && !it.isEvening);
+    const firstActivity = dayItems.find((it) => !shouldSkipActivity(it));
+    if (!firstActivity) continue;
+
+    const firstMs = idtToMs(firstActivity.date, firstActivity.time);
+    if (firstMs == null) continue;
+
+    // שעה לפני הפעילות הראשונה
+    const sendAt = firstMs - 60 * 60 * 1000;
+
+    // סיכום 3-4 פעילויות מרכזיות
     const highlights = dayItems
       .filter((it) => !shouldSkipActivity(it))
       .slice(0, 4)
       .map((it) => `${it.time.split("-")[0]} ${it.activity}`)
       .join(" · ");
+
     out.push({
       id: `morn_${date.replace(/\//g, "")}`,
       category: "morning",
       sendAt,
       title: `🌞 בוקר טוב! ${DAY_LABELS[key].split("|")[0].trim()}`,
-      body: highlights || "יום חופשי · בדקו את הלוז באתר.",
+      body: highlights || "בדקו את הלוז באתר.",
       url: "/schedule",
     });
   }
