@@ -270,6 +270,19 @@ function buildSpecialNotifs(): ScheduledNotif[] {
     });
   }
 
+  // ריגוש לפני הטיול — 24/4 12:38
+  const excitement = idtToMs("24/04/2026", "12:38");
+  if (excitement != null) {
+    out.push({
+      id: "spec_excitement",
+      category: "special",
+      sendAt: excitement,
+      title: "🇬🇷✈️ מתרגשים?!?",
+      body: "הטיסה מעבר לפינה!!! 🎉🎊 אתונה מחכה לכם!",
+      url: "/",
+    });
+  }
+
   // בוקר יום הטיול הראשון — eSIM + ביטוח
   const day0 = idtToMs("26/04/2026", "05:30");
   if (day0 != null) {
