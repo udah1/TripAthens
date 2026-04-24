@@ -14,7 +14,7 @@ const NAV = [
   { href: "/expenses", label: "💳 תשלומים" },
   { href: "/currency", label: "💱 מט\"ח" },
   { href: "/passengers", label: "👥 נוסעים" },
-  { href: "/restaurants", label: "🍽️ מסעדות" },
+  { href: "/restaurants", label: "🍽️ אוכל וכשרות" },
   { href: "/attractions", label: "🗺️ אטרקציות" },
   { href: "/sim", label: "📱 סים" },
   { href: "/chat", label: "💬 סוכן" },

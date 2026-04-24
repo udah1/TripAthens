@@ -1,6 +1,6 @@
 import { RESTAURANTS } from "@/lib/data";
 
-export const metadata = { title: "מסעדות כשרות — אתונה 2026" };
+export const metadata = { title: "אוכל וכשרות — אתונה 2026" };
 
 export default function RestaurantsPage() {
   const meat = RESTAURANTS.filter((r) => r.type === "בשרי");
@@ -8,16 +8,95 @@ export default function RestaurantsPage() {
 
   return (
     <div>
-      <h1 className="page-title">🍽️ מסעדות כשרות</h1>
-      <p className="page-sub">מסעדות בשריות וחלביות באתונה · כולן ליד המלון</p>
+      <h1 className="page-title">🍽️ אוכל וכשרות</h1>
+      <p className="page-sub">מסעדות, קניות ואפליקציות כשרות באתונה</p>
 
-      <div className="flex gap-3 mb-6">
-        <span className="chip bg-meat text-white">🥩 בשרי</span>
-        <span className="chip bg-dairy text-brand">🥛 חלבי</span>
-      </div>
-
+      {/* קניות וכשרות */}
       <section className="mb-8">
-        <h2 className="section-title">🥩 בשרי</h2>
+        <h2 className="section-title">🛒 קניות וכשרות</h2>
+
+        {/* PDF מוצרים */}
+        <div className="card mb-4 border-r-4 border-emerald-400">
+          <div className="flex items-start gap-3">
+            <span className="text-3xl">📄</span>
+            <div>
+              <div className="font-bold text-brand mb-1">רשימת מוצרים מאושרים — בית חב&quot;ד אתונה</div>
+              <p className="text-sm text-slate-600 mb-3">
+                ביצים, חלב, שמן, לחם, גבינות ועוד מוצרי בסיס שניתן לקנות בכל סופרמרקט ביוון.
+                אושרה על ידי בית חב&quot;ד אתונה.
+              </p>
+              <a
+                href="https://www.chabad.gr/media/pdf/1288/bEWd12889323.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="chip bg-emerald-100 hover:bg-emerald-200 text-emerald-800 font-semibold text-sm transition"
+              >
+                📥 פתיחת רשימת המוצרים (PDF)
+              </a>
+            </div>
+          </div>
+        </div>
+
+        {/* מכולת חב"ד */}
+        <div className="card mb-4 border-r-4 border-sky-400">
+          <div className="flex items-start gap-3">
+            <span className="text-3xl">🏪</span>
+            <div>
+              <div className="font-bold text-brand mb-1">מכולת כשרה — Gostijo / חב&quot;ד</div>
+              <p className="text-sm text-slate-600 mb-1">
+                בתוך מסעדת Gostijo (Esopou 10) יש מכולת כשרה קטנה — מוצרי בסיס, שימורים ועוד.
+              </p>
+              <a
+                href="https://www.google.com/maps/search/?api=1&query=Esopou+10+Athens"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="chip bg-sky-100 hover:bg-sky-200 text-sky-800 text-xs font-semibold transition"
+              >
+                🗺️ Google Maps
+              </a>
+            </div>
+          </div>
+        </div>
+
+        {/* טיפ */}
+        <div className="card bg-amber-50 border border-amber-200 mb-4">
+          <p className="text-sm text-amber-800 mb-2">
+            💡 <strong>טיפ:</strong> קחו מישראל — שוקולד, ביסקוויטים, ממרחים. הרבה יותר קל מלחפש ביוון.
+          </p>
+          <p className="text-sm text-amber-800">
+            🛒 <strong>סופרמרקטים מומלצים לחיפוש מוצרים כשרים:</strong> AB, Sklavenitis, Bazaar, My Market — לרשתות הגדולות יש יותר מוצרים מיובאים עם הכשר.
+          </p>
+        </div>
+
+        {/* אפליקציות */}
+        <div className="card">
+          <div className="font-bold text-brand mb-3">📱 אפליקציות כשרות מומלצות</div>
+          <div className="flex flex-col gap-3">
+            <AppLink
+              href="https://play.google.com/store/apps/details?id=app.kosherscan.kosher_scan&hl=he"
+              emoji="📷"
+              name="KosherScan"
+              desc="סריקת ברקוד של מוצרים — כשר או לא?"
+            />
+            <AppLink
+              href="https://play.google.com/store/apps/details?id=com.kosherNearMe&hl=he"
+              emoji="📍"
+              name="Kosher Near Me"
+              desc="מסעדות ומקומות כשרים בעולם על מפה"
+            />
+            <AppLink
+              href="https://kosher.global/zekasher/"
+              emoji="🔍"
+              name="ZeKasher"
+              desc="מאגר מוצרים כשרים — כולל קטגוריית יוון"
+            />
+          </div>
+        </div>
+      </section>
+
+      {/* מסעדות */}
+      <section className="mb-4">
+        <h2 className="section-title">🥩 מסעדות בשריות</h2>
         <div className="grid md:grid-cols-2 gap-4">
           {meat.map((r, idx) => (
             <RestaurantCard key={idx} r={r} />
@@ -26,7 +105,7 @@ export default function RestaurantsPage() {
       </section>
 
       <section className="mb-8">
-        <h2 className="section-title">🥛 חלבי</h2>
+        <h2 className="section-title">🥛 מסעדות חלביות</h2>
         <div className="grid md:grid-cols-2 gap-4">
           {dairy.map((r, idx) => (
             <RestaurantCard key={idx} r={r} />
@@ -34,6 +113,24 @@ export default function RestaurantsPage() {
         </div>
       </section>
     </div>
+  );
+}
+
+function AppLink({ href, emoji, name, desc }: { href: string; emoji: string; name: string; desc: string }) {
+  return (
+    <a
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="flex items-center gap-3 p-2 rounded-xl hover:bg-slate-50 transition"
+    >
+      <span className="text-2xl">{emoji}</span>
+      <div className="flex-1 min-w-0">
+        <div className="font-semibold text-brand text-sm">{name}</div>
+        <div className="text-xs text-slate-500">{desc}</div>
+      </div>
+      <span className="text-slate-400 text-xs">←</span>
+    </a>
   );
 }
 

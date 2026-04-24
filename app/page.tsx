@@ -15,7 +15,7 @@ const NAV_CARDS = [
   { href: "/expenses", emoji: "💳", title: "מעקב תשלומים", desc: "מי שילם על מה בטיול (משותף)" },
   { href: "/currency", emoji: "💱", title: "מט\"ח", desc: "המרה יורו ↔ שקל בשער היומי" },
   { href: "/passengers", emoji: "👥", title: "נוסעים", desc: "13 משתתפים ופירוט אישי" },
-  { href: "/restaurants", emoji: "🍽️", title: "מסעדות כשרות", desc: "בשרי + חלבי באתונה" },
+  { href: "/restaurants", emoji: "🍽️", title: "אוכל וכשרות", desc: "מסעדות, קניות ואפליקציות" },
   { href: "/attractions", emoji: "🗺️", title: "אטרקציות", desc: "מה לראות ולעשות" },
   { href: "/sim", emoji: "📱", title: "סים / eSIM", desc: "חיבור לאינטרנט ביוון" },
   { href: "/notifications", emoji: "🔔", title: "התראות", desc: "תזכורות לפני כל פעילות" },
