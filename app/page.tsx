@@ -18,6 +18,7 @@ const NAV_CARDS = [
   { href: "/restaurants", emoji: "🍽️", title: "מסעדות כשרות", desc: "בשרי + חלבי באתונה" },
   { href: "/attractions", emoji: "🗺️", title: "אטרקציות", desc: "מה לראות ולעשות" },
   { href: "/sim", emoji: "📱", title: "סים / eSIM", desc: "חיבור לאינטרנט ביוון" },
+  { href: "/notifications", emoji: "🔔", title: "התראות", desc: "תזכורות לפני כל פעילות" },
   { href: "/chat", emoji: "💬", title: "סוכן AI", desc: "שאל שאלות על הטיול" },
 ];
 

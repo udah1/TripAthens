@@ -18,6 +18,7 @@ export interface ItineraryItem {
   accessible: string;
   price: string;
   isEvening?: boolean;
+  mapQuery?: string; // אופציונלי — מחליף את location בחיפוש Google Maps
 }
 
 export interface Task {

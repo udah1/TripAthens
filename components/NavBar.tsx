@@ -18,6 +18,7 @@ const NAV = [
   { href: "/attractions", label: "🗺️ אטרקציות" },
   { href: "/sim", label: "📱 סים" },
   { href: "/chat", label: "💬 סוכן" },
+  { href: "/notifications", label: "🔔 התראות" },
 ];
 
 export default function NavBar() {

@@ -15,6 +15,17 @@ import { ScheduleDayWeatherBadge } from "@/components/ScheduleDayWeatherBadge";
 
 const dayKeys: DayKey[] = ["יום א", "יום ב", "יום ג", "יום ד"];
 
+// מחיר "אמיתי" — יש מספר / מטבע. מסנן placeholders כמו "—", "לא ידוע", "כניסה חופשית", "חינם" מחיר ריק.
+function hasPrice(p?: string): boolean {
+  if (!p) return false;
+  const trimmed = p.trim();
+  if (!trimmed) return false;
+  const placeholders = ["—", "-", "לא ידוע", "לא ידועה", "?", "TBD"];
+  if (placeholders.includes(trimmed)) return false;
+  // יש מספר או סמל מטבע — זה מחיר אמיתי
+  return /\d|€|₪|\$/.test(trimmed);
+}
+
 // פארסר: "26/04/2026" + "11:00-13:00" / "18:00" / "20:00+" → Date
 function parseItemDate(it: ItineraryItem): Date | null {
   const [dd, mm, yyyy] = it.date.split("/").map(Number);
@@ -229,7 +240,23 @@ export default function SchedulePage() {
                           <EzraiderPairsChip />
                         )}
                       </div>
-                      <div className="text-xs text-slate-500">📍 {it.location}</div>
+                      <div className="text-xs text-slate-500 flex flex-wrap items-center gap-2">
+                        <span>📍 {it.location}</span>
+                        {it.location && it.location.trim() !== "—" && (
+                          <a
+                            href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
+                              it.mapQuery ?? `${it.location}, Athens, Greece`,
+                            )}`}
+                            target="_blank"
+                            rel="noreferrer"
+                            className="chip bg-sky-100 text-sky-800 hover:bg-sky-200 transition"
+                            onClick={(e) => e.stopPropagation()}
+                            title="פתיחה ב-Google Maps"
+                          >
+                            🗺️ Google Maps
+                          </a>
+                        )}
+                      </div>
                       {it.description && <div className="text-sm text-slate-700 mt-1">{it.description}</div>}
                       <div className="flex flex-wrap gap-2 mt-2">
                         {it.notes && (
@@ -240,7 +267,7 @@ export default function SchedulePage() {
                         )}
                       </div>
                     </div>
-                    {it.price && (
+                    {hasPrice(it.price) && (
                       <div className="text-sm font-semibold text-brand whitespace-nowrap">
                         💶 {it.price}
                       </div>
