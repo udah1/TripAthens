@@ -124,7 +124,7 @@ export default function NavBar() {
                 key={item.href}
                 href={item.href}
                 onClick={() => setOpen(false)}
-                className={`px-4 py-3 rounded-xl text-base transition ${
+                className={`px-4 py-2 rounded-xl text-base transition ${
                   active ? "bg-white/20 font-bold" : "hover:bg-white/10"
                 }`}
               >

@@ -3,6 +3,7 @@ import "./globals.css";
 import NavBar from "@/components/NavBar";
 import FloatingAgentButton from "@/components/FloatingAgentButton";
 import PWARegister from "@/components/PWARegister";
+import PushPromo from "@/components/PushPromo";
 
 export const metadata: Metadata = {
   title: "טיול אתונה — אפריל 2026 · משפחת חורי/זויגי",
@@ -53,6 +54,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         </footer>
         <FloatingAgentButton />
         <PWARegister />
+        <PushPromo />
       </body>
     </html>
   );
