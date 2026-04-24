@@ -41,7 +41,7 @@ export const RAW_ITINERARY: Omit<ItineraryItem, "isEvening">[] = [
   { day: "יום א", date: "26/04/2026", time: "10:30", activity: "הגעה למלון וצ'ק-אין", location: "Athens Cypria Hotel - Diomeias 5", description: "", notes: "אם החדרים לא מוכנים — השאירו מזוודות", accessible: "כן", price: "" },
   { day: "יום א", date: "26/04/2026", time: "11:00-13:00", activity: "הופ-און הופ-אוף", location: "מרכז אתונה", description: "אוטובוס תיירותי קומתיים פתוח. קונים כרטיס 48 שעות ועולים/יורדים בכל תחנה. מקבלים אוזניות שם.", notes: "מומלץ ביום ראשון — עייפים!", accessible: "כן — ישיבה", price: "~28€ מבוגר / ~14€ ילד" },
   { day: "יום א", date: "26/04/2026", time: "13:30", activity: "צהריים — Shuk (בשרי)", location: "Ermou 117", description: "", notes: "הזמינו מקום ל-13!", accessible: "כן", price: "~20-25€/אדם" },
-  { day: "יום א", date: "26/04/2026", time: "14:45-17:45", activity: "סיור Ezraider", location: "GoGo Electric · Leof. Andrea Siggrou 22, Athina 117 42", description: "כלי רכב חשמלי ישראלי על 4 גלגלים. מדריך עברית, עוצרים באטרקציות. מפגש: GoGo Electric, Leof. Andrea Siggrou 22.", notes: "לאשר יציאה ב-14:45 + נגישות לסבתא! · https://maps.app.goo.gl/BKpFJE2BcxEJE33b9", accessible: "לאשר", price: "70€ מבוגר / 35€ ילד" },
+  { day: "יום א", date: "26/04/2026", time: "14:45-17:45", activity: "סיור Ezraider", location: "GoGo Electric · Leof. Andrea Siggrou 22, Athina 117 42", description: "כלי רכב חשמלי ישראלי על 4 גלגלים. מדריך עברית, עוצרים באטרקציות. מפגש: GoGo Electric, Leof. Andrea Siggrou 22.", notes: "לאשר יציאה ב-14:45 + נגישות לסבתא! · https://maps.app.goo.gl/BKpFJE2BcxEJE33b9", accessible: "לאשר", price: "70€ נהג / 35€ נוסע · הנחה 15% · 9 כלים · סה״כ ~654.50€" },
   { day: "יום א", date: "26/04/2026", time: "18:00-19:00", activity: "Who Killed Callimachos — מיסתורן", location: "Athens Living Museum", description: "מופע תיאטרון אינטראקטיבי. שחקן מגלם דמויות מאתונה העתיקה, הקהל הם הבלשים.", notes: "הנחה ל-10+ אנשים! הזמינו מראש.", accessible: "כן", price: "22€ מבוגר / 15€ ילד" },
   { day: "יום א", date: "26/04/2026", time: "19:00-20:00", activity: "מנוחה במלון", location: "Athens Cypria Hotel", description: "", notes: "חובה אחרי טיסת שחר", accessible: "כן", price: "" },
   { day: "יום א", date: "26/04/2026", time: "20:00+", activity: "ערב בכיכר סינטגמה", location: "Syntagma Square", description: "כיכר המרכזית של אתונה — מוארת ותוססת. בתי קפה, ברים, אנשים.", notes: "שתייה מבקבוקים סגורים בסדר", accessible: "כן", price: "" },
@@ -95,7 +95,7 @@ export const TASKS: Task[] = [
   { task: "הזמנת טיול יום לנפפליאו (28/4 10:00)", done: false, contact: "https://wa.me/message/NLNHNSS46SLHE1", notes: "650 euro לקבוצה. ואן פרטי ל-13. לאשר תעלת קורינטוס + מבצר פלמידי" },
   { task: "לברר הזמנה מוקדמת — Shuk / King David / Gostijo", done: false, contact: "Shuk: +306970252857 | King David: https://wa.me/306949527534", notes: "כנראה לא חובה — אבל כדאי לבדוק" },
   { task: "הזמנת כרטיסי מוזיאון האשליות (29/4 13:00)", done: false, contact: "https://athens.museumofillusions.gr", notes: "לשאול על הנחות קבוצה ל-13" },
-  { task: "הזמנת סיור Ezraider (26/4 14:45)", done: false, contact: "https://wa.me/message/NLNHNSS46SLHE1", notes: "70 euro מבוגר / 35 euro ילד. לאשר יציאה ב-14:45 + נגישות לסבתא" },
+  { task: "הזמנת סיור Ezraider (26/4 14:45)", done: false, contact: "https://wa.me/message/NLNHNSS46SLHE1", notes: "70€ נהג / 35€ נוסע-שני באותו כלי · הנחה 15% · 9 כלים · סה״כ ~654.50€. לאשר יציאה ב-14:45 + נגישות לסבתא" },
   { task: "הזמנת Who Killed Callimachos (26/4 18:00)", done: false, contact: "https://athenslivingmuseum.com/who-killed-callimachos/", notes: "22 euro מבוגר / 15 euro ילד. הנחה ל-10+ אנשים!" },
   { task: "הזמנת כרטיסי הופ-און הופ-אוף אונליין", done: false, contact: "https://www.bigbustours.com/en/athens/athens-bus-tours", notes: "כרטיס 48 שעות" },
 ];
@@ -116,7 +116,7 @@ export const COSTS: CostItem[] = [
   // פעילויות
   { section: "activities", item: "הסעה שדה + מלון (x2)", adultEur: "~23", childEur: "~23", adultIls: "~83", childIls: "~83", adults: 8, children: 4, totalEur: 300, notes: "מיניבוס פרטי — יאנה · 150€ לכיוון" },
   { section: "activities", item: "הופ-און הופ-אוף", adultEur: "~28", childEur: "~14", adultIls: "~100", childIls: "~50", adults: 8, children: 4, totalEur: "~280", notes: "כרטיס 48 שעות" },
-  { section: "activities", item: "סיור Ezraider", adultEur: 70, childEur: 35, adultIls: 251, childIls: 125, adults: 8, children: 4, totalEur: "~700", notes: "מחיר קבוע לאדם" },
+  { section: "activities", item: "סיור Ezraider", adultEur: "70 (נהג)", childEur: "35 (נוסע)", adultIls: "251", childIls: "125", adults: 8, children: 4, totalEur: 654.5, notes: "9 כלים (4 זוגות + 5 בודדים). 5×70 + 4×(70+35) = 770€. הנחה 15% → 654.50€" },
   { section: "activities", item: "Who Killed Callimachos", adultEur: 22, childEur: 15, adultIls: 79, childIls: 54, adults: 8, children: 4, totalEur: "~236", notes: "הנחה קבוצתית ל-10+" },
   { section: "activities", item: "טיול יום — נפפליאו (ואן פרטי)", adultEur: "~54", childEur: "~54", adultIls: "~193", childIls: "~193", adults: 8, children: 4, totalEur: 650, notes: "650 euro / 12. כולל תעלת קורינטוס" },
   { section: "activities", item: "כניסה מבצר פלמידי", adultEur: "~8", childEur: "~8", adultIls: "~29", childIls: "~29", adults: 8, children: 4, totalEur: "~96", notes: "ילדים עד 18 — חינם" },
@@ -125,10 +125,10 @@ export const COSTS: CostItem[] = [
   { section: "activities", item: "ארוחות צהריים x4", adultEur: "~22", childEur: "~15", adultIls: "~79", childIls: "~54", adults: 8, children: 4, totalEur: "~816", notes: "ממוצע" },
   { section: "activities", item: "קניות / קפה / שונות", adultEur: "~30", childEur: "~30", adultIls: "~107", childIls: "~107", adults: 12, children: "", totalEur: "~360", notes: "לפי שיקול דעת אישי" },
   // סיכומים
-  { section: "totals", item: 'סה"כ פעילויות+אוכל — מבוגר', adultEur: "~281-331", childEur: "", adultIls: "~1,006-1,185", childIls: "", adults: "", children: "", totalEur: "", notes: "לא כולל קניות אישיות" },
-  { section: "totals", item: 'סה"כ פעילויות+אוכל — ילד/נוער', adultEur: "~204-244", childEur: "", adultIls: "~730-874", childIls: "", adults: "", children: "", totalEur: "", notes: "הנחות כניסה / פחות אוכל" },
-  { section: "totals", item: 'סה"כ כולל הכל — מבוגר (בסיס)', adultEur: "~610", childEur: "", adultIls: "~2,184", childIls: "", adults: "", children: "", totalEur: "", notes: "שער 3.58 ILS/euro (15/4/2026)" },
-  { section: "totals", item: 'סה"כ כולל הכל — ילד/נוער', adultEur: "~528", childEur: "", adultIls: "~1,891", childIls: "", adults: "", children: "", totalEur: "", notes: "שער 3.58 ILS/euro (15/4/2026)" },
+  { section: "totals", item: 'סה"כ פעילויות+אוכל — מבוגר', adultEur: "~273-323", childEur: "", adultIls: "~977-1,156", childIls: "", adults: "", children: "", totalEur: "", notes: "לא כולל קניות אישיות · כולל הנחת 15% על Ezraider" },
+  { section: "totals", item: 'סה"כ פעילויות+אוכל — ילד/נוער', adultEur: "~196-236", childEur: "", adultIls: "~701-845", childIls: "", adults: "", children: "", totalEur: "", notes: "הנחות כניסה / פחות אוכל · כולל הנחת 15% על Ezraider" },
+  { section: "totals", item: 'סה"כ כולל הכל — מבוגר (בסיס)', adultEur: "~602", childEur: "", adultIls: "~2,155", childIls: "", adults: "", children: "", totalEur: "", notes: "שער 3.58 ILS/euro (15/4/2026)" },
+  { section: "totals", item: 'סה"כ כולל הכל — ילד/נוער', adultEur: "~520", childEur: "", adultIls: "~1,862", childIls: "", adults: "", children: "", totalEur: "", notes: "שער 3.58 ILS/euro (15/4/2026)" },
 ];
 
 // ─── נוסעים ────────────────────────────────────────────────────────────────
@@ -184,7 +184,7 @@ export const ACROPOLIS = [
 export const ATTRACTIONS: Attraction[] = [
   { category: "מוזיאון",   name: "מוזיאון האשליות",         description: "אשליות אופטיות ותמונות אינטראקטיביות. ~60 דקות. כיפי לכל הגילאים.",  practicalNotes: "פתוח מ-10:00. הנחות קבוצה ל-13.",   price: "~13€/אדם",              accessibility: "כן",         url: "https://athens.museumofillusions.gr" },
   { category: "תיאטרון",   name: "Who Killed Callimachos",  description: "מיסתורן אינטראקטיבי. שחקן + קהל בלשים. אתונה עתיקה.",               practicalNotes: "מדי יום 18:00. הנחה ל-10+.",         price: "22€ מבוגר / 15€ ילד",  accessibility: "כן",         url: "https://athenslivingmuseum.com/who-killed-callimachos/" },
-  { category: "סיור",      name: "Ezraider",                description: "כלי חשמלי ל-4 גלגלים. מדריך עברית. היסטוריה יהודית. מפגש: GoGo Electric, Leof. Andrea Siggrou 22.",                practicalNotes: "לאשר ב-14:45 + נגישות לסבתא. מיקום: https://maps.app.goo.gl/BKpFJE2BcxEJE33b9",       price: "70€ מבוגר / 35€ ילד",  accessibility: "לאשר",       url: "https://maps.app.goo.gl/BKpFJE2BcxEJE33b9" },
+  { category: "סיור",      name: "Ezraider",                description: "כלי חשמלי ל-4 גלגלים. מדריך עברית. היסטוריה יהודית. מפגש: GoGo Electric, Leof. Andrea Siggrou 22.",                practicalNotes: "לאשר ב-14:45 + נגישות לסבתא. מיקום: https://maps.app.goo.gl/BKpFJE2BcxEJE33b9",       price: "70€ נהג / 35€ נוסע · הנחה 15% · סה״כ ~654.50€ ל-9 כלים",  accessibility: "לאשר",       url: "https://maps.app.goo.gl/BKpFJE2BcxEJE33b9" },
   { category: "טיול יום", name: "נפפליאו + תעלת קורינטוס",  description: "עיירת בוטיק ציורית + תעלה הנדסית. ואן פרטי.",                       practicalNotes: "10:00-18:30. אוכל מהבית!",           price: "650€ לקבוצה (~54€)",   accessibility: "כן — ואן",   url: "https://wa.me/message/NLNHNSS46SLHE1" },
   { category: "מבצר",      name: "מבצר פלמידי",             description: "אחד המבצרים היפים ביוון. נוף פנורמי.",                                practicalNotes: "הרבה מדרגות — סבתא נשארת בנמל.",    price: "~8€/אדם",              accessibility: "חלקי",       url: "https://en.wikipedia.org/wiki/Palamidi" },
   { category: "גבעה",      name: "גבעת ליקבטוס",            description: "הגבעה הכי גבוהה. נוף 360 מעלות. שקיעה מרהיבה ~20:15.",              practicalNotes: "רכבל עד 02:30. להגיע ב-18:30.",      price: "13€ הלוך-חזור",        accessibility: "כן — רכבל", url: "https://en.wikipedia.org/wiki/Lycabettus" },

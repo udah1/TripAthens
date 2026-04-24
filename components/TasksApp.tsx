@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { TASKS, type Task } from "@/lib/data";
 import { PAYER_ORDER } from "@/lib/trip-content";
 
@@ -206,6 +206,27 @@ export default function TasksApp() {
     }
   };
 
+  const doneCount = TASKS.filter(
+    (t) => state[taskIdFromText(t.task)]?.done,
+  ).length;
+
+  // מיון: פתוחות קודם (לפי הסדר המקורי), מסומנות בסוף (לפי זמן הסימון)
+  const sortedTasks = useMemo(() => {
+    return TASKS.map((t, idx) => ({ t, idx }))
+      .sort((a, b) => {
+        const aDone = state[taskIdFromText(a.t.task)]?.done ?? false;
+        const bDone = state[taskIdFromText(b.t.task)]?.done ?? false;
+        if (aDone !== bDone) return aDone ? 1 : -1;
+        if (aDone && bDone) {
+          const at = state[taskIdFromText(a.t.task)]?.doneAt ?? 0;
+          const bt = state[taskIdFromText(b.t.task)]?.doneAt ?? 0;
+          return at - bt;
+        }
+        return a.idx - b.idx;
+      })
+      .map((e) => e.t);
+  }, [state]);
+
   if (authChecking) {
     return <div className="card text-center text-slate-500">טוען…</div>;
   }
@@ -245,10 +266,6 @@ export default function TasksApp() {
     );
   }
 
-  const doneCount = TASKS.filter(
-    (t) => state[taskIdFromText(t.task)]?.done,
-  ).length;
-
   return (
     <div>
       {/* פרטים: מי אני? */}
@@ -284,7 +301,7 @@ export default function TasksApp() {
       )}
 
       <div className="grid md:grid-cols-2 gap-3">
-        {TASKS.map((t) => {
+        {sortedTasks.map((t) => {
           const id = taskIdFromText(t.task);
           const s = state[id];
           const done = s?.done ?? false;

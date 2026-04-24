@@ -42,6 +42,7 @@ export default async function HomePage() {
         <p className="text-md md:text-xl text-slate-700 font-semibold">
           {TRIP_META.groupSize} משתתפים · כשר · {TRIP_META.hotel}
         </p>
+        <CountdownBanner />
         <div className="grid md:grid-cols-3 gap-3 mt-5 text-sm">
           <InfoBox title="✈️ טיסות" value={TRIP_META.airlineFlight} />
           <FlightBox
@@ -58,9 +59,6 @@ export default async function HomePage() {
           />
         </div>
       </section>
-
-      {/* ספירה לאחור — מוסתרת אוטומטית אחרי ההמראה */}
-      {showBeforeFlight && <CountdownBanner />}
 
       {/* לפני הטיסה — כרטיס בולט (מוסתר אוטומטית אחרי ההמראה 26/4 06:30) */}
       {showBeforeFlight && (
