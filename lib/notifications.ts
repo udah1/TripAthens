@@ -218,6 +218,19 @@ function buildMorningNotifs(): ScheduledNotif[] {
 function buildSpecialNotifs(): ScheduledNotif[] {
   const out: ScheduledNotif[] = [];
 
+  // הופ-און — תזכורת לקנות כרטיסים לפני היציאה
+  const hopOnReminder = idtToMs("26/04/2026", "08:30");
+  if (hopOnReminder != null) {
+    out.push({
+      id: "spec_hopon_buy",
+      category: "special",
+      sendAt: hopOnReminder,
+      title: "🚌 קנו כרטיסי הופ-און עכשיו!",
+      body: "bigbustours.com · ~28€ מבוגר / 14€ ילד · כרטיס 48 שעות.",
+      url: "/attractions",
+    });
+  }
+
   // נפפליאו — קחו אוכל (יום לפני ובבוקר של היום)
   const nafplioMorning = idtToMs("28/04/2026", "08:00");
   if (nafplioMorning != null) {
