@@ -1,4 +1,5 @@
 import Link from "next/link";
+import BaggageFAQ from "@/components/BaggageFAQ";
 
 export default function BeforeFlightPage() {
   return (
@@ -118,6 +119,9 @@ export default function BeforeFlightPage() {
           לרשימת המשימות ←
         </Link>
       </section>
+
+      {/* FAQ כבודה */}
+      <BaggageFAQ />
 
       {/* טיפים נוספים */}
       <section className="card">

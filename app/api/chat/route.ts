@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { buildTripSummary } from "@/lib/data";
+import { getBaggageInfo } from "@/lib/baggage-info";
 
 export const runtime = "edge";
 
@@ -94,7 +95,9 @@ function systemPrompt(packing?: PackingSummary | null, fxLine = ""): string {
 
 להלן כל נתוני הטיול:
 
-${buildTripSummary()}${formatPackingSummary(packing)}${fxLine}`;
+${buildTripSummary()}${formatPackingSummary(packing)}${fxLine}
+
+${getBaggageInfo()}`;
 }
 
 export async function POST(req: NextRequest) {
