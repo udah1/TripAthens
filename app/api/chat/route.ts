@@ -32,7 +32,22 @@ function formatPackingSummary(p: PackingSummary | null | undefined): string {
 // אם תרצה להחליף בעתיד — שנה כאן ישירות.
 const MODEL = "gemini-2.5-flash-lite";
 
-function systemPrompt(packing?: PackingSummary | null): string {
+async function fetchFxLine(): Promise<string> {
+  try {
+    const r = await fetch(
+      "https://api.frankfurter.app/latest?from=EUR&to=ILS",
+      { next: { revalidate: 3600 } },
+    );
+    if (!r.ok) return "";
+    const j = (await r.json()) as { date?: string; rates?: { ILS?: number } };
+    if (!j?.rates?.ILS) return "";
+    return `\n\n**שער מט"ח נוכחי (מקור: ECB / Frankfurter):** 1€ = ${j.rates.ILS.toFixed(4)} ₪ (עודכן: ${j.date}).\nהשתמש בשער זה לכל חישובי המרה כשמבקשים סכום בשקלים.`;
+  } catch {
+    return "";
+  }
+}
+
+function systemPrompt(packing?: PackingSummary | null, fxLine = ""): string {
   return `אתה סוכן נסיעות ידידותי שמכיר לעומק את טיול הקבוצה לאתונה באפריל 2026.
 אתה עונה **בעברית בלבד**, בסגנון חם, ברור ומעשי.
 אתה מכיר כל פרט על הטיול: לוז, מסעדות כשרות, מלון, טיסות, נוסעים, עלויות, משימות ואטרקציות.
@@ -64,14 +79,14 @@ function systemPrompt(packing?: PackingSummary | null): string {
 כללים:
 - ענה תמיד בעברית.
 - אם אין לך תשובה — אמור בגלוי ואל תמציא.
-- כשמדברים על כסף — ציין € ו-₪ (שער ~3.58).
+- כשמדברים על כסף — ציין € ו-₪. השתמש בשער העדכני המופיע למטה אם ניתן, אחרת שער ברירת מחדל ~3.58.
 - כשמדברים על פעילויות — ציין שעות, מיקום ומחיר אם ידוע.
 - שים לב לסבתא (75, ניידות מוגבלת) כשיש שאלת נגישות.
 - תשובות תמציתיות, עם bullets כשמתאים, ועם אימוג'ים מתונים.
 
 להלן כל נתוני הטיול:
 
-${buildTripSummary()}${formatPackingSummary(packing)}`;
+${buildTripSummary()}${formatPackingSummary(packing)}${fxLine}`;
 }
 
 export async function POST(req: NextRequest) {
@@ -97,8 +112,10 @@ export async function POST(req: NextRequest) {
       parts: [{ text: m.content }],
     }));
 
+    const fxLine = await fetchFxLine();
+
     const body = {
-      system_instruction: { parts: [{ text: systemPrompt(packing) }] },
+      system_instruction: { parts: [{ text: systemPrompt(packing, fxLine) }] },
       contents,
       generationConfig: {
         temperature: 0.7,

@@ -60,6 +60,9 @@ export default function ExpensesApp() {
   const [form, setForm] = useState<FormState>(() => emptyForm());
   const [submitting, setSubmitting] = useState(false);
 
+  // מפה: date (YYYY-MM-DD) → EUR->ILS rate באותו יום
+  const [fxByDate, setFxByDate] = useState<Record<string, number>>({});
+
   // טעינת סיסמה מה-localStorage
   useEffect(() => {
     try {
@@ -109,6 +112,47 @@ export default function ExpensesApp() {
       loadExpenses(password);
     }
   }, [password, loadExpenses]);
+
+  // טוען שערים היסטוריים לכל תאריך ייחודי של הוצאה ב-EUR
+  useEffect(() => {
+    const dates = Array.from(
+      new Set(
+        expenses
+          .filter((e) => e.currency === "EUR")
+          .map((e) => e.date)
+          .filter((d) => /^\d{4}-\d{2}-\d{2}$/.test(d)),
+      ),
+    );
+    const missing = dates.filter((d) => !(d in fxByDate));
+    if (missing.length === 0) return;
+
+    let cancelled = false;
+    (async () => {
+      const updates: Record<string, number> = {};
+      await Promise.all(
+        missing.map(async (d) => {
+          try {
+            const r = await fetch(
+              `/api/fx/historical?date=${encodeURIComponent(d)}`,
+            );
+            if (!r.ok) return;
+            const j = await r.json();
+            if (j?.ok && typeof j.rates?.ILS === "number") {
+              updates[d] = j.rates.ILS;
+            }
+          } catch {
+            // ignore
+          }
+        }),
+      );
+      if (!cancelled && Object.keys(updates).length) {
+        setFxByDate((prev) => ({ ...prev, ...updates }));
+      }
+    })();
+    return () => {
+      cancelled = true;
+    };
+  }, [expenses, fxByDate]);
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -487,6 +531,18 @@ export default function ExpensesApp() {
                     <div className="text-lg font-extrabold text-emerald-700">
                       {formatAmount(e.amount, e.currency)}
                     </div>
+                    {e.currency === "EUR" && fxByDate[e.date] && (
+                      <div
+                        className="text-xs text-slate-500"
+                        title={`שער ECB ב-${formatDateHe(e.date)}: 1€ = ${fxByDate[e.date].toFixed(4)} ₪`}
+                      >
+                        ≈{" "}
+                        {(e.amount * fxByDate[e.date]).toLocaleString("he-IL", {
+                          maximumFractionDigits: 2,
+                        })}{" "}
+                        ₪
+                      </div>
+                    )}
                   </div>
                   <div className="text-xs text-slate-600 mt-1 flex flex-wrap gap-x-3 gap-y-1">
                     <span>👤 {e.payer}</span>

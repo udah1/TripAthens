@@ -3,6 +3,7 @@ import { TRIP_META, PASSENGERS, ITINERARY, DAY_LABELS, DAY_COLORS, type DayKey }
 import { fetchTripWeather } from "@/lib/weather";
 import DaySummaryCard from "@/components/DaySummaryCard";
 import TripWeatherHome from "@/components/TripWeatherHome";
+import CountdownBanner from "@/components/CountdownBanner";
 
 const dayKeys: DayKey[] = ["יום א", "יום ב", "יום ג", "יום ד"];
 
@@ -12,6 +13,7 @@ const NAV_CARDS = [
   { href: "/packing", emoji: "🧳", title: "מה לקחת", desc: "רשימת אריזה לחו\"ל" },
   { href: "/costs", emoji: "💰", title: "עלויות", desc: "פירוט טיסה, מלון, פעילויות" },
   { href: "/expenses", emoji: "💳", title: "מעקב תשלומים", desc: "מי שילם על מה בטיול (משותף)" },
+  { href: "/currency", emoji: "💱", title: "מט\"ח", desc: "המרה יורו ↔ שקל בשער היומי" },
   { href: "/passengers", emoji: "👥", title: "נוסעים", desc: "13 משתתפים ופירוט אישי" },
   { href: "/restaurants", emoji: "🍽️", title: "מסעדות כשרות", desc: "בשרי + חלבי באתונה" },
   { href: "/attractions", emoji: "🗺️", title: "אטרקציות", desc: "מה לראות ולעשות" },
@@ -56,6 +58,9 @@ export default async function HomePage() {
           />
         </div>
       </section>
+
+      {/* ספירה לאחור — מוסתרת אוטומטית אחרי ההמראה */}
+      {showBeforeFlight && <CountdownBanner />}
 
       {/* לפני הטיסה — כרטיס בולט (מוסתר אוטומטית אחרי ההמראה 26/4 06:30) */}
       {showBeforeFlight && (
