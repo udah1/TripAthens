@@ -215,15 +215,21 @@ export default function SchedulePage() {
                 const gi = globalIndex.get(it) ?? -1;
                 const isCurrent = tripActive && gi === currentIdx;
                 return (
-                  <div
-                    key={idx}
-                    ref={(el) => {
-                      if (gi >= 0) itemRefs.current[gi] = el;
-                    }}
-                    className={`relative grid grid-cols-1 md:grid-cols-[auto_1fr_auto] gap-3 px-4 md:px-5 py-3 border-t border-slate-100 transition ${
-                      it.isEvening ? "bg-slate-100" : ""
-                    } ${isCurrent ? "!bg-emerald-100 ring-2 ring-emerald-400 ring-inset" : ""}`}
-                  >
+                  <div key={idx}>
+                    {it.travelTo && (
+                      <div className="flex items-center gap-1.5 px-4 md:px-5 py-1 text-xs text-slate-400 bg-slate-50 border-t border-slate-100">
+                        <span className="text-slate-300">│</span>
+                        <span>{it.travelTo}</span>
+                      </div>
+                    )}
+                    <div
+                      ref={(el) => {
+                        if (gi >= 0) itemRefs.current[gi] = el;
+                      }}
+                      className={`relative grid grid-cols-1 md:grid-cols-[auto_1fr_auto] gap-3 px-4 md:px-5 py-3 border-t border-slate-100 transition ${
+                        it.isEvening ? "bg-slate-100" : ""
+                      } ${isCurrent ? "!bg-emerald-100 ring-2 ring-emerald-400 ring-inset" : ""}`}
+                    >
                     {isCurrent && (
                       <span className="absolute top-2 left-2 chip bg-emerald-500 text-white">
                         ● עכשיו
@@ -272,6 +278,7 @@ export default function SchedulePage() {
                         💶 {it.price}
                       </div>
                     )}
+                  </div>
                   </div>
                 );
               })}

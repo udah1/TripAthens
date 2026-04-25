@@ -19,6 +19,7 @@ export interface ItineraryItem {
   price: string;
   isEvening?: boolean;
   mapQuery?: string; // אופציונלי — מחליף את location בחיפוש Google Maps
+  travelTo?: string; // זמן נסיעה/הליכה להגעה לפעילות זו (למשל "🚶 5 דק'" / "🚕 15 דק'")
 }
 
 export interface Task {
