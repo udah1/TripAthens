@@ -194,7 +194,7 @@ export default async function HomePage() {
             <div className="text-xs text-slate-400 mt-2">הנחות כניסה + פחות אוכל</div>
           </div>
         </div>
-        <p className="text-xs text-slate-500 mt-2">* {TRIP_META.exchangeRate} · לא כולל קניות אישיות. לפירוט מלא ראו <Link className="text-brand-accent underline" href="/costs">דף העלויות</Link>. {PASSENGERS.length} נוסעים.</p>
+        <p className="text-[10px] text-slate-400 mt-2">* {TRIP_META.exchangeRate} · לא כולל קניות אישיות. לפירוט מלא ראו <Link className="text-brand-accent underline" href="/costs">דף העלויות</Link>. {PASSENGERS.length} נוסעים.</p>
       </section>
 
       {/* החזר מע"מ */}
