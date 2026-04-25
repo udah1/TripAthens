@@ -180,7 +180,7 @@ export default async function HomePage() {
 
       <section className="mb-4">
         <h2 className="section-title">💰 תקציב משוער לאדם</h2>
-        <div className="grid md:grid-cols-2 gap-3">
+        <div className="grid grid-cols-2 gap-3">
           <div className="card bg-gradient-to-br from-emerald-50 to-white">
             <div className="text-sm text-slate-500">מבוגר (בסיס)</div>
             <div className="text-3xl font-extrabold text-brand">~599 €</div>
@@ -194,7 +194,7 @@ export default async function HomePage() {
             <div className="text-xs text-slate-400 mt-2">הנחות כניסה + פחות אוכל</div>
           </div>
         </div>
-        <p className="text-[10px] text-slate-400 mt-2">* {TRIP_META.exchangeRate} · לא כולל קניות אישיות. לפירוט מלא ראו <Link className="text-brand-accent underline" href="/costs">דף העלויות</Link>. {PASSENGERS.length} נוסעים.</p>
+        <p className="text-[11px] text-slate-400 mt-2">* {TRIP_META.exchangeRate} · לא כולל קניות אישיות. לפירוט מלא ראו <Link className="text-brand-accent underline" href="/costs">דף העלויות</Link>. {PASSENGERS.length} נוסעים.</p>
       </section>
 
       {/* החזר מע"מ */}
