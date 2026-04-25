@@ -4,6 +4,7 @@ import { fetchTripWeather } from "@/lib/weather";
 import DaySummaryCard from "@/components/DaySummaryCard";
 import TripWeatherHome from "@/components/TripWeatherHome";
 import CountdownBanner from "@/components/CountdownBanner";
+import TaxRefundAccordion from "@/components/TaxRefundAccordion";
 
 const dayKeys: DayKey[] = ["יום א", "יום ב", "יום ג", "יום ד"];
 
@@ -195,6 +196,10 @@ export default async function HomePage() {
         </div>
         <p className="text-xs text-slate-500 mt-2">* {TRIP_META.exchangeRate} · לא כולל קניות אישיות. לפירוט מלא ראו <Link className="text-brand-accent underline" href="/costs">דף העלויות</Link>. {PASSENGERS.length} נוסעים.</p>
       </section>
+
+      {/* החזר מע"מ */}
+      <TaxRefundAccordion />
+
     </div>
   );
 }
