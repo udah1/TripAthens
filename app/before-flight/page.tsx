@@ -127,10 +127,10 @@ export default function BeforeFlightPage() {
       <section className="card">
         <h2 className="text-lg font-bold text-brand mb-3">💡 טיפים נוספים</h2>
         <ul className="space-y-2 text-sm text-slate-700">
-          <li>
+            <li>
             📅 <b>בדקו תוקף דרכון</b> — חייב להיות תקף לפחות 6 חודשים מעבר
             לתאריך החזרה.
-          </li>
+            </li>
           <li>
             🗺️ <b>הורידו מפות offline</b> של Google Maps (אזור אתונה +
             נפפליאו) לפני הטיסה — חוסך גלישה משמעותית.

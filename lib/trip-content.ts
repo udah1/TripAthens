@@ -24,9 +24,9 @@ import type {
 export const TRIP_META = {
   title: "טיול אתונה — אפריל 2026 · משפחת חורי/זויגי",
   groupSize: 13,
-  hotel: "Athens Cypria Hotel",
-  hotelAddress: "Diomeias 5, Athens 105 63",
-  hotelPhone: "+30 210 323 8034",
+  hotel: "Titania Hotel Athens",
+  hotelAddress: "52, Panepistimiou Avenue, 106 78, Athens",
+  hotelPhone: "+30 210 3326000",
   airlineFlight: "SKY express — GQ721 (הלוך) / GQ720 (חזור)",
   outbound: "26/04/2026 — יציאה 06:30 מישראל, נחיתה 08:45 באתונה",
   inbound: "29/04/2026 — יציאה 20:30 מאתונה, נחיתה 22:30 בישראל",
@@ -38,16 +38,16 @@ export const TRIP_META = {
 export const RAW_ITINERARY: Omit<ItineraryItem, "isEvening">[] = [
   // יום א
   { day: "יום א", date: "26/04/2026", time: "08:45", activity: "נחיתה בשדה התעופה", location: "Athens International Airport", description: "", notes: "", accessible: "כן", price: "" },
-  { day: "יום א", date: "26/04/2026", time: "10:30", activity: "הגעה למלון וצ'ק-אין", location: "Athens Cypria Hotel - Diomeias 5", description: "", notes: "אם החדרים לא מוכנים — השאירו מזוודות", accessible: "כן", price: "", travelTo: "🚐 ~45 דק' מהשדה" },
-  { day: "יום א", date: "26/04/2026", time: "11:00-13:00", activity: "הופ-און הופ-אוף", location: "מרכז אתונה", description: "אוטובוס תיירותי קומתיים פתוח. קונים כרטיס 48 שעות ועולים/יורדים בכל תחנה. מקבלים אוזניות שם.", notes: "מומלץ ביום ראשון — עייפים!", accessible: "כן — ישיבה", price: "~28€ מבוגר / ~14€ ילד", travelTo: "🚶 ~3 דק' מהמלון" },
-  { day: "יום א", date: "26/04/2026", time: "13:30", activity: "צהריים — Shuk (בשרי)", location: "Ermou 117", description: "", notes: "הזמינו מקום ל-13!", accessible: "כן", price: "~20-25€/אדם", mapQuery: "Shuk Restaurant Athens", travelTo: "🚶 ~5 דק' מהתחנה" },
+  { day: "יום א", date: "26/04/2026", time: "10:30", activity: "הגעה למלון וצ'ק-אין", location: "Titania Hotel Athens - Panepistimiou 52", description: "", notes: "צ'ק-אין מ-15:00. אם החדרים לא מוכנים — השאירו מזוודות", accessible: "כן", price: "", travelTo: "🚐 ~45 דק' מהשדה" },
+  { day: "יום א", date: "26/04/2026", time: "11:00-13:00", activity: "הופ-און הופ-אוף", location: "מרכז אתונה", description: "אוטובוס תיירותי קומתיים פתוח. קונים כרטיס 48 שעות ועולים/יורדים בכל תחנה. מקבלים אוזניות שם.", notes: "מומלץ ביום ראשון — עייפים!", accessible: "כן — ישיבה", price: "~28€ מבוגר / ~14€ ילד", travelTo: "🚶 ~8 דק' מהמלון" },
+  { day: "יום א", date: "26/04/2026", time: "13:30", activity: "צהריים — Shuk (בשרי)", location: "Ermou 117", description: "", notes: "הזמינו מקום ל-13!", accessible: "כן", price: "~20-25€/אדם", mapQuery: "Shuk Restaurant Athens", travelTo: "🚶 ~8 דק' מהמלון" },
   { day: "יום א", date: "26/04/2026", time: "14:45-17:45", activity: "סיור Ezraider", location: "GoGo Electric · Leof. Andrea Siggrou 22, Athina 117 42", description: "כלי רכב חשמלי ישראלי על 4 גלגלים. מדריך עברית, עוצרים באטרקציות. מפגש: GoGo Electric, Leof. Andrea Siggrou 22.", notes: "לאשר יציאה ב-14:45 + נגישות לסבתא! · https://maps.app.goo.gl/BKpFJE2BcxEJE33b9", accessible: "לאשר", price: "70€ נהג / 35€ נוסע · הנחה 15% · 9 כלים · סה״כ ~654.50€", travelTo: "🚶 ~15 דק' מ-Shuk" },
   { day: "יום א", date: "26/04/2026", time: "18:00-19:00", activity: "Who Killed Callimachos — מיסתורן", location: "Athens Living Museum", description: "מופע תיאטרון אינטראקטיבי. שחקן מגלם דמויות מאתונה העתיקה, הקהל הם הבלשים.", notes: "הנחה ל-10+ אנשים! הזמינו מראש.", accessible: "כן", price: "22€ מבוגר / 15€ ילד", travelTo: "🚶 ~15 דק' מ-Ezraider" },
-  { day: "יום א", date: "26/04/2026", time: "19:00-20:00", activity: "מנוחה במלון", location: "Athens Cypria Hotel", description: "", notes: "חובה אחרי טיסת שחר", accessible: "כן", price: "", travelTo: "🚶 ~5 דק' למלון" },
-  { day: "יום א", date: "26/04/2026", time: "20:00+", activity: "ערב בכיכר סינטגמה", location: "Syntagma Square", description: "כיכר המרכזית של אתונה — מוארת ותוססת. בתי קפה, ברים, אנשים.", notes: "שתייה מבקבוקים סגורים בסדר", accessible: "כן", price: "", travelTo: "🚶 ~3 דק' מהמלון" },
+  { day: "יום א", date: "26/04/2026", time: "19:00-20:00", activity: "מנוחה במלון", location: "Titania Hotel Athens", description: "", notes: "חובה אחרי טיסת שחר", accessible: "כן", price: "", travelTo: "🚶 ~10 דק' למלון" },
+  { day: "יום א", date: "26/04/2026", time: "20:00+", activity: "ערב בכיכר סינטגמה", location: "Syntagma Square", description: "כיכר המרכזית של אתונה — מוארת ותוססת. בתי קפה, ברים, אנשים.", notes: "שתייה מבקבוקים סגורים בסדר", accessible: "כן", price: "", travelTo: "🚶 ~10 דק' מהמלון" },
 
   // יום ב
-  { day: "יום ב", date: "27/04/2026", time: "09:30-11:30", activity: "שכונת פלאקה", location: "Plaka neighborhood", description: "שכונת העיר העתיקה. רחובות מרוצפים מהמאה ה-19, חנויות מזכרות, אווירה יוונית.", notes: "שטוח ונגיש לסבתא", accessible: "כן", price: "כניסה חופשית", travelTo: "🚶 ~5 דק' מהמלון" },
+  { day: "יום ב", date: "27/04/2026", time: "09:30-11:30", activity: "שכונת פלאקה", location: "Plaka neighborhood", description: "שכונת העיר העתיקה. רחובות מרוצפים מהמאה ה-19, חנויות מזכרות, אווירה יוונית.", notes: "שטוח ונגיש לסבתא", accessible: "כן", price: "כניסה חופשית", travelTo: "🚶 ~10 דק' מהמלון" },
   { day: "יום ב", date: "27/04/2026", time: "11:30-13:30", activity: "קניות", location: "Ermou + Monastiraki", description: "רחוב ארמו — קניות ראשי. מונסטיראקי — מזכרות.", notes: "קחו תיק לקניות", accessible: "כן — שטוח", price: "—", travelTo: "🚶 ~5 דק' מפלאקה" },
   { day: "יום ב", date: "27/04/2026", time: "13:30", activity: "צהריים — Gostijo (בשרי)", location: "Esopou 10", description: "ממש ליד מונסטיראקי. פותח ב-13:30. יש מכולת כשרה בפנים.", notes: "לאשר זמינות ל-13", accessible: "כן", price: "~20-25€/אדם", travelTo: "🚶 ~2 דק' ממונסטיראקי" },
   { day: "יום ב", date: "27/04/2026", time: "14:30-18:00", activity: "המשך קניות", location: "Ermou + Monastiraki", description: "המשך קניות בארמו ומונסטיראקי.", notes: "", accessible: "כן — שטוח", price: "—" },
@@ -55,15 +55,15 @@ export const RAW_ITINERARY: Omit<ItineraryItem, "isEvening">[] = [
   { day: "יום ב", date: "27/04/2026", time: "21:00+", activity: "בר גג לשתייה", location: "Rooftop bar", description: "נוף לילי על העיר המוארת.", notes: "שתייה מבקבוקים סגורים בסדר", accessible: "לשיקול דעת", price: "", travelTo: "🚕 ~15 דק' מליקבטוס" },
 
   // יום ג
-  { day: "יום ג", date: "28/04/2026", time: "10:00", activity: "יציאה לנפפליאו — ואן פרטי", location: "Athens Cypria Hotel", description: "קחו אוכל כשר מהמלון — אין מסעדה כשרה בנפפליאו!", notes: "", accessible: "כן — ואן", price: "650€ לקבוצה (~54€/אדם)" },
+  { day: "יום ג", date: "28/04/2026", time: "10:00", activity: "יציאה לנפפליאו — ואן פרטי", location: "Titania Hotel Athens", description: "קחו אוכל כשר מהמלון — אין מסעדה כשרה בנפפליאו!", notes: "", accessible: "כן — ואן", price: "650€ לקבוצה (~54€/אדם)" },
   { day: "יום ג", date: "28/04/2026", time: "11:00", activity: "תעלת קורינטוס", location: "Corinth Canal", description: "תעלה צרה ועמוקה מרהיבה. הישג הנדסי מדהים. עצירה ~20-30 דקות.", notes: "נוף מדהים מהגשר. שטוח ונגיש.", accessible: "כן", price: "חינם", travelTo: "🚐 ~1 שעה מהמלון" },
   { day: "יום ג", date: "28/04/2026", time: "12:30-13:00", activity: "הגעה לנפפליאו", location: "Nafplio", description: "", notes: "", accessible: "כן — ואן", price: "", travelTo: "🚐 ~1.5 שעות מהתעלה" },
   { day: "יום ג", date: "28/04/2026", time: "13:00-14:30", activity: "מבצר פלמידי", location: "Fortress Palamidi", description: "אחד המבצרים היפים ביוון. נוף פנורמי על העיירה והמפרץ.", notes: "סבתא יכולה לחכות בנמל — הרבה מדרגות!", accessible: "חלקי", price: "~8€/אדם", travelTo: "🚶 ~10 דק' מהנמל" },
   { day: "יום ג", date: "28/04/2026", time: "14:30-16:30", activity: "טיול חופשי בנפפליאו", location: "Nafplio — Old Town + Harbor", description: "סמטאות ציוריות, ארכיטקטורה וונציאנית, נמל יפהפה.", notes: "שטוח בעיירה ובנמל. נגיש לסבתא.", accessible: "כן — שטוח", price: "כניסה חופשית", travelTo: "🚶 ~5 דק' מהמבצר" },
   { day: "יום ג", date: "28/04/2026", time: "16:30", activity: "סירה לבורג'י (אופציונלי)", location: "Nafplio Harbor", description: "מגדל ים באמצע המפרץ — ~15 דקות הפלגה.", notes: "", accessible: "כן", price: "~5€/אדם" },
   { day: "יום ג", date: "28/04/2026", time: "17:00", activity: "יציאה חזרה לאתונה", location: "Nafplio - Athens", description: "", notes: "", accessible: "כן — ואן", price: "" },
-  { day: "יום ג", date: "28/04/2026", time: "18:30", activity: "הגעה למלון", location: "Athens Cypria Hotel", description: "", notes: "", accessible: "כן", price: "", travelTo: "🚐 ~2 שעות מנפפליאו" },
-  { day: "יום ג", date: "28/04/2026", time: "21:00+", activity: "ערב בפלאקה", location: "Plaka neighborhood", description: "פלאקה יפה בלילה. אווירה רומנטית, בתי קפה שקטים.", notes: "שתייה בסדר. ערב נינוח.", accessible: "כן", price: "", travelTo: "🚶 ~5 דק' מהמלון" },
+  { day: "יום ג", date: "28/04/2026", time: "18:30", activity: "הגעה למלון", location: "Titania Hotel Athens", description: "", notes: "", accessible: "כן", price: "", travelTo: "🚐 ~2 שעות מנפפליאו" },
+  { day: "יום ג", date: "28/04/2026", time: "21:00+", activity: "ערב בפלאקה", location: "Plaka neighborhood", description: "פלאקה יפה בלילה. אווירה רומנטית, בתי קפה שקטים.", notes: "שתייה בסדר. ערב נינוח.", accessible: "כן", price: "", travelTo: "🚶 ~10 דק' מהמלון" },
 
   // יום ד
   { day: "יום ד", date: "29/04/2026", time: "09:00-11:00", activity: "סיור גרפיטי + פסירי", location: "Psiri / Kerameikos", description: "שכונת האמנות של אתונה. קירות מלאי מורלים. ממשיכים ישר לשוק הפשפשים!", notes: "אפליקציית Street Art Cities (חינם)", accessible: "כן — שטוח", price: "חינם", travelTo: "🚶 ~10 דק' מהמלון" },
@@ -71,7 +71,7 @@ export const RAW_ITINERARY: Omit<ItineraryItem, "isEvening">[] = [
   { day: "יום ד", date: "29/04/2026", time: "13:00-14:00", activity: "מוזיאון האשליות", location: "Museum of Illusions Athens", description: "אשליות אופטיות ותמונות אינטראקטיביות. ~60 דקות. כיפי לכל הגילאים!", notes: "לשאול על הנחות קבוצה ל-13", accessible: "כן", price: "~13€/אדם", travelTo: "🚶 ~8 דק' ממונסטיראקי" },
   { day: "יום ד", date: "29/04/2026", time: "14:15", activity: "צהריים — Shuk (בשרי)", location: "Ermou 117", description: "5 דקות הליכה מהמוזיאון", notes: "", accessible: "כן", price: "~20-25€/אדם", mapQuery: "Shuk Restaurant Athens", travelTo: "🚶 ~5 דק' מהמוזיאון" },
   { day: "יום ד", date: "29/04/2026", time: "15:30-16:30", activity: "הגן הלאומי", location: "National Garden", description: "פארק ירוק ענק ליד סינטגמה. שבילים, בריכות, צל, שקט.", notes: "הליכה קצרה מהמלון", accessible: "כן — שטוח", price: "חינם", travelTo: "🚶 ~10 דק' מ-Shuk" },
-  { day: "יום ד", date: "29/04/2026", time: "16:30", activity: "חזרה למלון — איסוף מזוודות", location: "Athens Cypria Hotel", description: "", notes: "מזוודות בקבלה מאז 12:00", accessible: "כן", price: "", travelTo: "🚶 ~8 דק' מהגן" },
+  { day: "יום ד", date: "29/04/2026", time: "16:30", activity: "חזרה למלון — איסוף מזוודות", location: "Titania Hotel Athens", description: "", notes: "צ'ק-אאוט עד 11:00! מזוודות בקבלה מוקדם יותר", accessible: "כן", price: "", travelTo: "🚶 ~8 דק' מהגן" },
   { day: "יום ד", date: "29/04/2026", time: "17:00", activity: "נסיעה לשדה התעופה", location: "Athens International Airport", description: "", notes: "מיניבוס (יאנה) — 150€ לכיוון. לא לאחר!", accessible: "כן — מיניבוס", price: "150€ לכיוון" },
   { day: "יום ד", date: "29/04/2026", time: "18:00", activity: "להיות בשדה התעופה!", location: "Athens International Airport", description: "", notes: "לא לאחר!", accessible: "כן", price: "", travelTo: "🚐 ~45 דק' מהמלון" },
   { day: "יום ד", date: "29/04/2026", time: "20:30", activity: "טיסה לישראל", location: "Athens - Israel", description: "", notes: "", accessible: "כן", price: "" },
@@ -112,7 +112,8 @@ export const COSTS: CostItem[] = [
   { section: "flight", item: "תוספת — כפיר (מושב שמור)", adultEur: "+14", childEur: "", adultIls: "+50", childIls: "", adults: 1, children: "", totalEur: "", notes: "מושב אמצע 15E" },
   { section: "flight", item: 'סה"כ טיסות כולל תוספות', adultEur: "", childEur: "", adultIls: "", childIls: "", adults: 12, children: "", totalEur: 1899.08, notes: "" },
   // מלון
-  { section: "hotel", item: "מלון — 4 חדרים 3 לילות (Agoda)", adultEur: 172.04, childEur: 172.04, adultIls: 616, childIls: 616, adults: 8, children: 4, totalEur: 2064.44, notes: "תשלום אוטומטי 19 אפריל!" },
+  { section: "hotel", item: "מלון — Titania Hotel (5 חדרים × 3 לילות, יהודה #59110948)", adultEur: 157.50, childEur: 157.50, adultIls: 564, childIls: 564, adults: 8, children: 2, totalEur: 1575, notes: "10 נוסעים × 157.50€. Climate Tax 30€/חדר לשלם בצ'ק-אין" },
+  { section: "hotel", item: "מלון — Titania Hotel (חדר 1 × 3 לילות, אדיר #59110949)", adultEur: 105.00, childEur: 105.00, adultIls: 376, childIls: 376, adults: 2, children: 1, totalEur: 315, notes: "אדיר + הילה + כפיר × 105€. Climate Tax 30€ לשלם בצ'ק-אין" },
   // פעילויות
   { section: "activities", item: "הסעה שדה + מלון (x2)", adultEur: "~23", childEur: "~23", adultIls: "~83", childIls: "~83", adults: 8, children: 4, totalEur: 300, notes: "מיניבוס פרטי — יאנה · 150€ לכיוון" },
   { section: "activities", item: "הופ-און הופ-אוף", adultEur: "~28", childEur: "~14", adultIls: "~100", childIls: "~50", adults: 8, children: 4, totalEur: "~280", notes: "כרטיס 48 שעות" },
@@ -132,20 +133,24 @@ export const COSTS: CostItem[] = [
 ];
 
 // ─── נוסעים ────────────────────────────────────────────────────────────────
+// מלון: Titania Hotel Athens
+// הזמנה 1 (יהודה #59110948): 5 חדרים × 315€ = 1,575€ ÷ 10 נוסעים = 157.50€/אדם
+// הזמנה 2 (אדיר #59110949): חדר 1 × 315€ = 315€ ÷ 3 (אדיר+הילה+כפיר) = 105€/אדם
+// Climate Tax (לשלם בצ'ק-אין): 30€ לחדר × 6 חדרים = 180€ סה"כ
 export const PASSENGERS: Passenger[] = [
-  { name: "עדי חורי",    booking: "0L4ZFG", ticket: "SKY joy",   baggage: "יד 8kg",                       baseEur: 131.59, extraEur: "—",   flightTotalEur: 131.59, hotelEur: 172.04, grandTotalEur: 303.63 },
-  { name: "שירה חורי",   booking: "0L4ZFG", ticket: "SKY joy",   baggage: "יד 8kg",                       baseEur: 131.59, extraEur: "—",   flightTotalEur: 131.59, hotelEur: 172.04, grandTotalEur: 303.63 },
-  { name: "יובל זויגי",  booking: "0L4ZFG", ticket: "SKY joy",   baggage: "יד 8kg",                       baseEur: 131.59, extraEur: "—",   flightTotalEur: 131.59, hotelEur: 172.04, grandTotalEur: 303.63 },
-  { name: "אגם זויגי",   booking: "FW9ZS7", ticket: "SKY joy",   baggage: "יד 8kg",                       baseEur: 131.59, extraEur: "—",   flightTotalEur: 131.59, hotelEur: 172.04, grandTotalEur: 303.63 },
-  { name: "חנה חורי",    booking: "FW9ZS7", ticket: "SKY joy",   baggage: "יד 8kg",                       baseEur: 131.59, extraEur: "—",   flightTotalEur: 131.59, hotelEur: 172.04, grandTotalEur: 303.63 },
-  { name: "הילה חורי",   booking: "GEIMP8", ticket: "SKY enjoy", baggage: "יד + מטען 23kg, Extra legroom", baseEur: 131.59, extraEur: "+82", flightTotalEur: 213.59, hotelEur: 172.04, grandTotalEur: 385.63 },
-  { name: "נועם חורי",   booking: "UDJWVK", ticket: "SKY joy",   baggage: "יד 8kg",                       baseEur: 131.59, extraEur: "—",   flightTotalEur: 131.59, hotelEur: 172.04, grandTotalEur: 303.63 },
-  { name: "אור זויגי",   booking: "V2FDEL", ticket: "SKY joy+",  baggage: "יד + מטען 15kg",               baseEur: 131.59, extraEur: "+64", flightTotalEur: 195.59, hotelEur: 172.04, grandTotalEur: 367.63 },
-  { name: "יהודה חורי",  booking: "V2FDEL", ticket: "SKY joy+",  baggage: "יד + מטען 15kg",               baseEur: 131.59, extraEur: "+64", flightTotalEur: 195.59, hotelEur: 172.04, grandTotalEur: 367.63 },
-  { name: "אדיר חורי",   booking: "WR7O1Y", ticket: "SKY joy",   baggage: "יד 8kg, מושב 15F",             baseEur: 131.59, extraEur: "+14", flightTotalEur: 145.59, hotelEur: 172.04, grandTotalEur: 317.63 },
-  { name: "כפיר חורי",   booking: "WR7O1Y", ticket: "SKY joy",   baggage: "יד 8kg, מושב 15E",             baseEur: 131.59, extraEur: "+14", flightTotalEur: 145.59, hotelEur: 172.04, grandTotalEur: 317.63 },
-  { name: "נאוה חורי",   booking: "0GI2VD", ticket: "SKY enjoy", baggage: "יד + מטען 23kg, Extra legroom", baseEur: 131.59, extraEur: "+82", flightTotalEur: 213.59, hotelEur: 172.04, grandTotalEur: 385.63 },
-  { name: "ירין זויגי",  booking: "JN915E", ticket: "SKY joy",   baggage: "יד 8kg",                       baseEur: 131.59, extraEur: "—",   flightTotalEur: 131.59, hotelEur: 172.04, grandTotalEur: 303.63 },
+  { name: "עדי חורי",    booking: "0L4ZFG", ticket: "SKY joy",   baggage: "יד 8kg",                       baseEur: 131.59, extraEur: "—",   flightTotalEur: 131.59, hotelEur: 157.50, grandTotalEur: 289.09 },
+  { name: "שירה חורי",   booking: "0L4ZFG", ticket: "SKY joy",   baggage: "יד 8kg",                       baseEur: 131.59, extraEur: "—",   flightTotalEur: 131.59, hotelEur: 157.50, grandTotalEur: 289.09 },
+  { name: "יובל זויגי",  booking: "0L4ZFG", ticket: "SKY joy",   baggage: "יד 8kg",                       baseEur: 131.59, extraEur: "—",   flightTotalEur: 131.59, hotelEur: 157.50, grandTotalEur: 289.09 },
+  { name: "אגם זויגי",   booking: "FW9ZS7", ticket: "SKY joy",   baggage: "יד 8kg",                       baseEur: 131.59, extraEur: "—",   flightTotalEur: 131.59, hotelEur: 157.50, grandTotalEur: 289.09 },
+  { name: "חנה חורי",    booking: "FW9ZS7", ticket: "SKY joy",   baggage: "יד 8kg",                       baseEur: 131.59, extraEur: "—",   flightTotalEur: 131.59, hotelEur: 157.50, grandTotalEur: 289.09 },
+  { name: "הילה חורי",   booking: "GEIMP8", ticket: "SKY enjoy", baggage: "יד + מטען 23kg, Extra legroom", baseEur: 131.59, extraEur: "+82", flightTotalEur: 213.59, hotelEur: 105.00, grandTotalEur: 318.59 },
+  { name: "נועם חורי",   booking: "UDJWVK", ticket: "SKY joy",   baggage: "יד 8kg",                       baseEur: 131.59, extraEur: "—",   flightTotalEur: 131.59, hotelEur: 157.50, grandTotalEur: 289.09 },
+  { name: "אור זויגי",   booking: "V2FDEL", ticket: "SKY joy+",  baggage: "יד + מטען 15kg",               baseEur: 131.59, extraEur: "+64", flightTotalEur: 195.59, hotelEur: 157.50, grandTotalEur: 353.09 },
+  { name: "יהודה חורי",  booking: "V2FDEL", ticket: "SKY joy+",  baggage: "יד + מטען 15kg",               baseEur: 131.59, extraEur: "+64", flightTotalEur: 195.59, hotelEur: 157.50, grandTotalEur: 353.09 },
+  { name: "אדיר חורי",   booking: "WR7O1Y", ticket: "SKY joy",   baggage: "יד 8kg, מושב 15F",             baseEur: 131.59, extraEur: "+14", flightTotalEur: 145.59, hotelEur: 105.00, grandTotalEur: 250.59 },
+  { name: "כפיר חורי",   booking: "WR7O1Y", ticket: "SKY joy",   baggage: "יד 8kg, מושב 15E",             baseEur: 131.59, extraEur: "+14", flightTotalEur: 145.59, hotelEur: 105.00, grandTotalEur: 250.59 },
+  { name: "נאוה חורי",   booking: "0GI2VD", ticket: "SKY enjoy", baggage: "יד + מטען 23kg, Extra legroom", baseEur: 131.59, extraEur: "+82", flightTotalEur: 213.59, hotelEur: 157.50, grandTotalEur: 371.09 },
+  { name: "ירין זויגי",  booking: "JN915E", ticket: "SKY joy",   baggage: "יד 8kg",                       baseEur: 131.59, extraEur: "—",   flightTotalEur: 131.59, hotelEur: 157.50, grandTotalEur: 289.09 },
 ];
 
 // ─── סדר המשלמים בדרופדאון של מעקב תשלומים ─────────────────────────────────

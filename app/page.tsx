@@ -121,7 +121,8 @@ export default async function HomePage() {
         <div className="card bg-amber-50 border-amber-300">
           <ul className="space-y-2 text-sm leading-relaxed">
             <li>⚠️ <strong>צ'ק-אין מ-15:00</strong> — הטיסה נוחתת ב-08:45. להפקיד מזוודות בקבלה.</li>
-            <li>⚠️ <strong>צ'ק-אאוט עד 12:00</strong> — לתאם אחסון מזוודות עד הטיסה (20:30).</li>
+            <li>⚠️ <strong>צ'ק-אאוט עד 11:00</strong> — לתאם אחסון מזוודות עד הטיסה (20:30).</li>
+            <li>⚠️ <strong>Climate Tax</strong> — 30€ לחדר לשלם בצ'ק-אין במזומן/כרטיס (180€ סה"כ ל-6 חדרים)</li>
             <li>⚠️ <strong>בשדה התעופה לא יאוחר מ-18:00 ביום 29/4</strong></li>
             <li>💡 <strong>צ'ק-אין אונליין</strong> פותח 48 שעות לפני — יום שישי 24/4 מ-06:30</li>
             <li>💡 <strong>נפפליאו:</strong> קחו אוכל כשר מהמלון — אין כשרות בדרך!</li>
