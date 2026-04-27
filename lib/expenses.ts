@@ -10,6 +10,7 @@ export interface Expense {
   currency: Currency;
   payer: string;
   date: string; // ISO (YYYY-MM-DD)
+  notes?: string; // הערה חופשית (אופציונלי)
   createdAt: number; // epoch ms
   updatedAt: number; // epoch ms
 }

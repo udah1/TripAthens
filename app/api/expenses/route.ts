@@ -51,7 +51,7 @@ export async function POST(req: NextRequest) {
   if (!checkPassword(getAuth(req))) return unauthorized();
   try {
     const body = await req.json();
-    const { description, amount, currency, payer, date } = body ?? {};
+    const { description, amount, currency, payer, date, notes } = body ?? {};
 
     if (
       typeof description !== "string" ||
@@ -76,6 +76,7 @@ export async function POST(req: NextRequest) {
       currency,
       payer: payer.trim(),
       date,
+      notes: typeof notes === "string" && notes.trim() ? notes.trim() : undefined,
       createdAt: now,
       updatedAt: now,
     };
@@ -95,7 +96,7 @@ export async function PUT(req: NextRequest) {
   if (!checkPassword(getAuth(req))) return unauthorized();
   try {
     const body = await req.json();
-    const { id, description, amount, currency, payer, date } = body ?? {};
+    const { id, description, amount, currency, payer, date, notes } = body ?? {};
     if (typeof id !== "string" || !id) {
       return NextResponse.json({ error: "missing id" }, { status: 400 });
     }
@@ -125,6 +126,7 @@ export async function PUT(req: NextRequest) {
         typeof date === "string" && /^\d{4}-\d{2}-\d{2}$/.test(date)
           ? date
           : prev.date,
+      notes: typeof notes === "string" ? (notes.trim() || undefined) : prev.notes,
       updatedAt: Date.now(),
     };
     list[idx] = updated;
