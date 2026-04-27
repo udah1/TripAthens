@@ -1,7 +1,7 @@
 // Service Worker לאתר "אתונה 2026"
 // — מטפל ב-Web Push notifications + offline caching
 
-const CACHE_VERSION = "athens-2026-v3";
+const CACHE_VERSION = "athens-2026-v2";
 
 // דפים ונכסים לקאש מראש בהתקנה
 const PRECACHE_URLS = [
