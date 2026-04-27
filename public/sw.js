@@ -49,6 +49,11 @@ self.addEventListener("activate", (event) => {
         )
       )
       .then(() => self.clients.claim())
+      .then(async () => {
+        // הודע לכל הלקוחות לבדוק re-subscribe אחרי עדכון SW
+        const allClients = await self.clients.matchAll({ type: "window", includeUncontrolled: true });
+        allClients.forEach((c) => c.postMessage({ type: "SW_UPDATED" }));
+      })
   );
 });
 

@@ -106,6 +106,39 @@ export default function NotificationsApp() {
     };
   }, []);
 
+  // ── re-subscribe אוטומטי אחרי עדכון SW ────────────────────────────
+  useEffect(() => {
+    if (typeof navigator === "undefined" || !("serviceWorker" in navigator)) return;
+
+    const handleMessage = async (event: MessageEvent) => {
+      if (event.data?.type !== "SW_UPDATED") return;
+      if (Notification.permission !== "granted") return;
+
+      try {
+        const reg = await navigator.serviceWorker.ready;
+        const sub = await reg.pushManager.getSubscription();
+        if (!sub) return; // לא היה רשום — לא צריך לעשות כלום
+
+        const keys = sub.toJSON().keys as { p256dh: string; auth: string } | undefined;
+        if (!keys) return;
+
+        // שמור מחדש את ה-subscription ב-KV (שומר על ההעדפות הקיימות)
+        await fetch("/api/push/subscribe", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ endpoint: sub.endpoint, keys, prefs }),
+        });
+        setEndpoint(sub.endpoint);
+        setStatus("subscribed");
+      } catch {
+        // silent fail — המשתמש לא צריך לדעת
+      }
+    };
+
+    navigator.serviceWorker.addEventListener("message", handleMessage);
+    return () => navigator.serviceWorker.removeEventListener("message", handleMessage);
+  }, [prefs]);
+
   // ── הרשמה ───────────────────────────────────────────────────────
   const subscribe = useCallback(async () => {
     setError(null);

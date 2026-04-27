@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 
-const LS_KEY = "athens-push-prompted";
+const LS_KEY = "athens-push-prompted-v2";
 
 function isPwa(): boolean {
   return (
