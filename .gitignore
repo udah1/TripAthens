@@ -14,3 +14,15 @@ out
 .vscode/
 *.swp
 *.swo
+
+# Python scripts output (generated files — do not commit)
+scripts/*.xlsx
+scripts/*.pdf
+scripts/__pycache__/
+scripts/*.pyc
+public/downloads/*.xlsx
+public/downloads/*.pdf
+
+# Expense settlement output (contains personal financial data)
+scripts/data/*_settlement.md
+scripts/data/*_settlement.xlsx
