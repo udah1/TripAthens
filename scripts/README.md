@@ -38,4 +38,4 @@ All source data lives in `data/`:
 | `athens_restaurants.csv` | Restaurant list |
 | `athens_settlement.md` | Expense settlement output |
 
-> For full documentation on using this as a template for a new trip, see the [root README](../../README.md).
+> For full documentation on using this as a template for a new trip, see the [root README](../README.md).
